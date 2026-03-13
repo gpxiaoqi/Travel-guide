@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广州周末二日 · 高铁轻旅行</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="dapeng.html" class="nav-link">大鹏</a>
+                <a href="nanao.html" class="nav-link">南澳</a>
+                <a href="guangzhou.html" class="nav-link" style="color: var(--accent-color);">广州</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);">
+        <div class="container">
+            <h1>广州周末二日 · 高铁轻旅行</h1>
+            <p class="subtitle">地铁+高铁无缝衔接 | 老广味道与新城夜景</p>
+            <div class="meta-info">
+                <span><i class="fas fa-calendar-alt"></i> 周六下午出发 · 周日晚返</span>
+                <span><i class="fas fa-users"></i> 2人 · 轻松慢游</span>
+                <span><i class="fas fa-train"></i> 深圳北 ↔ 广州南</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="overview-section">
+            <h2><i class="fas fa-list-ul"></i> 每日概览</h2>
+            <div class="grid-overview">
+                <div class="day-card">
+                    <div class="day-header">Day 1</div>
+                    <div class="day-title">珠江新城夜色</div>
+                    <div class="day-icons">
+                        <i class="fas fa-subway" title="地铁到深圳北"></i>
+                        <i class="fas fa-train" title="高铁前往广州南"></i>
+                        <i class="fas fa-building" title="花城广场"></i>
+                        <i class="fas fa-tower-observation" title="广州塔"></i>
+                    </div>
+                    <p>地铁+高铁抵穗，夜逛花城广场与广州塔</p>
+                </div>
+                <div class="day-card">
+                    <div class="day-header">Day 2</div>
+                    <div class="day-title">老城慢游</div>
+                    <div class="day-icons">
+                        <i class="fas fa-store" title="北京路"></i>
+                        <i class="fas fa-tree-city" title="永庆坊/荔湾"></i>
+                        <i class="fas fa-landmark" title="陈家祠"></i>
+                        <i class="fas fa-ship" title="珠江边"></i>
+                    </div>
+                    <p>老西关文化巡礼，早茶打卡，晚间返程</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="itinerary-section">
+            <h2><i class="fas fa-clock"></i> 详细时间表</h2>
+
+            <div class="day-detail">
+                <h3 class="day-heading">周六：出发与夜游</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">14:00</div>
+                        <div class="content">
+                            <h4>地铁前往深圳北站</h4>
+                            <p>从就近地铁站乘坐地铁至「深圳北站」，建议提前30–40分钟到站。</p>
+                            <span class="tag">交通</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">15:00</div>
+                        <div class="content">
+                            <h4>高铁 深圳北 → 广州南</h4>
+                            <p>G字头动车约33–40分钟抵达「广州南站」。可选广州东（约70–90分钟）。</p>
+                            <span class="tag">高铁</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16:00</div>
+                        <div class="content">
+                            <h4>地铁进城 · 办理入住</h4>
+                            <p>广州南站乘地铁2号线进城，推荐入住「珠江新城/天河」或「北京路」附近。</p>
+                            <span class="tag">住宿</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">18:00</div>
+                        <div class="content">
+                            <h4>花城广场 · 海心沙</h4>
+                            <p>感受广州CBD夜色，步行可至海心沙、猎德大桥打卡。</p>
+                            <span class="tag">城市景观</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20:00</div>
+                        <div class="content">
+                            <h4>广州塔夜景/珠江夜游</h4>
+                            <p>建议预约广州塔夜间时段或乘坐珠江夜游，拍摄城市夜色。</p>
+                            <span class="tag highlight">必打卡</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-detail">
+                <h3 class="day-heading">周日：老西关文化</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">09:00</div>
+                        <div class="content">
+                            <h4>早茶：点都德/陶陶居/广州酒家</h4>
+                            <p>体验正宗老广早茶：虾饺、肠粉、凤爪、叉烧包。</p>
+                            <span class="tag">美食</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">11:00</div>
+                        <div class="content">
+                            <h4>陈家祠/北京路千年古道</h4>
+                            <p>岭南建筑代表陈家祠；北京路古道见证千年城市层叠。</p>
+                            <span class="tag">文化</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">14:00</div>
+                        <div class="content">
+                            <h4>永庆坊/上下九 · 沙面岛</h4>
+                            <p>老街区慢游，沙面欧式建筑与珠江岸风光，拍照打卡。</p>
+                            <span class="tag">历史街区</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">18:30</div>
+                        <div class="content">
+                            <h4>晚餐 · 返程准备</h4>
+                            <p>返回酒店取行李，地铁至广州南站候车。</p>
+                            <span class="tag">交通</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20:00</div>
+                        <div class="content">
+                            <h4>高铁 广州南 → 深圳北</h4>
+                            <p>约40分钟抵达深圳北，转乘地铁返回家。</p>
+                            <span class="tag">返程</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> 交通信息 · 地图</h2>
+            <div id="map"></div>
+            <div class="transport-tips">
+                <div class="tip-card">
+                    <i class="fas fa-subway"></i>
+                    <div>
+                        <h4>深圳出发</h4>
+                        <p>乘地铁至「深圳北站」；提前30–40分钟到站，留足安检与候车时间。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-train"></i>
+                    <div>
+                        <h4>高铁建议</h4>
+                        <p>深圳北 ↔ 广州南 G字头班次密集；如住老城区亦可选择广州东。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-route"></i>
+                    <div>
+                        <h4>广州地铁</h4>
+                        <p>广州南乘2号线进城；珠江新城可换乘3/5号线；广州塔在APM线/3号线。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-grid">
+            <div class="info-card dining">
+                <h3><i class="fas fa-utensils"></i> 老广味道推荐</h3>
+                <ul>
+                    <li><strong>点都德/陶陶居/广州酒家：</strong> 传统早茶名店，建议预约或错峰。</li>
+                    <li><strong>惠食佳/泮溪酒家：</strong> 老字号龙虾、泮溪园林环境适合拍照。</li>
+                    <li><strong>太古仓/海心沙周边：</strong> 夜景+轻餐酒吧，适合散步拍照。</li>
+                </ul>
+            </div>
+            <div class="info-card accommodation">
+                <h3><i class="fas fa-bed"></i> 住宿建议</h3>
+                <ul>
+                    <li><strong>珠江新城/天河：</strong> 交通便利，适合夜游广州塔与花城广场。</li>
+                    <li><strong>北京路/海珠/荔湾：</strong> 老城区氛围佳，步行可达上下九与沙面。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <h2><i class="fas fa-exclamation-circle"></i> 实用信息</h2>
+            <ul class="tips-list">
+                <li><i class="fas fa-check"></i> <strong>预约：</strong> 广州塔与珠江夜游建议提前预约。</li>
+                <li><i class="fas fa-check"></i> <strong>安检：</strong> 进站需安检，液体与充电宝遵守规定。</li>
+                <li><i class="fas fa-check"></i> <strong>避坑：</strong> 景区周边黄牛与高价纪念品谨慎购买。</li>
+                <li><i class="fas fa-check"></i> <strong>紧急电话：</strong> 警察110 · 急救120 · 铁路客服12306。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 深圳周边游指南 | 祝您旅途愉快</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+        const locations = [
+            { name: "深圳北站", coords: [22.608, 114.029], desc: "地铁抵达高铁枢纽", day: "Day 1" },
+            { name: "广州南站", coords: [22.993, 113.269], desc: "抵穗后乘地铁进城", day: "Day 1" },
+            { name: "花城广场", coords: [23.119, 113.321], desc: "广州CBD核心", day: "Day 1" },
+            { name: "广州塔", coords: [23.111, 113.327], desc: "小蛮腰夜景", day: "Day 1" },
+            { name: "北京路古道", coords: [23.125, 113.271], desc: "千年古道", day: "Day 2" },
+            { name: "陈家祠", coords: [23.124, 113.246], desc: "岭南建筑代表", day: "Day 2" },
+            { name: "永庆坊/上下九", coords: [23.117, 113.243], desc: "老西关街区", day: "Day 2" },
+            { name: "沙面岛", coords: [23.113, 113.244], desc: "欧式建筑群与珠江边", day: "Day 2" }
+        ];
+
+        const routeRail = [
+            [22.608, 114.029], // 深圳北
+            [22.993, 113.269]  // 广州南
+        ];
+        const routeCity = [
+            [23.119, 113.321], // 花城广场
+            [23.111, 113.327], // 广州塔
+            [23.125, 113.271], // 北京路
+            [23.124, 113.246], // 陈家祠
+            [23.117, 113.243], // 上下九
+            [23.113, 113.244]  // 沙面岛
+        ];
+        const routes = [
+            { path: routeRail, color: 'blue' },
+            { path: routeCity, color: 'red' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap('map', locations, routes);
+        });
+    </script>
+</body>
+</html>

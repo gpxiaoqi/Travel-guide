@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>珠海两天两夜 · 自驾海岸轻旅行</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="dapeng.html" class="nav-link">大鹏</a>
+        <a href="nanao.html" class="nav-link">南澳</a>
+        <a href="guangzhou.html" class="nav-link">广州</a>
+        <a href="zhuhai.html" class="nav-link" style="color: var(--accent-color);">珠海</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);">
+    <div class="container">
+      <h1>珠海两天两夜 · 自驾海岸轻旅行</h1>
+      <p class="subtitle">深圳出发 | 情侣路海风与日月贝夜色</p>
+      <div class="meta-info">
+        <span><i class="fas fa-calendar-alt"></i> 两天两夜</span>
+        <span><i class="fas fa-car"></i> 自驾 · 深圳出发</span>
+        <span><i class="fas fa-map-marker-alt"></i> 珠海海岸线</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="overview-section">
+      <h2><i class="fas fa-list-ul"></i> 每日概览</h2>
+      <div class="grid-overview">
+        <div class="day-card">
+          <div class="day-header">Day 1</div>
+          <div class="day-title">抵达与海边夜色</div>
+          <div class="day-icons">
+            <i class="fas fa-car" title="自驾抵达珠海"></i>
+            <i class="fas fa-water" title="情侣路海边"></i>
+            <i class="fas fa-moon" title="日月贝夜景"></i>
+            <i class="fas fa-island-tropical" title="野狸岛"></i>
+          </div>
+          <p>下午抵达情侣路，夜游日月贝与野狸岛</p>
+        </div>
+        <div class="day-card">
+          <div class="day-header">Day 2</div>
+          <div class="day-title">横琴与海岛风光</div>
+          <div class="day-icons">
+            <i class="fas fa-roller-coaster" title="长隆海洋王国"></i>
+            <i class="fas fa-bridge" title="港珠澳大桥口岸"></i>
+            <i class="fas fa-camera" title="唐家湾/九洲港"></i>
+            <i class="fas fa-fish" title="海鲜街"></i>
+          </div>
+          <p>横琴主题乐园或桥口岸打卡，晚间海鲜</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="itinerary-section">
+      <h2><i class="fas fa-clock"></i> 详细时间表</h2>
+
+      <div class="day-detail">
+        <h3 class="day-heading">Day 1：深圳出发 · 海岸夜色</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">13:00</div>
+            <div class="content">
+              <h4>自驾深圳 → 珠海情侣路</h4>
+              <p>经广深沿江/广珠西线，约2–2.5小时抵达；优先选择酒店地下停车位。</p>
+              <span class="tag">交通</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">16:00</div>
+            <div class="content">
+              <h4>办理入住 · 海边散步</h4>
+              <p>入住「情侣路/香洲」一带，步行至岸边感受海风与灯塔景观。</p>
+              <span class="tag">住宿</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">18:30</div>
+            <div class="content">
+              <h4>野狸岛 · 珠海歌剧院（日月贝）</h4>
+              <p>傍晚至夜间拍摄日月贝，野狸岛栈道观海，适合夜景摄影。</p>
+              <span class="tag">海景</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">20:00</div>
+            <div class="content">
+              <h4>沿海晚餐 · 情侣路灯光</h4>
+              <p>可在海鲜街或沿海餐吧用餐，餐后沿情侣路看海。</p>
+              <span class="tag highlight">必打卡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-detail">
+        <h3 class="day-heading">Day 2：横琴 · 海岛与城市</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">09:00</div>
+            <div class="content">
+              <h4>横琴 · 长隆海洋王国（可选）</h4>
+              <p>亲子/打卡友好，早到可玩至下午；或选择横琴金融岛观景。</p>
+              <span class="tag">游乐</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">14:00</div>
+            <div class="content">
+              <h4>港珠澳大桥珠海口岸观景点</h4>
+              <p>近距离观桥梁与人工岛，建议错峰，留意停车与安保范围。</p>
+              <span class="tag">地标</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">17:00</div>
+            <div class="content">
+              <h4>唐家湾/九洲港 · 海滨拍照</h4>
+              <p>海港与栈道拍摄，傍晚光线柔和；返回香洲范围用餐。</p>
+              <span class="tag">摄影</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">20:00</div>
+            <div class="content">
+              <h4>海鲜街晚餐 · 夜景补拍</h4>
+              <p>可二刷日月贝或情侣路段落，视体力安排回酒店休息。</p>
+              <span class="tag">美食</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <h2><i class="fas fa-map-marked-alt"></i> 自驾路线 · 地图</h2>
+      <div id="map"></div>
+      <div class="transport-tips">
+        <div class="tip-card">
+          <i class="fas fa-car"></i>
+          <div>
+            <h4>自驾建议</h4>
+            <p>沿海道路限行与车流较大，核心区停车后步行更舒适；留意路段限速。</p>
+          </div>
+        </div>
+        <div class="tip-card">
+          <i class="fas fa-parking"></i>
+          <div>
+            <h4>停车参考</h4>
+            <p>情侣路、野狸岛、香洲、横琴等区域地下停车场丰富，建议使用正规停车场。</p>
+          </div>
+        </div>
+        <div class="tip-card">
+          <i class="fas fa-ticket"></i>
+          <div>
+            <h4>预约项目</h4>
+            <p>长隆海洋王国与热门观景点建议提前预约或购票，节假日需错峰。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <div class="info-card dining">
+        <h3><i class="fas fa-utensils"></i> 美食推荐</h3>
+        <ul>
+          <li><strong>海鲜：</strong> 海鲜街、湾仔码头周边餐厅。</li>
+          <li><strong>沿海轻餐：</strong> 情侣路/野狸岛周边餐吧。</li>
+          <li><strong>早茶：</strong> 香洲与横琴区域茶楼较多，建议预约。</li>
+        </ul>
+      </div>
+      <div class="info-card accommodation">
+        <h3><i class="fas fa-bed"></i> 住宿建议</h3>
+        <ul>
+          <li><strong>情侣路/香洲：</strong> 海边步行便捷，夜景友好。</li>
+          <li><strong>横琴：</strong> 适合乐园行程，车行便利。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="tips-section">
+      <h2><i class="fas fa-exclamation-circle"></i> 实用信息</h2>
+      <ul class="tips-list">
+        <li><i class="fas fa-check"></i> <strong>限行与预约：</strong> 留意核心区限行与活动预约。</li>
+        <li><i class="fas fa-check"></i> <strong>导航避坑：</strong> 选择官方停车场与正规码头，避免野停与不合规观景点。</li>
+        <li><i class="fas fa-check"></i> <strong>紧急电话：</strong> 110报警 · 120急救 · 122交通事故。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 深圳周边游指南 | 祝您旅途愉快</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    const locations = [
+      { name: "深圳出发点", coords: [22.541, 114.06], desc: "南山/福田一带出发", day: "Day 1" },
+      { name: "情侣路（香洲段）", coords: [22.262, 113.580], desc: "海风与灯光，夜景散步", day: "Day 1" },
+      { name: "野狸岛", coords: [22.257, 113.577], desc: "栈道看海，与日月贝同框", day: "Day 1" },
+      { name: "珠海歌剧院（日月贝）", coords: [22.2577, 113.5766], desc: "夜景摄影地标", day: "Day 1" },
+      { name: "唐家湾/九洲港", coords: [22.345, 113.564], desc: "海港风光与拍照", day: "Day 2" },
+      { name: "横琴 · 长隆海洋王国", coords: [22.140, 113.551], desc: "主题乐园（可选）", day: "Day 2" },
+      { name: "港珠澳大桥珠海口岸", coords: [22.195, 113.593], desc: "桥梁与人工岛观景点", day: "Day 2" },
+      { name: "海鲜街/湾仔码头", coords: [22.208, 113.559], desc: "海鲜餐厅聚集", day: "Day 2" }
+    ];
+
+    const routeDrive = [
+      [22.541, 114.06],
+      [22.2577, 113.5766]
+    ];
+    const routeCoast = [
+      [22.262, 113.580],
+      [22.257, 113.577],
+      [22.2577, 113.5766],
+      [22.345, 113.564],
+      [22.140, 113.551],
+      [22.195, 113.593],
+      [22.208, 113.559]
+    ];
+    const routes = [
+      { path: routeDrive, color: 'blue' },
+      { path: routeCoast, color: 'red' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap('map', locations, routes);
+    });
+  </script>
+</body>
+
+</html>

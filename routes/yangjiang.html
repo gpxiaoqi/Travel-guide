@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阳江两天两夜 · 自驾海岛+温泉高性价比</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="dapeng.html" class="nav-link">大鹏</a>
+                <a href="nanao.html" class="nav-link">南澳</a>
+                <a href="guangzhou.html" class="nav-link">广州</a>
+                <a href="zhuhai.html" class="nav-link">珠海</a>
+                <a href="yangjiang.html" class="nav-link" style="color: var(--accent-color);">阳江</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" style="background: linear-gradient(135deg, #214 0%, #347 50%, #469 100%);">
+        <div class="container">
+            <h1>阳江两天两夜 · 自驾海岛+温泉高性价比</h1>
+            <p class="subtitle">人气与性价比优选 | 海陵岛沙滩 + 阳春温泉</p>
+            <div class="meta-info">
+                <span><i class="fas fa-calendar-alt"></i> 两天两夜</span>
+                <span><i class="fas fa-car"></i> 自驾 · 深圳出发</span>
+                <span><i class="fas fa-hot-tub"></i> 温泉体验</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="overview-section">
+            <h2><i class="fas fa-list-ul"></i> 每日概览</h2>
+            <div class="grid-overview">
+                <div class="day-card">
+                    <div class="day-header">Day 1</div>
+                    <div class="day-title">海陵岛人气海湾</div>
+                    <div class="day-icons">
+                        <i class="fas fa-car" title="自驾抵达阳江"></i>
+                        <i class="fas fa-water" title="大角湾/十里银滩"></i>
+                        <i class="fas fa-fish" title="闸坡海鲜街"></i>
+                        <i class="fas fa-sun" title="海边日落"></i>
+                    </div>
+                    <p>下午抵达海陵岛，沙滩戏水与日落，晚餐海鲜街</p>
+                </div>
+                <div class="day-card">
+                    <div class="day-header">Day 2</div>
+                    <div class="day-title">温泉与轻徒步</div>
+                    <div class="day-icons">
+                        <i class="fas fa-hot-tub" title="阳春温泉"></i>
+                        <i class="fas fa-mountain" title="马尾岛/观景栈道"></i>
+                        <i class="fas fa-camera" title="海边拍照"></i>
+                        <i class="fas fa-car" title="返程"></i>
+                    </div>
+                    <p>上午温泉泡汤，下午海边拍照与栈道散步，晚返深圳</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="itinerary-section">
+            <h2><i class="fas fa-clock"></i> 详细时间表</h2>
+
+            <div class="day-detail">
+                <h3 class="day-heading">Day 1：深圳出发 · 海陵岛人气线路</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">13:00</div>
+                        <div class="content">
+                            <h4>自驾深圳 → 阳江海陵岛</h4>
+                            <p>走广深沿江/沈海高速至阳江，约3–3.5小时。优先酒店地下停车场。</p>
+                            <span class="tag">交通</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">16:30</div>
+                        <div class="content">
+                            <h4>十里银滩/大角湾</h4>
+                            <p>人气最高的海滩，性价比好，沙质细腻。可租遮阳伞与简餐。</p>
+                            <span class="tag">海滩</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">18:30</div>
+                        <div class="content">
+                            <h4>闸坡海鲜街晚餐</h4>
+                            <p>自选海鲜现烹，避坑原则：看称重与价格，尽量选明码标价店。</p>
+                            <span class="tag">美食</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">20:00</div>
+                        <div class="content">
+                            <h4>海边日落与夜景</h4>
+                            <p>栈道散步与拍照，注意潮汐与安全线，不下暗礁区。</p>
+                            <span class="tag">夜景</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-detail">
+                <h3 class="day-heading">Day 2：阳春温泉 · 海岛轻徒步</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">09:00</div>
+                        <div class="content">
+                            <h4>阳春温泉泡汤</h4>
+                            <p>岭南知名温泉，池区多选择，建议错峰或提前预约，带泳衣。</p>
+                            <span class="tag">温泉</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">13:30</div>
+                        <div class="content">
+                            <h4>马尾岛/栈道轻徒步</h4>
+                            <p>礁石海景与木栈道，视体力安排1–2小时拍照与散步。</p>
+                            <span class="tag">徒步</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time">17:00</div>
+                        <div class="content">
+                            <h4>返程准备</h4>
+                            <p>取行李，自驾返深圳；服务区补给与休息，安全驾驶。</p>
+                            <span class="tag">返程</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h2><i class="fas fa-map-marked-alt"></i> 自驾路线 · 地图</h2>
+            <div id="map"></div>
+            <div class="transport-tips">
+                <div class="tip-card">
+                    <i class="fas fa-car"></i>
+                    <div>
+                        <h4>自驾建议</h4>
+                        <p>海滨路段车流与潮汐变化频繁，早晚错峰出行；海滩附近正规停车场优先。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-hot-tub"></i>
+                    <div>
+                        <h4>温泉提示</h4>
+                        <p>自备泳衣与毛巾；高峰期建议预约；注意补水与休息。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h4>避坑指南</h4>
+                        <p>海鲜称重看价签；海边不下暗礁区；防晒与防蚊装备齐备。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-grid">
+            <div class="info-card dining">
+                <h3><i class="fas fa-utensils"></i> 人气/性价比推荐</h3>
+                <ul>
+                    <li><strong>海陵岛十里银滩/大角湾：</strong> 人气高，沙质好，设施齐全。</li>
+                    <li><strong>闸坡海鲜街：</strong> 明码标价店性价比佳，避开强推餐厅。</li>
+                    <li><strong>阳春温泉：</strong> 岭南口碑佳，池区丰富，错峰更舒适。</li>
+                </ul>
+            </div>
+            <div class="info-card accommodation">
+                <h3><i class="fas fa-bed"></i> 住宿建议</h3>
+                <ul>
+                    <li><strong>海陵岛海景酒店：</strong> 步行即到沙滩，日落拍摄方便。</li>
+                    <li><strong>阳春温泉酒店：</strong> 一早泡汤省时省力，适合家庭或放松型。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <h2><i class="fas fa-exclamation-circle"></i> 实用信息</h2>
+            <ul class="tips-list">
+                <li><i class="fas fa-check"></i> <strong>防晒与防蚊：</strong> 海风强，紫外线与蚊虫需重点防护。</li>
+                <li><i class="fas fa-check"></i> <strong>潮汐与安全：</strong> 关注官方海滩开放与潮汐预告，遵守警戒线。</li>
+                <li><i class="fas fa-check"></i> <strong>紧急电话：</strong> 110报警 · 120急救 · 122交通事故。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 深圳周边游指南 | 祝您旅途愉快</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="../assets/js/common.js"></script>
+    <script>
+        const locations = [
+            { name: "深圳出发点", coords: [22.541, 114.06], desc: "南山/福田一带出发", day: "Day 1" },
+            { name: "海陵岛十里银滩", coords: [21.593, 111.838], desc: "人气海滩，设施齐全", day: "Day 1" },
+            { name: "大角湾风景区", coords: [21.611, 111.847], desc: "沙质细腻，适合戏水", day: "Day 1" },
+            { name: "闸坡海鲜街", coords: [21.607, 111.829], desc: "自选海鲜现烹", day: "Day 1" },
+            { name: "马尾岛栈道", coords: [21.545, 111.906], desc: "礁石海景与栈道", day: "Day 2" },
+            { name: "阳春温泉区", coords: [22.176, 111.793], desc: "岭南知名温泉，性价比高", day: "Day 2" }
+        ];
+
+        const routeDrive = [
+            [22.541, 114.06],
+            [21.593, 111.838]
+        ];
+        const routeDay1 = [
+            [21.593, 111.838],
+            [21.611, 111.847],
+            [21.607, 111.829]
+        ];
+        const routeDay2 = [
+            [21.607, 111.829],
+            [21.545, 111.906],
+            [22.176, 111.793]
+        ];
+        const routes = [
+            { path: routeDrive, color: 'blue' },
+            { path: routeDay1, color: 'red' },
+            { path: routeDay2, color: 'green' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap('map', locations, routes);
+        });
+    </script>
+</body>
+</html>

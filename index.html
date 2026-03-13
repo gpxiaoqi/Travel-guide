@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳周边游指南 - 发现身边的美好</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .home-hero {
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .home-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" style="color: var(--accent-color);">首页</a>
+                <a href="routes/dapeng.html" class="nav-link">大鹏</a>
+                <a href="routes/nanao.html" class="nav-link">南澳</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="home-hero">
+        <div class="container">
+            <h1 class="home-title">探索深圳周边的隐秘角落</h1>
+            <p class="home-subtitle">不仅仅是高楼大厦，还有山海与星辰</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2><i class="fas fa-route"></i> 热门路线</h2>
+            <div class="destinations-grid">
+                <!-- 大鹏卡片 -->
+                <div class="route-card">
+                    <div class="route-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1548266652-99cf27701ced?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="route-content">
+                        <h3 class="route-title">大鹏古城 & 杨梅坑三日游</h3>
+                        <div class="route-meta">
+                            <span><i class="fas fa-clock"></i> 3天2夜</span>
+                            <span style="margin-left: 15px;"><i class="fas fa-map-marker-alt"></i> 大鹏半岛</span>
+                        </div>
+                        <p class="route-desc">探访600年历史古城，漫步《美人鱼》拍摄地杨梅坑，在天文台栈道看最美日落。</p>
+                        <a href="routes/dapeng.html" class="btn">查看行程</a>
+                    </div>
+                </div>
+
+                <!-- 南澳卡片 -->
+                <div class="route-card">
+                    <div class="route-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80');">
+                    </div>
+                    <div class="route-content">
+                        <h3 class="route-title">南澳岛休闲度假二日游</h3>
+                        <div class="route-meta">
+                            <span><i class="fas fa-clock"></i> 2天1夜</span>
+                            <span style="margin-left: 15px;"><i class="fas fa-map-marker-alt"></i> 南澳</span>
+                        </div>
+                        <p class="route-desc">享受蓝宝石海滩的宁静，品尝地道海鲜大餐，体验出海捕鱼的乐趣。</p>
+                        <a href="routes/nanao.html" class="btn">查看行程</a>
+                    </div>
+                </div>
+
+                <!-- 广州卡片 -->
+                <div class="route-card">
+                    <div class="route-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1534274983757-d400bbdf05aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="route-content">
+                        <h3 class="route-title">广州周末 · 高铁轻旅行</h3>
+                        <div class="route-meta">
+                            <span><i class="fas fa-clock"></i> 2天1夜</span>
+                            <span style="margin-left: 15px;"><i class="fas fa-train"></i> 地铁+高铁</span>
+                        </div>
+                        <p class="route-desc">花城广场与广州塔夜景，老西关文化慢游，早茶打卡。</p>
+                        <a href="routes/guangzhou.html" class="btn">查看行程</a>
+                    </div>
+                </div>
+
+                <!-- 珠江卡片 -->
+                <div class="route-card">
+                    <div class="route-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="route-content">
+                        <h3 class="route-title">珠海两天两夜 · 自驾海岸</h3>
+                        <div class="route-meta">
+                            <span><i class="fas fa-clock"></i> 2天2夜</span>
+                            <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
+                        </div>
+                        <p class="route-desc">情侣路海风、日月贝夜景、横琴与桥口岸打卡、海鲜餐吧。</p>
+                        <a href="routes/zhuhai.html" class="btn">查看行程</a>
+                    </div>
+                </div>
+
+                <div class="route-card">
+                    <div class="route-img"
+                        style="background-image: url('https://images.unsplash.com/photo-1500375592092-40eb08a0f7c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="route-content">
+                        <h3 class="route-title">阳江两天两夜 · 海岛+温泉</h3>
+                        <div class="route-meta">
+                            <span><i class="fas fa-clock"></i> 2天2夜</span>
+                            <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
+                        </div>
+                        <p class="route-desc">海陵岛人气沙滩与闸坡海鲜，高性价比阳春温泉。</p>
+                        <a href="routes/yangjiang.html" class="btn">查看行程</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <h2><i class="fas fa-lightbulb"></i> 出行建议</h2>
+            <ul class="tips-list">
+                <li><i class="fas fa-check"></i> <strong>季节选择：</strong> 4-10月适合下海，11-3月适合徒步看海。</li>
+                <li><i class="fas fa-check"></i> <strong>交通工具：</strong> 大部分景点建议自驾，但需注意周末限行预约。</li>
+                <li><i class="fas fa-check"></i> <strong>住宿预订：</strong> 节假日务必提前一周以上预订热门民宿。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 深圳周边游指南 | 发现生活的美</p>
+    </footer>
+</body>
+
+</html>

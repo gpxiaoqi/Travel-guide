@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深圳大鹏清明三日游攻略</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="dapeng.html" class="nav-link" style="color: var(--accent-color);">大鹏</a>
+        <a href="nanao.html" class="nav-link">南澳</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>深圳大鹏 · 清明三日游</h1>
+      <p class="subtitle">山海之间的诗意栖居 | 历史古韵与星辰大海</p>
+      <div class="meta-info">
+        <span><i class="fas fa-calendar-alt"></i> 清明假期 (3天2夜)</span>
+        <span><i class="fas fa-map-marker-alt"></i> 深圳 · 大鹏半岛</span>
+        <span><i class="fas fa-cloud-sun"></i> 宜：踏青、观海、访古</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 每日概览 -->
+    <section class="overview-section">
+      <h2><i class="fas fa-list-ul"></i> 行程概览</h2>
+      <div class="grid-overview">
+        <div class="day-card">
+          <div class="day-header">Day 1</div>
+          <div class="day-title">古韵海风</div>
+          <div class="day-icons">
+            <i class="fas fa-landmark" title="大鹏所城"></i>
+            <i class="fas fa-utensils" title="客家美食"></i>
+            <i class="fas fa-umbrella-beach" title="较场尾"></i>
+          </div>
+          <p>探访大鹏所城，漫步较场尾沙滩</p>
+        </div>
+        <div class="day-card">
+          <div class="day-header">Day 2</div>
+          <div class="day-title">山海星辰</div>
+          <div class="day-icons">
+            <i class="fas fa-mountain" title="鹿嘴山庄"></i>
+            <i class="fas fa-water" title="杨梅坑"></i>
+            <i class="fas fa-star" title="天文台"></i>
+          </div>
+          <p>杨梅坑绝美海岸，天文台栈道日落</p>
+        </div>
+        <div class="day-card">
+          <div class="day-header">Day 3</div>
+          <div class="day-title">地质奇观</div>
+          <div class="day-icons">
+            <i class="fas fa-gem" title="地质公园"></i>
+            <i class="fas fa-praying-hands" title="东山寺"></i>
+            <i class="fas fa-coffee" title="休闲返程"></i>
+          </div>
+          <p>地质博物馆科普，东山寺祈福</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详细行程 -->
+    <section class="itinerary-section">
+      <h2><i class="fas fa-clock"></i> 详细行程</h2>
+
+      <!-- Day 1 -->
+      <div class="day-detail">
+        <h3 class="day-heading">Day 1: 穿越六百年时光</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">10:00</div>
+            <div class="content">
+              <h4>抵达大鹏所城</h4>
+              <p>游览"鹏城"之源，参观将军第、海防展览馆，感受明清海防历史。</p>
+              <span class="tag">历史</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">12:30</div>
+            <div class="content">
+              <h4>午餐：鹏城饭馆</h4>
+              <p>品尝地道客家菜，推荐将军鸭、酿豆腐。</p>
+              <span class="tag">美食</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">14:30</div>
+            <div class="content">
+              <h4>入住较场尾民宿</h4>
+              <p>步行至较场尾，办理入住。这里有"深圳鼓浪屿"之称，民宿风格各异。</p>
+              <span class="tag">住宿</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">16:00</div>
+            <div class="content">
+              <h4>海边漫步 & 下午茶</h4>
+              <p>在沙滩上散步，或找一家海边咖啡馆发呆，体验水上运动。</p>
+              <span class="tag">休闲</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">19:00</div>
+            <div class="content">
+              <h4>海鲜晚餐 & 听海</h4>
+              <p>晚餐享用海鲜烧烤，夜晚在沙滩听海浪声。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-detail">
+        <h3 class="day-heading">Day 2: 追逐最美海岸线</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">09:00</div>
+            <div class="content">
+              <h4>前往杨梅坑</h4>
+              <p>打车或自驾前往杨梅坑，这里有深圳最美的溪谷。</p>
+              <span class="tag">交通</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">10:00</div>
+            <div class="content">
+              <h4>鹿嘴山庄 & 悬崖栈道</h4>
+              <p>乘坐观光车或快艇前往鹿嘴山庄，打卡《美人鱼》拍摄地，欣赏悬崖海景。</p>
+              <span class="tag">景点</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">13:00</div>
+            <div class="content">
+              <h4>午餐：杨梅坑海鲜</h4>
+              <p>在杨梅坑村享用新鲜海鲜午餐。</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">15:00</div>
+            <div class="content">
+              <h4>前往西涌 & 天文台</h4>
+              <p>前往西涌沙滩（4号门），步行或乘坐接驳车前往深圳天文台。</p>
+              <span class="tag">景点</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">17:00</div>
+            <div class="content">
+              <h4>天文台栈道日落</h4>
+              <p>行走在最美海滨栈道，俯瞰西涌海岸线，等待绝美日落。（需提前预约）</p>
+              <span class="tag highlight">必打卡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-detail">
+        <h3 class="day-heading">Day 3: 自然与心灵的对话</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">09:30</div>
+            <div class="content">
+              <h4>大鹏半岛国家地质公园</h4>
+              <p>参观博物馆，了解大鹏半岛的火山地质演变史。</p>
+              <span class="tag">科普</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">11:30</div>
+            <div class="content">
+              <h4>东山寺祈福</h4>
+              <p>前往有着六百多年历史的东山寺，感受宁静肃穆的氛围，俯瞰大鹏城。</p>
+              <span class="tag">文化</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">13:00</div>
+            <div class="content">
+              <h4>午餐 & 返程</h4>
+              <p>在附近享用素斋或农家菜，结束愉快的旅程，返回温馨的家。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 交通地图 -->
+    <section class="map-section">
+      <h2><i class="fas fa-map-marked-alt"></i> 路线地图</h2>
+      <div id="map"></div>
+      <div class="transport-tips">
+        <div class="tip-card">
+          <i class="fas fa-car"></i>
+          <h4>自驾提示</h4>
+          <p>清明假期大鹏半岛实施预约通行，请提前在"深圳交警"公众号预约。</p>
+        </div>
+        <div class="tip-card">
+          <i class="fas fa-bus"></i>
+          <h4>公共交通</h4>
+          <p>E11路直达大鹏中心，转乘M471去大鹏所城/较场尾，M274去杨梅坑。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 食宿推荐 -->
+    <section class="info-grid">
+      <div class="info-card accommodation">
+        <h3><i class="fas fa-bed"></i> 住宿推荐</h3>
+        <ul>
+          <li><strong>较场尾民宿群：</strong> 风格多样，近海边，热闹方便。推荐：蜜悦、慢城。</li>
+          <li><strong>大鹏所城内：</strong> 古色古香，安静怀旧。推荐：九间房。</li>
+          <li><strong>西涌/杨梅坑：</strong> 适合观星、看日出，环境更原生态。</li>
+        </ul>
+      </div>
+      <div class="info-card dining">
+        <h3><i class="fas fa-utensils"></i> 美食必吃</h3>
+        <ul>
+          <li><strong>将军鸭：</strong> 鹏城饭馆招牌菜。</li>
+          <li><strong>客家酿豆腐：</strong> 传统风味。</li>
+          <li><strong>濑粉仔：</strong> 大鹏特色小吃。</li>
+          <li><strong>海胆炒饭：</strong> 南澳特产，鲜香可口。</li>
+          <li><strong>窑鸡：</strong> 农家乐必点。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 实用贴士 -->
+    <section class="tips-section">
+      <h2><i class="fas fa-exclamation-circle"></i> 实用贴士 & 避坑指南</h2>
+      <ul class="tips-list">
+        <li><i class="fas fa-check"></i> <strong>预约：</strong> 大鹏自驾需预约；天文台需在"深圳天文"公众号提前预约。</li>
+        <li><i class="fas fa-check"></i> <strong>防晒：</strong> 海边紫外线强，务必做好防晒。</li>
+        <li><i class="fas fa-check"></i> <strong>防蚊：</strong> 户外活动多，带好驱蚊水。</li>
+        <li><i class="fas fa-check"></i> <strong>错峰：</strong> 节假日杨梅坑易堵车，建议早出发或选择公共交通/快艇。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 深圳大鹏旅行指南 | 祝您旅途愉快</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    // 大鹏行程数据
+    const locations = [
+      {
+        name: "大鹏所城",
+        coords: [22.595213, 114.512449],
+        desc: "明清海防要塞，历史古韵",
+        day: "Day 1"
+      },
+      {
+        name: "较场尾",
+        coords: [22.588178, 114.509678],
+        desc: "深圳鼓浪屿，特色民宿与沙滩",
+        day: "Day 1"
+      },
+      {
+        name: "杨梅坑",
+        coords: [22.544970, 114.571145],
+        desc: "绝美溪谷，美人鱼拍摄地",
+        day: "Day 2"
+      },
+      {
+        name: "鹿嘴山庄",
+        coords: [22.539842, 114.607627],
+        desc: "悬崖海景，日出胜地",
+        day: "Day 2"
+      },
+      {
+        name: "深圳天文台",
+        coords: [22.479717, 114.559350],
+        desc: "最美栈道，观星赏海",
+        day: "Day 2"
+      },
+      {
+        name: "西涌沙滩",
+        coords: [22.472576, 114.534248],
+        desc: "最长沙滩，冲浪胜地",
+        day: "Day 2"
+      },
+      {
+        name: "东山寺",
+        coords: [22.596405, 114.519660],
+        desc: "古刹清幽，俯瞰鹏城",
+        day: "Day 3"
+      }
+    ];
+
+    const routeDay1 = [
+      [22.595213, 114.512449], // Dapeng Fortress
+      [22.588178, 114.509678]  // Jiaochangwei
+    ];
+
+    const routeDay2 = [
+      [22.588178, 114.509678], // Jiaochangwei
+      [22.544970, 114.571145], // Yangmeikeng
+      [22.539842, 114.607627], // Luzui
+      [22.479717, 114.559350]  // Observatory
+    ];
+
+    const routes = [
+      { path: routeDay1, color: 'blue' },
+      { path: routeDay2, color: 'red' }
+    ];
+
+    // 初始化地图
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap('map', locations, routes);
+    });
+  </script>
+</body>
+
+</html>

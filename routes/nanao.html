@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汕头南澳岛休闲二日游攻略</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><i class="fas fa-map-signs"></i> 深圳周边游指南</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="dapeng.html" class="nav-link">大鹏</a>
+        <a href="nanao.html" class="nav-link" style="color: var(--accent-color);">南澳</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="background: linear-gradient(135deg, #1cb5e0 0%, #000851 100%);">
+    <div class="container">
+      <h1>汕头南澳岛 · 休闲二日游</h1>
+      <p class="subtitle">北回归线上的绿洲 | 寻找失落的灯塔</p>
+      <div class="meta-info">
+        <span><i class="fas fa-calendar-alt"></i> 周末假期 (2天1夜)</span>
+        <span><i class="fas fa-map-marker-alt"></i> 汕头 · 南澳县</span>
+        <span><i class="fas fa-car"></i> 宜：自驾、环岛、吃海鲜</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 每日概览 -->
+    <section class="overview-section">
+      <h2><i class="fas fa-list-ul"></i> 行程概览</h2>
+      <div class="grid-overview">
+        <div class="day-card">
+          <div class="day-header">Day 1</div>
+          <div class="day-title">环岛寻迹</div>
+          <div class="day-icons">
+            <i class="fas fa-bridge" title="南澳大桥"></i>
+            <i class="fas fa-lighthouse" title="灯塔"></i>
+            <i class="fas fa-sun" title="日落"></i>
+          </div>
+          <p>穿越跨海大桥，打卡网红灯塔，青澳湾漫步</p>
+        </div>
+        <div class="day-card">
+          <div class="day-header">Day 2</div>
+          <div class="day-title">风车山海</div>
+          <div class="day-icons">
+            <i class="fas fa-fan" title="风车山"></i>
+            <i class="fas fa-camera" title="北回归线"></i>
+            <i class="fas fa-fish" title="海鲜"></i>
+          </div>
+          <p>蛴仔澎风车山，自然之门，享用海鲜大餐</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详细行程 -->
+    <section class="itinerary-section">
+      <h2><i class="fas fa-clock"></i> 详细行程</h2>
+
+      <!-- Day 1 -->
+      <div class="day-detail">
+        <h3 class="day-heading">Day 1: 跨越山海见你</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">10:00</div>
+            <div class="content">
+              <h4>南澳大桥</h4>
+              <p>全长11公里，视野开阔，仿佛行驶在海面上。</p>
+              <span class="tag">交通</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">11:30</div>
+            <div class="content">
+              <h4>长山尾灯塔</h4>
+              <p>红色的复古灯塔，背景是跨海大桥，非常出片。</p>
+              <span class="tag">拍照</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">15:00</div>
+            <div class="content">
+              <h4>青澳湾 & 自然之门</h4>
+              <p>广东最美海岸线之一，沙质细腻。打卡北回归线标志塔。</p>
+              <span class="tag">景点</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">18:00</div>
+            <div class="content">
+              <h4>海鲜大排档</h4>
+              <p>在后宅镇或青澳湾享用紫菜炒饭、白灼鱿鱼等。</p>
+              <span class="tag">美食</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-detail">
+        <h3 class="day-heading">Day 2: 风车与海的浪漫</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">09:00</div>
+            <div class="content">
+              <h4>三 chimney 灯塔 (钱澳湾)</h4>
+              <p>米黄色的灯塔，清新可爱。</p>
+              <span class="tag">景点</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">10:30</div>
+            <div class="content">
+              <h4>蛴仔澎风车山</h4>
+              <p>满山遍野的白色风车，视野极佳，可俯瞰大海。</p>
+              <span class="tag highlight">必打卡</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">13:00</div>
+            <div class="content">
+              <h4>返程</h4>
+              <p>购买一些南澳紫菜、鱿鱼干作为手信，结束旅程。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 交通地图 -->
+    <section class="map-section">
+      <h2><i class="fas fa-map-marked-alt"></i> 路线地图</h2>
+      <div id="map"></div>
+    </section>
+
+    <!-- 实用贴士 -->
+    <section class="tips-section">
+      <h2><i class="fas fa-exclamation-circle"></i> 实用贴士</h2>
+      <ul class="tips-list">
+        <li><i class="fas fa-check"></i> <strong>过桥费：</strong> 进岛收96元，出岛免费。</li>
+        <li><i class="fas fa-check"></i> <strong>交通：</strong> 岛上公共交通不便，强烈建议自驾或租电动车。</li>
+        <li><i class="fas fa-check"></i> <strong>防晒：</strong> 海岛紫外线极强，物理防晒很重要。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 深圳周边游指南 | 祝您旅途愉快</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    // 南澳岛行程数据
+    const locations = [
+      {
+        name: "南澳大桥",
+        coords: [23.4245, 116.9456],
+        desc: "壮观跨海大桥",
+        day: "Day 1"
+      },
+      {
+        name: "长山尾灯塔",
+        coords: [23.4358, 116.9687],
+        desc: "网红红色灯塔",
+        day: "Day 1"
+      },
+      {
+        name: "青澳湾/自然之门",
+        coords: [23.4396, 117.1352],
+        desc: "北回归线标志塔",
+        day: "Day 1"
+      },
+      {
+        name: "钱澳湾灯塔",
+        coords: [23.4089, 117.0234],
+        desc: "米黄色灯塔",
+        day: "Day 2"
+      },
+      {
+        name: "蛴仔澎风车山",
+        coords: [23.4567, 117.0890], // 近似坐标
+        desc: "风车海景",
+        day: "Day 2"
+      }
+    ];
+
+    // 简单路线示意
+    const routeDay1 = [
+      [23.4245, 116.9456],
+      [23.4358, 116.9687],
+      [23.4396, 117.1352]
+    ];
+
+    const routes = [
+      { path: routeDay1, color: 'blue' }
+    ];
+
+    // 初始化地图
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap('map', locations, routes);
+    });
+  </script>
+</body>
+
+</html>
