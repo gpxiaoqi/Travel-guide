@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五一清远-佛山-江门三城自驾游攻略</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .map-container {
+      height: 400px;
+      margin: 2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .route-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+    
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .food-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .timeline {
+      border-left: 3px solid var(--accent-color);
+      margin: 2rem 0;
+      padding-left: 2rem;
+    }
+    
+    .timeline-item {
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0.5rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent-color);
+    }
+    
+    .weather-widget {
+      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><img src="../assets/img/title.svg" alt="Logo"
+          style="width: 28px; height: 28px;"> 鸡哥的旅游攻略大全</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="dapeng.html" class="nav-link">大鹏</a>
+        <a href="nanao.html" class="nav-link">南澳</a>
+        <a href="guangzhou.html" class="nav-link">广州</a>
+        <a href="zhuhai.html" class="nav-link">珠海</a>
+        <a href="yangjiang.html" class="nav-link">阳江</a>
+        <a href="wuyi.html" class="nav-link" style="color: var(--accent-color);">五一特辑</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
+    <div class="container">
+      <h1>五一清远 · 佛山 · 江门</h1>
+      <p class="subtitle">岭南文化深度游 | 美食之旅 | 6天5夜自驾环线</p>
+      <div class="meta-info">
+        <span><i class="fas fa-calendar-alt"></i> 4月30日 - 5月5日 (6天5夜)</span>
+        <span><i class="fas fa-map-marker-alt"></i> 深圳 → 清远 → 佛山 → 江门 → 深圳</span>
+        <span><i class="fas fa-car"></i> 自驾里程：约600公里</span>
+      </div>
+      
+      <div class="weather-widget">
+        <h3><i class="fas fa-cloud-sun"></i> 五一期间天气预报</h3>
+        <p>清远：25-32°C ☀️ 佛山：26-33°C ☀️ 江门：25-31°C 🌤</p>
+        <p>适宜：自驾、徒步、美食探索、文化体验</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 行程概览 -->
+    <section class="overview-section">
+      <h2><i class="fas fa-list-ul"></i> 行程概览</h2>
+      <div class="grid-overview">
+        <div class="day-card">
+          <div class="day-header">Day 1</div>
+          <div class="day-title">深圳 → 清远</div>
+          <div class="day-icons">
+            <i class="fas fa-car" title="自驾"></i>
+            <i class="fas fa-mountain" title="古龙峡"></i>
+            <i class="fas fa-utensils" title="清远鸡"></i>
+          </div>
+          <div class="day-desc">晚上8点出发，抵达清远入住</div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">Day 2</div>
+          <div class="day-title">清远全日游</div>
+          <div class="day-icons">
+            <i class="fas fa-water" title="漂流"></i>
+            <i class="fas fa-tree" title="森林"></i>
+            <i class="fas fa-hotel" title="温泉"></i>
+          </div>
+          <div class="day-desc">古龙峡漂流+玻璃桥，温泉度假</div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">Day 3</div>
+          <div class="day-title">清远 → 佛山</div>
+          <div class="day-icons">
+            <i class="fas fa-car" title="自驾"></i>
+            <i class="fas fa-landmark" title="祖庙"></i>
+            <i class="fas fa-dragon" title="舞狮"></i>
+          </div>
+          <div class="day-desc">上午出发佛山，下午祖庙文化体验</div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">Day 4</div>
+          <div class="day-title">佛山深度游</div>
+          <div class="day-icons">
+            <i class="fas fa-utensils" title="美食"></i>
+            <i class="fas fa-shopping-cart" title="购物"></i>
+            <i class="fas fa-history" title="历史"></i>
+          </div>
+          <div class="day-desc">岭南天地、南风古灶、美食探索</div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">Day 5</div>
+          <div class="day-title">佛山 → 江门</div>
+          <div class="day-icons">
+            <i class="fas fa-car" title="自驾"></i>
+            <i class="fas fa-film" title="影视城"></i>
+            <i class="fas fa-archway" title="碉楼"></i>
+          </div>
+          <div class="day-desc">开平碉楼，梅家大院，侨乡文化</div>
+        </div>
+
+        <div class="day-card">
+          <div class="day-header">Day 6</div>
+          <div class="day-title">江门 → 深圳</div>
+          <div class="day-icons">
+            <i class="fas fa-car" title="自驾"></i>
+            <i class="fas fa-umbrella-beach" title="海滩"></i>
+            <i class="fas fa-home" title="返程"></i>
+          </div>
+          <div class="day-desc">上午游玩，下午返程，晚上8点抵深</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 详细行程 -->
+    <section class="content-section">
+      <h2><i class="fas fa-clock"></i> 详细时间表</h2>
+      
+      <div class="timeline">
+        <!-- Day 1 -->
+        <div class="timeline-item">
+          <h3>5月1日 Day 1 - 深圳 → 清远</h3>
+          <div class="schedule-detail">
+            <p><strong>20:00</strong> 深圳出发，自驾前往清远（约2.5小时车程）</p>
+            <p><strong>22:30</strong> 抵达清远市区，入住酒店（推荐：清远国际酒店）</p>
+            <p><strong>23:00</strong> 宵夜：品尝清远特色宵夜（推荐：连州牛杂、洲心烧肉）</p>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="timeline-item">
+          <h3>5月2日 Day 2 - 清远全日游</h3>
+          <div class="schedule-detail">
+            <p><strong>08:00</strong> 早餐：酒店早餐或当地肠粉</p>
+            <p><strong>09:00</strong> 前往古龙峡景区（车程30分钟）</p>
+            <p><strong>09:30-12:00</strong> 古龙峡漂流+玻璃桥（刺激漂流，壮观瀑布）</p>
+            <p><strong>12:30</strong> 午餐：景区内农家菜（清远鸡、山坑鱼）</p>
+            <p><strong>14:00-17:00</strong> 黄腾峡天门悬廊或玄真古洞生态旅游区</p>
+            <p><strong>18:30</strong> 晚餐：正宗清远鸡宴（推荐：清远鸡村）</p>
+            <p><strong>20:00</strong> 温泉体验：聚龙湾天然温泉度假村</p>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="timeline-item">
+          <h3>5月3日 Day 3 - 清远 → 佛山</h3>
+          <div class="schedule-detail">
+            <p><strong>08:00</strong> 早餐：品尝清远特色早点</p>
+            <p><strong>09:00</strong> 出发前往佛山（车程约2小时）</p>
+            <p><strong>11:30</strong> 抵达佛山，入住酒店（推荐：佛山皇冠假日酒店）</p>
+            <p><strong>12:30</strong> 午餐：佛山地道美食（推荐：应记云吞面）</p>
+            <p><strong>14:00-17:30</strong> 佛山祖庙参观（黄飞鸿纪念馆、叶问堂）</p>
+            <p><strong>18:30</strong> 晚餐：佛山传统粤菜（推荐：得心斋酝扎猪蹄）</p>
+            <p><strong>20:00</strong> 千灯湖夜景散步</p>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="timeline-item">
+          <h3>5月4日 Day 4 - 佛山深度游</h3>
+          <div class="schedule-detail">
+            <p><strong>08:30</strong> 早餐：佛山早茶（推荐：佛山宾馆早茶）</p>
+            <p><strong>09:30-12:00</strong> 岭南天地历史文化街区</p>
+            <p><strong>12:30</strong> 午餐：特色小吃（盲公饼、大良崩砂）</p>
+            <p><strong>14:00-16:30</strong> 南风古灶陶瓷文化体验</p>
+            <p><strong>17:00-18:30</strong> 佛山创意产业园购物</p>
+            <p><strong>19:30</strong> 晚餐：顺德鱼生（推荐：猪肉荣私房菜）</p>
+            <p><strong>21:00</strong> 欣赏佛山夜景或休闲按摩</p>
+          </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="timeline-item">
+          <h3>5月5日 Day 5 - 佛山 → 江门</h3>
+          <div class="schedule-detail">
+            <p><strong>08:00</strong> 早餐后出发前往江门开平（车程1.5小时）</p>
+            <p><strong>09:30-12:30</strong> 开平碉楼群参观（自力村、立园）</p>
+            <p><strong>13:00</strong> 午餐：开平黄鳝饭（推荐：牛恒餐厅）</p>
+            <p><strong>14:30-16:30</strong> 梅家大院（让子弹飞拍摄地）</p>
+            <p><strong>17:30</strong> 前往江门市区入住（推荐：江门万达嘉华酒店）</p>
+            <p><strong>19:00</strong> 晚餐：江门特色海鲜</p>
+            <p><strong>20:30</strong> 蓬江河畔夜景散步</p>
+          </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="timeline-item">
+          <h3>5月6日 Day 6 - 江门 → 深圳</h3>
+          <div class="schedule-detail">
+            <p><strong>08:30</strong> 早餐：江门特色早点</p>
+            <p><strong>09:30-11:30</strong> 小鸟天堂或古劳水乡</p>
+            <p><strong>12:00</strong> 午餐：江门陈皮宴</p>
+            <p><strong>13:30</strong> 开始返程回深圳</p>
+            <p><strong>16:00</strong> 途中休息站休息</p>
+            <p><strong>18:00</strong> 抵达深圳，行程结束</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美食推荐 -->
+    <section class="content-section">
+      <h2><i class="fas fa-utensils"></i> 必吃美食推荐</h2>
+      
+      <div class="food-grid">
+        <div class="food-card">
+          <h4>🍗 清远美食</h4>
+          <ul>
+            <li><strong>清远鸡</strong> - 白切、葱油、盐焗等多种做法</li>
+            <li><strong>洲心烧肉</strong> - 皮脆肉嫩，肥而不腻</li>
+            <li><strong>连州牛杂</strong> - 特色宵夜，香辣可口</li>
+            <li><strong>山坑鱼</strong> - 小溪野生鱼，油炸香脆</li>
+            <li><strong>九龙豆腐</strong> - 嫩滑爽口，豆香浓郁</li>
+          </ul>
+        </div>
+
+        <div class="food-card">
+          <h4>🥟 佛山美食</h4>
+          <ul>
+            <li><strong>应记云吞面</strong> - 百年老店，鲜虾云吞</li>
+            <li><strong>得心斋酝扎猪蹄</strong> - 传统工艺，皮爽肉滑</li>
+            <li><strong>盲公饼</strong> - 佛山特产，香甜酥脆</li>
+            <li><strong>大良崩砂</strong> - 油炸面点，香脆可口</li>
+            <li><strong>顺德鱼生</strong> - 新鲜鱼生，配料丰富</li>
+          </ul>
+        </div>
+
+        <div class="food-card">
+          <h4>🦀 江门美食</h4>
+          <ul>
+            <li><strong>开平黄鳝饭</strong> - 米饭香糯，黄鳝鲜美</li>
+            <li><strong>新会陈皮宴</strong> - 陈皮鸭、陈皮骨等</li>
+            <li><strong>台山蚝</strong> - 生蚝肥美，多种做法</li>
+            <li><strong>恩平烧饼</strong> - 外脆内软，甜而不腻</li>
+            <li><strong>鹤山鱼皮角</strong> - 皮薄馅嫩，汤鲜味美</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 交通信息 -->
+    <section class="content-section">
+      <h2><i class="fas fa-route"></i> 自驾路线规划</h2>
+      
+      <div class="route-card">
+        <h4>🚗 总路线：深圳 → 清远 → 佛山 → 江门 → 深圳</h4>
+        <p><strong>总里程：</strong>约600公里</p>
+        <p><strong>总耗时：</strong>约10小时（不含游玩时间）</p>
+        <p><strong>路况：</strong>全程高速，路况良好</p>
+        
+        <div class="route-details">
+          <p><strong>深圳 → 清远：</strong> 广深高速 → 广州绕城高速 → 广清高速（2.5小时）</p>
+          <p><strong>清远 → 佛山：</strong> 广清高速 → 广州绕城高速 → 佛开高速（2小时）</p>
+          <p><strong>佛山 → 江门：</strong> 佛开高速 → 江肇高速（1.5小时）</p>
+          <p><strong>江门 → 深圳：</strong> 江中高速 → 广深高速（2.5小时）</p>
+        </div>
+      </div>
+
+      <div class="map-container" id="map">
+        <!-- 高德地图将在这里显示 -->
+        <div style="text-align: center; padding: 100px 0; color: #666;">
+          <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+          <p>高德地图路线规划集成</p>
+          <p>深圳 → 清远 → 佛山 → 江门 → 深圳</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 住宿推荐 -->
+    <section class="content-section">
+      <h2><i class="fas fa-hotel"></i> 住宿推荐</h2>
+      
+      <div class="grid-cards">
+        <div class="card">
+          <div class="card-header">🏨 清远</div>
+          <div class="card-content">
+            <p><strong>清远国际酒店</strong> - 四星级，位置便利</p>
+            <p><strong>聚龙湾温泉度假村</strong> - 温泉体验，环境优美</p>
+            <p><strong>价格：</strong>300-600元/晚</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">🏨 佛山</div>
+          <div class="card-content">
+            <p><strong>佛山皇冠假日酒店</strong> - 五星级，设施完善</p>
+            <p><strong>佛山马哥孛罗酒店</strong> - 地理位置优越</p>
+            <p><strong>价格：</strong>400-800元/晚</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">🏨 江门</div>
+          <div class="card-content">
+            <p><strong>江门万达嘉华酒店</strong> - 五星级，购物方便</p>
+            <p><strong>开平潭江半岛酒店</strong> - 碉楼景观，特色体验</p>
+            <p><strong>价格：</strong>350-700元/晚</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 实用信息 -->
+    <section class="content-section">
+      <h2><i class="fas fa-info-circle"></i> 实用信息</h2>
+      
+      <div class="grid-cards">
+        <div class="card">
+          <div class="card-header">📞 紧急电话</div>
+          <div class="card-content">
+            <p><strong>报警：</strong>110</p>
+            <p><strong>急救：</strong>120</p>
+            <p><strong>交通事故：</strong>122</p>
+            <p><strong>高速公路救援：</strong>12122</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">⚠️ 注意事项</div>
+          <div class="card-content">
+            <p>• 五一期间景区人多，建议提前购票</p>
+            <p>• 自驾注意休息，避免疲劳驾驶</p>
+            <p>• 携带防晒用品，天气较热</p>
+            <p>• 准备现金，部分农家乐只收现金</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">💰 预算参考</div>
+          <div class="card-content">
+            <p><strong>油费过路费：</strong>约800元</p>
+            <p><strong>住宿：</strong>1500-2500元（5晚）</p>
+            <p><strong>餐饮：</strong>1200-1800元</p>
+            <p><strong>门票：</strong>600-800元</p>
+            <p><strong>总计：</strong>约4000-6000元</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 避坑指南 -->
+    <section class="content-section">
+      <h2><i class="fas fa-exclamation-triangle"></i> 避坑指南</h2>
+      
+      <div class="card warning-card">
+        <div class="card-content">
+          <p>🚫 <strong>避免景区门口黄牛票</strong> - 通过官方渠道购票</p>
+          <p>🚫 <strong>谨慎选择漂流项目</strong> - 注意安全，保管好物品</p>
+          <p>🚫 <strong>海鲜价格问清楚</strong> - 避免被宰，先问价后消费</p>
+          <p>🚫 <strong>自驾注意导航更新</strong> - 使用最新版本导航软件</p>
+          <p>🚫 <strong>温泉选择正规场所</strong> - 注意卫生条件和安全设施</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 鸡哥的旅游攻略大全 | 专业行程规划</p>
+      <p>行程仅供参考，请根据实际情况调整</p>
+    </div>
+  </footer>
+
+  <script>
+    // 高德地图集成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 城市坐标
+      const cities = {
+        '深圳': '114.057868,22.543099',
+        '清远': '113.056098,23.682064',
+        '佛山': '113.121586,23.021351',
+        '江门': '113.081548,22.578948'
+      };
+
+      // 路线规划数据
+      const routeData = {
+        '深圳-清远': {
+          distance: '约92公里',
+          duration: '约1小时30分钟',
+          route: 'G4京港澳高速 → G0421许广高速',
+          toll: '约45元'
+        },
+        '清远-佛山': {
+          distance: '约92公里',
+          duration: '约1小时27分钟',
+          route: 'G0421许广高速 → S16佛清从高速',
+          toll: '约42元'
+        },
+        '佛山-江门': {
+          distance: '约58公里',
+          duration: '约1小时21分钟',
+          route: 'G1508广州绕城高速 → S47江珠高速',
+          toll: '约28元'
+        },
+        '江门-深圳': {
+          distance: '约145公里',
+          duration: '约2小时15分钟',
+          route: 'G94珠三角环线高速 → G4京港澳高速',
+          toll: '约65元'
+        }
+      };
+
+      // 显示路线信息
+      function displayRouteInfo() {
+        const routeInfoContainer = document.getElementById('route-info');
+        if (routeInfoContainer) {
+          let html = '<div class="route-details">';
+          
+          Object.entries(routeData).forEach(([route, info]) => {
+            html += `
+              <div class="route-segment">
+                <h4>${route}</h4>
+                <div class="route-stats">
+                  <span><i class="fas fa-road"></i> ${info.distance}</span>
+                  <span><i class="fas fa-clock"></i> ${info.duration}</span>
+                  <span><i class="fas fa-tag"></i> 收费: ${info.toll}</span>
+                </div>
+                <p class="route-path"><i class="fas fa-route"></i> ${info.route}</p>
+              </div>
+            `;
+          });
+
+          html += '</div>';
+          routeInfoContainer.innerHTML = html;
+        }
+      }
+
+      // 模拟天气数据
+      const weatherData = [
+        { city: '清远', temp: '25-32°C', condition: '晴天', icon: '☀️' },
+        { city: '佛山', temp: '26-33°C', condition: '晴天', icon: '☀️' },
+        { city: '江门', temp: '25-31°C', condition: '多云', icon: '🌤' }
+      ];
+      
+      // 显示天气信息
+      function displayWeatherInfo() {
+        const weatherInfo = weatherData.map(item => 
+          `${item.city}: ${item.temp} ${item.icon}`
+        ).join(' | ');
+        
+        const weatherElement = document.getElementById('weather-info');
+        if (weatherElement) {
+          weatherElement.textContent = weatherInfo;
+        }
+      }
+
+      // 初始化显示
+      displayRouteInfo();
+      displayWeatherInfo();
+
+      console.log('路线规划数据已加载，可使用高德地图API进行详细展示');
+    });
+  </script>
+</body>
+</html>
