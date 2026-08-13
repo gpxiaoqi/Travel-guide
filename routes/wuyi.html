@@ -10,71 +10,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    .map-container {
-      height: 400px;
-      margin: 2rem 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .route-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 1rem 0;
-    }
-    
-    .food-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .food-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      border-left: 4px solid var(--accent-color);
-    }
-    
-    .timeline {
-      border-left: 3px solid var(--accent-color);
-      margin: 2rem 0;
-      padding-left: 2rem;
-    }
-    
-    .timeline-item {
-      margin: 1.5rem 0;
-      position: relative;
-    }
-    
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2.5rem;
-      top: 0.5rem;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent-color);
-      border: 3px solid white;
-      box-shadow: 0 0 0 2px var(--accent-color);
-    }
-    
-    .weather-widget {
-      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-      color: white;
-      padding: 1rem;
-      border-radius: 12px;
-      text-align: center;
-      margin: 1rem 0;
-    }
-  </style>
 </head>
 
 <body>
@@ -338,6 +273,9 @@
           <p>深圳 → 清远 → 佛山 → 江门 → 深圳</p>
         </div>
       </div>
+
+      <!-- 路线详细信息显示区域 -->
+      <div id="route-info" style="margin-top: 2rem;"></div>
     </section>
 
     <!-- 住宿推荐 -->
@@ -435,6 +373,7 @@
     </div>
   </footer>
 
+  <script src="../assets/js/common.js"></script>
   <script>
     // 高德地图集成
     document.addEventListener('DOMContentLoaded', function() {
