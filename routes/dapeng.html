@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>深圳大鹏清明三日游攻略</title>
+  <title>深圳大鹏清明自驾三日游攻略</title>
   <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -33,12 +31,12 @@
   <header class="hero"
     style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
     <div class="container">
-      <h1>深圳大鹏 · 清明三日游</h1>
+      <h1>深圳大鹏 · 清明自驾三日游</h1>
       <p class="subtitle">山海之间的诗意栖居 | 历史古韵与星辰大海</p>
       <div class="meta-info">
         <span><i class="fas fa-calendar-alt"></i> 清明假期 (3天2夜)</span>
         <span><i class="fas fa-map-marker-alt"></i> 深圳 · 大鹏半岛</span>
-        <span><i class="fas fa-cloud-sun"></i> 宜：踏青、观海、访古</span>
+        <span><i class="fas fa-car"></i> 深圳自驾往返</span>
       </div>
     </div>
   </header>
@@ -92,8 +90,8 @@
           <div class="timeline-item">
             <div class="time">10:00</div>
             <div class="content">
-              <h4>抵达大鹏所城</h4>
-              <p>游览"鹏城"之源，参观将军第、海防展览馆，感受明清海防历史。</p>
+              <h4>深圳自驾 → 大鹏所城</h4>
+              <p>早上从深圳市区自驾出发，抵达官方停车场后游览"鹏城"之源，感受明清海防历史。</p>
               <span class="tag">历史</span>
             </div>
           </div>
@@ -139,7 +137,7 @@
             <div class="time">09:00</div>
             <div class="content">
               <h4>前往杨梅坑</h4>
-              <p>打车或自驾前往杨梅坑，这里有深圳最美的溪谷。</p>
+              <p>自驾前往杨梅坑官方停车场，这里有深圳最美的溪谷。</p>
               <span class="tag">交通</span>
             </div>
           </div>
@@ -210,7 +208,7 @@
 
     <!-- 交通地图 -->
     <section class="map-section">
-      <h2><i class="fas fa-map-marked-alt"></i> 路线地图</h2>
+      <h2><i class="fas fa-map-marked-alt"></i> 自驾路线 · 地图</h2>
       <div id="map"></div>
       <div class="transport-tips">
         <div class="tip-card">
@@ -219,9 +217,9 @@
           <p>清明假期大鹏半岛实施预约通行，请提前在"深圳交警"公众号预约。</p>
         </div>
         <div class="tip-card">
-          <i class="fas fa-bus"></i>
-          <h4>公共交通</h4>
-          <p>E11路直达大鹏中心，转乘M471去大鹏所城/较场尾，M274去杨梅坑。</p>
+          <i class="fas fa-square-parking"></i>
+          <h4>停车建议</h4>
+          <p>大鹏所城、杨梅坑和西涌均优先使用官方停车场，节假日尽量在上午9点前抵达。</p>
         </div>
       </div>
     </section>
@@ -255,7 +253,7 @@
         <li><i class="fas fa-check"></i> <strong>预约：</strong> 大鹏自驾需预约；天文台需在"深圳天文"公众号提前预约。</li>
         <li><i class="fas fa-check"></i> <strong>防晒：</strong> 海边紫外线强，务必做好防晒。</li>
         <li><i class="fas fa-check"></i> <strong>防蚊：</strong> 户外活动多，带好驱蚊水。</li>
-        <li><i class="fas fa-check"></i> <strong>错峰：</strong> 节假日杨梅坑易堵车，建议早出发或选择公共交通/快艇。</li>
+        <li><i class="fas fa-check"></i> <strong>错峰：</strong> 节假日杨梅坑易堵车，建议早出发并按高德实时路况调整顺序。</li>
       </ul>
     </section>
   </main>
@@ -264,12 +262,16 @@
     <p>&copy; 2026 深圳大鹏旅行指南 | 祝您旅途愉快</p>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="../assets/js/common.js"></script>
   <script>
     // 大鹏行程数据
     const locations = [
+      {
+        name: "深圳出发点",
+        coords: [22.541, 114.060],
+        desc: "福田中心区附近自驾出发",
+        day: "Day 1"
+      },
       {
         name: "大鹏所城",
         coords: [22.595213, 114.512449],
@@ -327,8 +329,9 @@
     ];
 
     const routes = [
-      { path: routeDay1, color: 'blue' },
-      { path: routeDay2, color: 'red' }
+      { name: '深圳 → 大鹏所城', path: [[22.541, 114.060], [22.595213, 114.512449]], color: 'blue' },
+      { name: '大鹏半岛景点自驾', path: [...routeDay1, ...routeDay2.slice(1), [22.596405, 114.519660]], color: 'red' },
+      { name: '东山寺 → 深圳', path: [[22.596405, 114.519660], [22.541, 114.060]], color: 'green' }
     ];
 
     // 初始化地图

@@ -7,8 +7,6 @@
   <title>五一清远-佛山-江门三城自驾游攻略</title>
   <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -32,7 +30,7 @@
 
   <header class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
     <div class="container">
-      <h1>五一清远 · 佛山 · 江门</h1>
+      <h1>五一清远 · 佛山 · 江门自驾环线</h1>
       <p class="subtitle">岭南文化深度游 | 美食之旅 | 6天5夜自驾环线</p>
       <div class="meta-info">
         <span><i class="fas fa-calendar-alt"></i> 4月30日 - 5月5日 (6天5夜)</span>
@@ -41,8 +39,8 @@
       </div>
       
       <div class="weather-widget">
-        <h3><i class="fas fa-cloud-sun"></i> 五一期间天气预报</h3>
-        <p>清远：25-32°C ☀️ 佛山：26-33°C ☀️ 江门：25-31°C 🌤</p>
+        <h3><i class="fas fa-cloud-sun"></i> 高德天气预报</h3>
+        <p id="weather-info">正在获取清远近期天气…</p>
         <p>适宜：自驾、徒步、美食探索、文化体验</p>
       </div>
     </div>
@@ -253,29 +251,17 @@
       
       <div class="route-card">
         <h4>🚗 总路线：深圳 → 清远 → 佛山 → 江门 → 深圳</h4>
-        <p><strong>总里程：</strong>约600公里</p>
-        <p><strong>总耗时：</strong>约10小时（不含游玩时间）</p>
-        <p><strong>路况：</strong>全程高速，路况良好</p>
-        
-        <div class="route-details">
-          <p><strong>深圳 → 清远：</strong> 广深高速 → 广州绕城高速 → 广清高速（2.5小时）</p>
-          <p><strong>清远 → 佛山：</strong> 广清高速 → 广州绕城高速 → 佛开高速（2小时）</p>
-          <p><strong>佛山 → 江门：</strong> 佛开高速 → 江肇高速（1.5小时）</p>
-          <p><strong>江门 → 深圳：</strong> 江中高速 → 广深高速（2.5小时）</p>
-        </div>
+        <p><strong>规划方式：</strong>高德地图实时驾车规划</p>
+        <p><strong>路线信息：</strong>地图加载后，下方将显示各段实时里程、预计耗时、收费与主要道路。</p>
+        <p><strong>出行提示：</strong>实际路况会随拥堵、管制和天气变化，请在出发前再次刷新确认。</p>
       </div>
 
-      <div class="map-container" id="map">
-        <!-- 高德地图将在这里显示 -->
-        <div style="text-align: center; padding: 100px 0; color: #666;">
-          <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-          <p>高德地图路线规划集成</p>
-          <p>深圳 → 清远 → 佛山 → 江门 → 深圳</p>
-        </div>
-      </div>
+      <div class="map-container" id="map"></div>
 
       <!-- 路线详细信息显示区域 -->
-      <div id="route-info" style="margin-top: 2rem;"></div>
+      <div id="route-info" style="margin-top: 2rem;">
+        <div class="weather-detail-loading"><i class="fas fa-spinner fa-spin"></i><p>正在获取高德路线规划…</p></div>
+      </div>
     </section>
 
     <!-- 住宿推荐 -->
@@ -385,50 +371,25 @@
         '江门': '113.081548,22.578948'
       };
 
-      // 路线规划数据
-      const routeData = {
-        '深圳-清远': {
-          distance: '约92公里',
-          duration: '约1小时30分钟',
-          route: 'G4京港澳高速 → G0421许广高速',
-          toll: '约45元'
-        },
-        '清远-佛山': {
-          distance: '约92公里',
-          duration: '约1小时27分钟',
-          route: 'G0421许广高速 → S16佛清从高速',
-          toll: '约42元'
-        },
-        '佛山-江门': {
-          distance: '约58公里',
-          duration: '约1小时21分钟',
-          route: 'G1508广州绕城高速 → S47江珠高速',
-          toll: '约28元'
-        },
-        '江门-深圳': {
-          distance: '约145公里',
-          duration: '约2小时15分钟',
-          route: 'G94珠三角环线高速 → G4京港澳高速',
-          toll: '约65元'
-        }
-      };
-
       // 显示路线信息
-      function displayRouteInfo() {
+      function displayRouteInfo(routeData) {
         const routeInfoContainer = document.getElementById('route-info');
         if (routeInfoContainer) {
           let html = '<div class="route-details">';
           
-          Object.entries(routeData).forEach(([route, info]) => {
+          routeData.forEach(info => {
+            const hours = Math.floor(info.duration / 3600);
+            const minutes = Math.round((info.duration % 3600) / 60);
+            const duration = hours ? `${hours}小时${minutes ? `${minutes}分钟` : ''}` : `${minutes}分钟`;
             html += `
               <div class="route-segment">
-                <h4>${route}</h4>
+                <h4>${info.name}</h4>
                 <div class="route-stats">
-                  <span><i class="fas fa-road"></i> ${info.distance}</span>
-                  <span><i class="fas fa-clock"></i> ${info.duration}</span>
-                  <span><i class="fas fa-tag"></i> 收费: ${info.toll}</span>
+                  <span><i class="fas fa-road"></i> 约${(info.distance / 1000).toFixed(0)}公里</span>
+                  <span><i class="fas fa-clock"></i> 约${duration}</span>
+                  <span><i class="fas fa-tag"></i> 收费：${info.tolls > 0 ? `约${info.tolls}元` : '以实时结果为准'}</span>
                 </div>
-                <p class="route-path"><i class="fas fa-route"></i> ${info.route}</p>
+                <p class="route-path"><i class="fas fa-route"></i> ${info.roads}</p>
               </div>
             `;
           });
@@ -438,30 +399,22 @@
         }
       }
 
-      // 模拟天气数据
-      const weatherData = [
-        { city: '清远', temp: '25-32°C', condition: '晴天', icon: '☀️' },
-        { city: '佛山', temp: '26-33°C', condition: '晴天', icon: '☀️' },
-        { city: '江门', temp: '25-31°C', condition: '多云', icon: '🌤' }
-      ];
-      
-      // 显示天气信息
-      function displayWeatherInfo() {
-        const weatherInfo = weatherData.map(item => 
-          `${item.city}: ${item.temp} ${item.icon}`
-        ).join(' | ');
-        
-        const weatherElement = document.getElementById('weather-info');
-        if (weatherElement) {
-          weatherElement.textContent = weatherInfo;
-        }
-      }
-
-      // 初始化显示
-      displayRouteInfo();
-      displayWeatherInfo();
-
-      console.log('路线规划数据已加载，可使用高德地图API进行详细展示');
+      const locations = Object.entries(cities).map(([name, value]) => {
+        const [lng, lat] = value.split(',').map(Number);
+        return { name, coords: [lat, lng], desc: '自驾环线途经城市', day: '五一行程' };
+      });
+      const routeColors = ['#1677ff', '#e85d3f', '#16856f', '#a87500'];
+      const routeSegments = locations.map((location, index) => {
+        const next = locations[(index + 1) % locations.length];
+        return {
+          name: `${location.name}-${next.name}`,
+          path: [location.coords, next.coords],
+          color: routeColors[index]
+        };
+      });
+      initMap('map', locations, routeSegments).then(result => {
+        if (result?.routes?.length) displayRouteInfo(result.routes);
+      });
     });
   </script>
 </body>

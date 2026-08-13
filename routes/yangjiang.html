@@ -7,8 +7,6 @@
     <title>阳江两天两夜 · 自驾海岛+温泉高性价比</title>
     <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -203,8 +201,6 @@
         <p>&copy; 2026 深圳周边游指南 | 祝您旅途愉快</p>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="../assets/js/common.js"></script>
     <script>
         const locations = [
@@ -231,9 +227,10 @@
             [22.176, 111.793]
         ];
         const routes = [
-            { path: routeDrive, color: 'blue' },
-            { path: routeDay1, color: 'red' },
-            { path: routeDay2, color: 'green' }
+            { name: '深圳 → 阳江海陵岛', path: routeDrive, color: 'blue' },
+            { name: '海陵岛景点自驾', path: routeDay1, color: 'red' },
+            { name: '海陵岛 → 阳春温泉', path: routeDay2, color: 'green' },
+            { name: '阳春温泉 → 深圳', path: [[22.176, 111.793], [22.541, 114.06]], color: 'orange' }
         ];
 
         document.addEventListener('DOMContentLoaded', () => {

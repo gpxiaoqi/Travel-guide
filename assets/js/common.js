@@ -1,57 +1,144 @@
-// Initialize Map Function
-function initMap(containerId, locations, routesData) {
-  if (!document.getElementById(containerId)) return;
+const AMAP_KEY = 'cb06ef50e6a5d1787f67fdb7591a8303';
+let amapRequestQueue = Promise.resolve();
 
-  // Default view
-  const map = L.map(containerId).setView([22.55, 114.54], 12);
+function requestAmapService(path, params) {
+  const request = () => new Promise((resolve, reject) => {
+    const callbackName = `amapCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement('script');
+    const query = new URLSearchParams({ ...params, key: AMAP_KEY, output: 'JSON', callback: callbackName });
+    const cleanup = () => {
+      delete window[callbackName];
+      script.remove();
+    };
 
-  // Add Tile Layer (OpenStreetMap)
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Add Markers
-  const markers = [];
-  locations.forEach(loc => {
-    const marker = L.marker(loc.coords).addTo(map);
-
-    // Create Amap link (Amap uses lng,lat)
-    const amapUrl = `https://uri.amap.com/marker?position=${loc.coords[1]},${loc.coords[0]}&name=${encodeURIComponent(loc.name)}`;
-
-    const popupContent = `
-            <div style="text-align: center;">
-                <strong>${loc.name}</strong><br>
-                <span style="font-size: 0.8rem; color: #666;">${loc.day || ''}</span><br>
-                ${loc.desc}<br>
-                <a href="${amapUrl}" target="_blank" style="display: inline-block; margin-top: 5px; color: #3498db; text-decoration: none; font-size: 0.8rem;">
-                    <i class="fas fa-location-arrow"></i> 导航
-                </a>
-            </div>
-        `;
-
-    marker.bindPopup(popupContent);
-    markers.push(marker);
+    window[callbackName] = payload => {
+      cleanup();
+      if (payload?.status === '1') resolve(payload);
+      else reject(new Error(payload?.info || '高德服务请求失败'));
+    };
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('高德服务请求失败'));
+    };
+    script.src = `https://restapi.amap.com${path}?${query}`;
+    document.head.appendChild(script);
   });
+  const queuedRequest = amapRequestQueue
+    .then(() => new Promise(resolve => setTimeout(resolve, 350)))
+    .then(request);
+  amapRequestQueue = queuedRequest.catch(() => {});
+  return queuedRequest;
+}
 
-  // Fit bounds to show all markers
-  if (markers.length > 0) {
-    const group = new L.featureGroup(markers);
-    map.fitBounds(group.getBounds().pad(0.1));
-  }
+function toAmapPosition(coords) {
+  return [Number(coords[1]), Number(coords[0])];
+}
 
-  // Add route lines
-  if (routesData) {
-    routesData.forEach(route => {
-      L.polyline(route.path, { color: route.color || 'blue', dashArray: '5, 10' }).addTo(map);
-    });
+async function convertLocationsToAmap(locations) {
+  const points = locations.map(loc => toAmapPosition(loc.coords));
+  const payload = await requestAmapService('/v3/assistant/coordinate/convert', {
+    locations: points.map(point => point.join(',')).join('|'),
+    coordsys: 'gps'
+  });
+  const converted = payload.locations.split(';').map(point => point.split(',').map(Number));
+  if (converted.length !== locations.length) throw new Error('高德坐标转换结果不完整');
+  return converted;
+}
+
+function thinRoutePath(path, maxPoints = 35) {
+  if (path.length <= maxPoints) return path;
+  const step = (path.length - 1) / (maxPoints - 1);
+  return Array.from({ length: maxPoints }, (_, index) => path[Math.round(index * step)]);
+}
+
+function renderAmapStaticMap(container, locations, plannedRoutes) {
+  const routeColors = { blue: '#1677ff', red: '#e85d3f', green: '#16856f', orange: '#a87500' };
+  const markerPoints = locations.map(loc => toAmapPosition(loc.coords).join(',')).join(';');
+  const markers = `mid,0x1677ff,游:${markerPoints}`;
+  const paths = plannedRoutes.map(route => {
+    const routeColor = routeColors[route.color] || route.color || '#1677ff';
+    const color = `0x${routeColor.replace('#', '')}`;
+    const points = thinRoutePath(route.path).map(point => point.join(',')).join(';');
+    return `6,${color},0.85,,0:${points}`;
+  }).join('|');
+  const query = new URLSearchParams({
+    key: AMAP_KEY,
+    size: '1024*430',
+    scale: '1',
+    traffic: '1',
+    markers,
+    paths
+  });
+  const first = plannedRoutes[0]?.path[0] || toAmapPosition(locations[0].coords);
+  const lastRoute = plannedRoutes.at(-1);
+  const last = lastRoute?.path.at(-1) || toAmapPosition(locations.at(-1).coords);
+  const navigationUrl = `https://uri.amap.com/navigation?from=${first.join(',')},起点&to=${last.join(',')},终点&mode=car&policy=1&src=dapeng-guide&callnative=0`;
+
+  container.innerHTML = `<img class="amap-static-map" src="https://restapi.amap.com/v3/staticmap?${query}" alt="高德地图路线规划图">
+    <a class="amap-open-link" href="${navigationUrl}" target="_blank" rel="noopener"><i class="fas fa-location-arrow"></i> 在高德地图打开</a>`;
+}
+
+// Calculate each itinerary segment on AMap roads, then render it on an AMap base map.
+async function initMap(containerId, locations, routesData = []) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  try {
+    const convertedPositions = await convertLocationsToAmap(locations);
+    const positionBySource = new Map(locations.map((loc, index) => [loc.coords.join(','), convertedPositions[index]]));
+    const routeResults = await Promise.allSettled(routesData.map(route => new Promise((resolve, reject) => {
+      if (!Array.isArray(route.path) || route.path.length < 2) {
+        resolve(null);
+        return;
+      }
+
+      const positions = route.path.map(coords => positionBySource.get(coords.join(',')) || toAmapPosition(coords));
+      const params = {
+        origin: positions[0].join(','),
+        destination: positions.at(-1).join(','),
+        strategy: '0',
+        extensions: 'base'
+      };
+      if (positions.length > 2) params.waypoints = positions.slice(1, -1).map(item => item.join(',')).join(';');
+
+      requestAmapService('/v3/direction/driving', params).then(result => {
+        const plan = result.route?.paths?.[0];
+        if (!plan) throw new Error('高德驾车路线规划失败');
+        const path = plan.steps.flatMap(step => (step.polyline || '').split(';').filter(Boolean).map(point => point.split(',').map(Number)));
+        const roads = [...new Set(plan.steps.map(step => step.road).filter(Boolean))].slice(0, 4);
+        resolve({
+          path,
+          color: route.color,
+          summary: {
+            name: route.name || '高德推荐路线',
+            distance: plan.distance,
+            duration: plan.time || plan.duration || 0,
+            tolls: plan.tolls,
+            roads: roads.join(' → ') || '高德实时推荐道路'
+          }
+        });
+      }).catch(reject);
+    })));
+
+    const completedRoutes = routeResults.filter(result => result.status === 'fulfilled' && result.value).map(result => result.value);
+    const routeSummaries = completedRoutes.map(route => route.summary);
+    if (!completedRoutes.length) throw new Error('高德路线规划暂不可用');
+    const amapLocations = locations.map((loc, index) => ({ ...loc, coords: [convertedPositions[index][1], convertedPositions[index][0]] }));
+    renderAmapStaticMap(container, amapLocations, completedRoutes);
+    container.dataset.mapProvider = 'amap';
+    return { routes: routeSummaries };
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = '<div class="map-error"><i class="fas fa-map-location-dot"></i><strong>高德地图暂时无法加载</strong><span>请检查网络后刷新页面</span></div>';
   }
 }
 
 // Weekend weather and weather-aware itinerary rendering.
 (function () {
+  let requestedPlanMode = null;
   const DESTINATIONS = {
     dapeng: {
-      name: '大鹏半岛', latitude: 22.55, longitude: 114.54,
+      name: '大鹏半岛', weatherCity: '440300', weatherLabel: '深圳',
       sunny: {
         title: '晴天版 · 山海追光线', summary: '把海岸、栈道和日落放在光线最好的时段，户外体验优先。',
         stops: ['上午：大鹏所城慢逛，避开正午强光', '下午：杨梅坑骑行或海岸徒步', '傍晚：天文台栈道看日落，提前预约'],
@@ -64,7 +151,7 @@ function initMap(containerId, locations, routesData) {
       }
     },
     nanao: {
-      name: '南澳岛', latitude: 23.43, longitude: 117.03,
+      name: '南澳岛', weatherCity: '440523', weatherLabel: '南澳',
       sunny: {
         title: '晴天版 · 环岛灯塔线', summary: '沿海岸顺光环岛，把青澳湾和风车山留给视野清晰的时段。',
         stops: ['上午：长山尾灯塔与环岛公路', '下午：青澳湾、自然之门与沙滩', '傍晚：海边日落后到后宅镇吃海鲜'],
@@ -77,20 +164,20 @@ function initMap(containerId, locations, routesData) {
       }
     },
     guangzhou: {
-      name: '广州', latitude: 23.13, longitude: 113.26,
+      name: '广州', weatherCity: '440100', weatherLabel: '广州',
       sunny: {
         title: '晴天版 · 新城与西关漫游', summary: '晴天适合串联城市天际线、历史街区和珠江两岸。',
         stops: ['周六傍晚：花城广场、海心沙与广州塔', '周日上午：陈家祠与永庆坊', '周日下午：沙面岛散步，珠江边收尾'],
         tips: '午后炎热时把早茶和展馆作为休息点，户外步行集中在早晚。'
       },
       rainy: {
-        title: '雨天版 · 地铁室内文化线', summary: '用地铁连接馆舍和老字号，把长距离户外步行压缩到最少。',
+        title: '雨天版 · 自驾室内文化线', summary: '自驾串联馆舍、商圈和老字号，把雨中步行压缩到最少。',
         stops: ['周六：广东省博物馆或正佳广场', '周日：陈家祠、粤剧艺术博物馆', '餐饮：早茶加北京路商圈，按雨势短途步行'],
-        tips: '预留地铁换乘时间；暴雨时取消珠江夜游，并留意场馆预约与闭馆日。'
+        tips: '优先使用商场或场馆地下停车场；暴雨时取消珠江夜游，并避开易积水路段。'
       }
     },
     zhuhai: {
-      name: '珠海', latitude: 22.27, longitude: 113.58,
+      name: '珠海', weatherCity: '440400', weatherLabel: '珠海',
       sunny: {
         title: '晴天版 · 滨海自驾线', summary: '沿情侣路展开海岸行程，在日月贝和港珠澳大桥口岸追日落夜景。',
         stops: ['上午：城市阳台与香炉湾沙滩', '下午：情侣路、爱情邮局与日月贝', '傍晚：横琴或口岸看夜景'],
@@ -103,7 +190,7 @@ function initMap(containerId, locations, routesData) {
       }
     },
     yangjiang: {
-      name: '阳江', latitude: 21.86, longitude: 111.98,
+      name: '阳江', weatherCity: '441700', weatherLabel: '阳江',
       sunny: {
         title: '晴天版 · 海陵岛玩海线', summary: '主打沙滩、海岸公路和日落，把温泉作为晚上放松环节。',
         stops: ['上午：十里银滩或大角湾', '下午：海岸自驾与观景点', '晚上：闸坡海鲜后泡温泉'],
@@ -116,7 +203,7 @@ function initMap(containerId, locations, routesData) {
       }
     },
     wuyi: {
-      name: '清远·佛山·江门', latitude: 23.68, longitude: 113.06,
+      name: '清远·佛山·江门', weatherCity: '441800', weatherLabel: '清远',
       sunny: {
         title: '晴天版 · 岭南户外环线', summary: '天气稳定时保留漂流、碉楼村落和古镇步行，早晚错峰游览。',
         stops: ['清远：漂流或北江沿岸活动', '佛山：祖庙、岭南天地街区漫步', '江门：开平碉楼与赤坎古镇外景'],
@@ -130,18 +217,7 @@ function initMap(containerId, locations, routesData) {
     }
   };
 
-  const WEATHER_CODES = {
-    0: ['晴', 'fa-sun'], 1: ['大致晴朗', 'fa-sun'], 2: ['多云', 'fa-cloud-sun'],
-    3: ['阴', 'fa-cloud'], 45: ['雾', 'fa-smog'], 48: ['雾凇', 'fa-smog'],
-    51: ['毛毛雨', 'fa-cloud-rain'], 53: ['毛毛雨', 'fa-cloud-rain'], 55: ['较强毛毛雨', 'fa-cloud-rain'],
-    56: ['冻毛毛雨', 'fa-cloud-rain'], 57: ['较强冻毛毛雨', 'fa-cloud-rain'],
-    61: ['小雨', 'fa-cloud-rain'], 63: ['中雨', 'fa-cloud-showers-heavy'], 65: ['大雨', 'fa-cloud-showers-heavy'],
-    66: ['冻雨', 'fa-cloud-rain'], 67: ['较强冻雨', 'fa-cloud-showers-heavy'],
-    71: ['小雪', 'fa-snowflake'], 73: ['中雪', 'fa-snowflake'], 75: ['大雪', 'fa-snowflake'], 77: ['雪粒', 'fa-snowflake'],
-    80: ['阵雨', 'fa-cloud-sun-rain'], 81: ['较强阵雨', 'fa-cloud-showers-heavy'], 82: ['强阵雨', 'fa-cloud-showers-heavy'],
-    85: ['阵雪', 'fa-snowflake'], 86: ['强阵雪', 'fa-snowflake'],
-    95: ['雷雨', 'fa-cloud-bolt'], 96: ['雷雨伴冰雹', 'fa-cloud-bolt'], 99: ['强雷雨伴冰雹', 'fa-cloud-bolt']
-  };
+  const RAIN_WORDS = ['雨', '雪', '雹', '雷', '冻'];
 
   function getWeekendDates() {
     const today = new Date();
@@ -159,35 +235,40 @@ function initMap(containerId, locations, routesData) {
   }
 
   async function fetchWeekendWeather(destination) {
-    const weekend = getWeekendDates();
-    const params = new URLSearchParams({
-      latitude: destination.latitude,
-      longitude: destination.longitude,
-      daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum',
-      timezone: 'Asia/Shanghai',
-      start_date: weekend.start,
-      end_date: weekend.end
+    const payload = await requestAmapService('/v3/weather/weatherInfo', {
+      city: destination.weatherCity,
+      extensions: 'all'
     });
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
-    if (!response.ok) throw new Error(`Weather request failed: ${response.status}`);
-    const payload = await response.json();
-    if (!payload.daily || payload.daily.time.length < 2) throw new Error('Weekend forecast unavailable');
-    return payload.daily.time.map((date, index) => ({
-      date,
-      code: payload.daily.weather_code[index],
-      max: Math.round(payload.daily.temperature_2m_max[index]),
-      min: Math.round(payload.daily.temperature_2m_min[index]),
-      rainChance: Math.round(payload.daily.precipitation_probability_max[index] || 0),
-      precipitation: payload.daily.precipitation_sum[index] || 0
+    const forecasts = payload.forecasts?.[0]?.casts;
+    if (!forecasts?.length) throw new Error('高德天气预报暂不可用');
+
+    const weekend = getWeekendDates();
+    const weekendForecasts = forecasts.filter(item => item.date === weekend.start || item.date === weekend.end);
+    const selected = weekendForecasts.length === 2 ? weekendForecasts : forecasts.slice(0, 2);
+    return selected.map(item => ({
+      date: item.date,
+      week: item.week,
+      condition: item.dayweather,
+      max: Math.round(Number(item.daytemp)),
+      min: Math.round(Number(item.nighttemp)),
+      windDirection: item.daywind,
+      windPower: item.daypower
     }));
   }
 
   function isRainy(days) {
-    return days.some(day => day.code >= 51 || day.rainChance >= 50 || day.precipitation >= 1);
+    return days.some(day => RAIN_WORDS.some(word => day.condition.includes(word)));
   }
 
-  function getWeatherMeta(code) {
-    return WEATHER_CODES[code] || ['天气变化', 'fa-cloud'];
+  function getWeatherIcon(condition) {
+    if (condition.includes('雷')) return 'fa-cloud-bolt';
+    if (condition.includes('雪')) return 'fa-snowflake';
+    if (condition.includes('雨')) return condition.includes('晴') ? 'fa-cloud-sun-rain' : 'fa-cloud-rain';
+    if (condition.includes('雾') || condition.includes('霾')) return 'fa-smog';
+    if (condition.includes('阴')) return 'fa-cloud';
+    if (condition.includes('云')) return 'fa-cloud-sun';
+    if (condition.includes('晴')) return 'fa-sun';
+    return 'fa-cloud-sun';
   }
 
   function shortDate(value) {
@@ -196,15 +277,22 @@ function initMap(containerId, locations, routesData) {
   }
 
   function weatherDaysMarkup(days, compact = false) {
-    return days.map((day, index) => {
-      const [label, icon] = getWeatherMeta(day.code);
+    return days.map(day => {
+      const icon = getWeatherIcon(day.condition);
+      const weekday = ['日', '一', '二', '三', '四', '五', '六'][Number(day.week)] || day.week;
       return `<div class="weather-day${compact ? ' weather-day--compact' : ''}">
-        <div class="weather-day__name">周${index === 0 ? '六' : '日'} · ${shortDate(day.date)}</div>
+        <div class="weather-day__name">周${weekday} · ${shortDate(day.date)}</div>
         <i class="fas ${icon}" aria-hidden="true"></i>
-        <div><strong>${label}</strong> ${day.min}~${day.max}℃</div>
-        <small>降雨概率 ${day.rainChance}%</small>
+        <div><strong>${day.condition}</strong> ${day.min}~${day.max}℃</div>
+        <small>${day.windDirection}风 ${day.windPower}级</small>
       </div>`;
     }).join('');
+  }
+
+  function updateInlineWeather(days, destination) {
+    const weatherElement = document.getElementById('weather-info');
+    if (!weatherElement) return;
+    weatherElement.textContent = `${destination.weatherLabel}：${days.map(day => `${shortDate(day.date)} ${day.condition} ${day.min}~${day.max}℃`).join('；')}`;
   }
 
   function renderHomeWeather(card, key, destination) {
@@ -215,8 +303,9 @@ function initMap(containerId, locations, routesData) {
       const meta = card.querySelector('.route-meta');
       (meta || card.querySelector('.route-content')).insertAdjacentElement(meta ? 'afterend' : 'afterbegin', host);
     }
-    host.innerHTML = '<span class="weather-loading"><i class="fas fa-spinner fa-spin"></i> 正在获取本周末天气</span>';
+    host.innerHTML = '<span class="weather-loading"><i class="fas fa-spinner fa-spin"></i> 正在获取近期天气</span>';
     fetchWeekendWeather(destination).then(days => {
+      updateInlineWeather(days, destination);
       const mode = isRainy(days) ? 'rainy' : 'sunny';
       host.innerHTML = `<div class="route-weather__days">${weatherDaysMarkup(days, true)}</div>
         <span class="weather-mode weather-mode--${mode}">${mode === 'rainy' ? '雨天攻略已备好' : '晴天攻略已推荐'}</span>`;
@@ -239,16 +328,12 @@ function initMap(containerId, locations, routesData) {
   }
 
   function setActivePlan(section, mode) {
-    section.querySelectorAll('[data-weather-switch]').forEach(button => {
-      const active = button.dataset.weatherSwitch === mode;
-      button.classList.toggle('is-active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
     section.querySelectorAll('[data-plan]').forEach(plan => {
       const active = plan.dataset.plan === mode;
       plan.hidden = !active;
       plan.classList.toggle('is-active', active);
     });
+    document.dispatchEvent(new CustomEvent('weather-plan-change', { detail: { mode } }));
   }
 
   function renderDetailWeather(key, destination) {
@@ -257,35 +342,29 @@ function initMap(containerId, locations, routesData) {
     const section = document.createElement('section');
     section.className = 'weekend-weather';
     section.innerHTML = `<div class="weather-section__top">
-        <div><span class="weather-eyebrow">实时行程助手</span><h2><i class="fas fa-cloud-sun"></i> 本周末天气攻略</h2></div>
+        <div><span class="weather-eyebrow">实时行程助手</span><h2><i class="fas fa-cloud-sun"></i> 近期天气攻略</h2></div>
         <span class="weather-updated">数据加载中</span>
       </div>
-      <div class="weather-detail-loading"><i class="fas fa-spinner fa-spin"></i><p>正在获取${destination.name}本周末预报…</p></div>`;
+      <div class="weather-detail-loading"><i class="fas fa-spinner fa-spin"></i><p>正在获取${destination.name}近期预报…</p></div>`;
     main.insertAdjacentElement('afterbegin', section);
 
     const load = () => {
       fetchWeekendWeather(destination).then(days => {
+        updateInlineWeather(days, destination);
         const recommended = isRainy(days) ? 'rainy' : 'sunny';
         section.innerHTML = `<div class="weather-section__top">
-            <div><span class="weather-eyebrow">实时行程助手</span><h2><i class="fas fa-cloud-sun"></i> 本周末天气攻略</h2></div>
+            <div><span class="weather-eyebrow">实时行程助手</span><h2><i class="fas fa-cloud-sun"></i> 近期天气攻略</h2></div>
             <span class="weather-updated">${shortDate(days[0].date)}–${shortDate(days[1].date)} · 动态预报</span>
           </div>
           <div class="weather-detail-grid">${weatherDaysMarkup(days)}</div>
           <div class="weather-recommendation weather-recommendation--${recommended}">
             <i class="fas ${recommended === 'rainy' ? 'fa-umbrella' : 'fa-sun'}"></i>
-            根据周末两天的预报，当前推荐<strong>${recommended === 'rainy' ? '雨天版' : '晴天版'}</strong>攻略
-          </div>
-          <div class="weather-switcher" role="group" aria-label="攻略模板">
-            <button type="button" data-weather-switch="sunny"><i class="fas fa-sun"></i> 晴天版</button>
-            <button type="button" data-weather-switch="rainy"><i class="fas fa-umbrella"></i> 雨天版</button>
+            根据近期两天的预报，当前推荐<strong>${recommended === 'rainy' ? '雨天版' : '晴天版'}</strong>攻略
           </div>
           ${templateMarkup(destination.sunny, 'sunny', recommended === 'sunny')}
           ${templateMarkup(destination.rainy, 'rainy', recommended === 'rainy')}
-          <p class="weather-source">天气数据来自 Open-Meteo，出发前请再次确认当地预警与景区开放状态。</p>`;
-        section.querySelectorAll('[data-weather-switch]').forEach(button => {
-          button.addEventListener('click', () => setActivePlan(section, button.dataset.weatherSwitch));
-        });
-        setActivePlan(section, recommended);
+          <p class="weather-source">天气数据来自高德地图，出发前请再次确认当地预警与景区开放状态。</p>`;
+        setActivePlan(section, requestedPlanMode || recommended);
       }).catch(() => {
         section.innerHTML = `<div class="weather-error"><i class="fas fa-cloud-bolt"></i><div><h2>天气暂时加载失败</h2><p>原攻略仍可正常查看，恢复网络后可重新获取。</p></div><button class="btn weather-retry-button" type="button">重新获取</button></div>`;
         section.querySelector('button').addEventListener('click', () => {
@@ -296,6 +375,14 @@ function initMap(containerId, locations, routesData) {
     };
     load();
   }
+
+  document.addEventListener('weather-plan-request', event => {
+    const section = document.querySelector('.weekend-weather');
+    const mode = event.detail?.mode;
+    if (!['sunny', 'rainy'].includes(mode)) return;
+    requestedPlanMode = mode;
+    if (section?.querySelector('[data-plan]')) setActivePlan(section, mode);
+  });
 
   function currentDestinationKey() {
     const match = window.location.pathname.match(/\/routes\/([^/.]+)\.html$/i);
@@ -488,8 +575,29 @@ function initMap(containerId, locations, routesData) {
     hero.insertAdjacentElement('afterend', nav);
 
     const sectionLinks = [...nav.querySelectorAll('a')];
+    const sectionScroller = nav.querySelector('.section-nav__inner');
+    let activeSectionId = items[0].section.id;
+
+    // Keep the active tab visible without moving the page vertically.
+    const revealSectionLink = (link, behavior = 'smooth') => {
+      const padding = 12;
+      const linkStart = link.offsetLeft;
+      const linkEnd = linkStart + link.offsetWidth;
+      const visibleStart = sectionScroller.scrollLeft;
+      const visibleEnd = visibleStart + sectionScroller.clientWidth;
+
+      if (linkStart < visibleStart + padding) {
+        sectionScroller.scrollTo({ left: Math.max(0, linkStart - padding), behavior });
+      } else if (linkEnd > visibleEnd - padding) {
+        sectionScroller.scrollTo({
+          left: linkEnd - sectionScroller.clientWidth + padding,
+          behavior
+        });
+      }
+    };
+
     sectionLinks.forEach(link => {
-      link.addEventListener('click', () => link.scrollIntoView({ block: 'nearest', inline: 'center' }));
+      link.addEventListener('click', () => revealSectionLink(link));
     });
 
     if ('IntersectionObserver' in window) {
@@ -497,10 +605,12 @@ function initMap(containerId, locations, routesData) {
         const visible = entries.filter(entry => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
+        if (visible.target.id === activeSectionId) return;
+        activeSectionId = visible.target.id;
         sectionLinks.forEach(link => {
           const active = link.getAttribute('href') === `#${visible.target.id}`;
           link.classList.toggle('is-active', active);
-          if (active) link.scrollIntoView({ block: 'nearest', inline: 'center' });
+          if (active) revealSectionLink(link);
         });
       }, { rootMargin: '-28% 0px -62% 0px', threshold: [0, 0.1, 0.4] });
       items.forEach(item => observer.observe(item.section));
@@ -525,8 +635,15 @@ function initMap(containerId, locations, routesData) {
           <div><strong>小鸡向导</strong><small>出发前，先看行程重点</small></div>
           <button class="chick-guide__close" type="button" aria-label="关闭小鸡向导"><i class="fas fa-xmark"></i></button>
         </div>
+        ${isRoutePage ? `<div class="chick-guide__weather" role="group" aria-label="切换天气攻略">
+          <span>天气攻略</span>
+          <div class="chick-guide__weather-tabs">
+            <button type="button" data-guide-weather="sunny" aria-pressed="false"><i class="fas fa-sun"></i><span>晴天</span></button>
+            <button type="button" data-guide-weather="rainy" aria-pressed="false"><i class="fas fa-umbrella"></i><span>雨天</span></button>
+          </div>
+        </div>` : ''}
         <div class="chick-guide__actions">
-          <button type="button" data-guide-action="weather"><i class="fas fa-cloud-sun"></i><span>查看周末天气</span><i class="fas fa-chevron-right"></i></button>
+          <button type="button" data-guide-action="weather"><i class="fas fa-cloud-sun"></i><span>查看近期天气</span><i class="fas fa-chevron-right"></i></button>
           <button type="button" data-guide-action="plan"><i class="fas fa-route"></i><span>${isRoutePage ? '跳到详细行程' : '浏览热门路线'}</span><i class="fas fa-chevron-right"></i></button>
           <button type="button" data-guide-action="map"><i class="fas fa-map-location-dot"></i><span>${isRoutePage ? '查看路线地图' : '查看出行建议'}</span><i class="fas fa-chevron-right"></i></button>
           <button type="button" data-guide-action="share"><i class="fas fa-share-nodes"></i><span>分享当前攻略</span><i class="fas fa-chevron-right"></i></button>
@@ -558,6 +675,25 @@ function initMap(containerId, locations, routesData) {
         setOpen(false);
         trigger.focus();
       }
+    });
+
+    const syncWeatherTabs = mode => {
+      guide.querySelectorAll('[data-guide-weather]').forEach(button => {
+        const active = button.dataset.guideWeather === mode;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    };
+    document.addEventListener('weather-plan-change', event => syncWeatherTabs(event.detail?.mode));
+    guide.querySelector('.chick-guide__weather-tabs')?.addEventListener('click', event => {
+      const button = event.target.closest('button[data-guide-weather]');
+      if (!button) return;
+      document.dispatchEvent(new CustomEvent('weather-plan-request', {
+        detail: { mode: button.dataset.guideWeather }
+      }));
+      syncWeatherTabs(button.dataset.guideWeather);
+      scrollToFirst(['.weekend-weather']);
+      setOpen(false);
     });
 
     guide.querySelector('.chick-guide__actions').addEventListener('click', async event => {
