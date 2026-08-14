@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>五一清远-佛山-江门三城自驾游攻略</title>
+  <title>五一清远-佛山-江门三城电车自驾游攻略</title>
   <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -26,12 +26,12 @@
 
   <header class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
     <div class="container">
-      <h1>五一清远 · 佛山 · 江门自驾环线</h1>
-      <p class="subtitle">岭南文化深度游 | 美食之旅 | 6天5夜自驾环线</p>
+      <h1>五一清远 · 佛山 · 江门电车自驾环线</h1>
+      <p class="subtitle">岭南文化深度游 | 美食之旅 | 6天5夜电车自驾环线</p>
       <div class="meta-info">
         <span><i class="fas fa-calendar-alt"></i> 4月30日 - 5月5日 (6天5夜)</span>
         <span><i class="fas fa-map-marker-alt"></i> 深圳 → 清远 → 佛山 → 江门 → 深圳</span>
-        <span><i class="fas fa-car"></i> 自驾里程：约600公里</span>
+        <span><i class="fas fa-bolt"></i> 电车自驾里程：约600公里</span>
       </div>
       
       <div class="weather-widget">
@@ -313,7 +313,7 @@
           <div class="card-header">⚠️ 注意事项</div>
           <div class="card-content">
             <p>• 五一期间景区人多，建议提前购票</p>
-            <p>• 自驾注意休息，避免疲劳驾驶</p>
+            <p>• 电车自驾每次跨城前确认电量和备选充电站，驾驶途中按时休息</p>
             <p>• 携带防晒用品，天气较热</p>
             <p>• 准备现金，部分农家乐只收现金</p>
           </div>
@@ -322,7 +322,7 @@
         <div class="card">
           <div class="card-header">💰 预算参考</div>
           <div class="card-content">
-            <p><strong>油费过路费：</strong>约800元</p>
+            <p><strong>充电费、过路费与停车：</strong>约600-900元</p>
             <p><strong>住宿：</strong>1500-2500元（5晚）</p>
             <p><strong>餐饮：</strong>1200-1800元</p>
             <p><strong>门票：</strong>600-800元</p>
@@ -397,7 +397,7 @@
 
       const locations = Object.entries(cities).map(([name, value]) => {
         const [lng, lat] = value.split(',').map(Number);
-        return { name, coords: [lat, lng], desc: '自驾环线途经城市', day: '五一行程' };
+        return { name, coords: [lat, lng], desc: '电车自驾环线途经城市', day: '五一行程' };
       });
       const routeColors = ['#1677ff', '#e85d3f', '#16856f', '#a87500'];
       const routeSegments = locations.map((location, index) => {

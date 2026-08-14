@@ -422,6 +422,9 @@ async function initMap(containerId, locations, routesData = []) {
     const transportFact = Array.isArray(route.transportModes) && route.transportModes.length
       ? `<div><i class="fas fa-route"></i><span>交通方式<strong>${route.transportModes.map(mode => escapeHtml(mode.label)).join(' / ')}</strong></span></div>`
       : `<div><i class="fas fa-road"></i><span>驾驶距离<strong>往返约${route.drive.totalKm}公里</strong></span></div>`;
+    const vehicleFact = route.vehicle
+      ? `<div><i class="fas fa-bolt"></i><span>用车说明<strong>${escapeHtml(route.vehicle.label)}</strong></span></div>`
+      : '';
     return `<section class="trip-decision-section" id="trip-decision">
       <div class="trip-decision__heading">
         <div><span class="section-eyebrow">出发前先确认</span><h2><i class="fas fa-clipboard-check"></i> 行程决策信息</h2></div>
@@ -432,11 +435,13 @@ async function initMap(containerId, locations, routesData = []) {
         <div><i class="fas fa-wallet"></i><span>预算参考<strong>${escapeHtml(activeBudget.label)}</strong></span></div>
         <div><i class="fas fa-person-hiking"></i><span>行程强度<strong>${escapeHtml(activeIntensity.level)}</strong></span></div>
         ${transportFact}
+        ${vehicleFact}
       </div>
       <div class="decision-layout">
         <article class="decision-panel">
           <div class="decision-panel__title"><i class="fas fa-receipt"></i><div><h3>预算拆分</h3><p>${escapeHtml(budgetBasis)}</p></div></div>
           <dl class="budget-list">${activeBudget.breakdown.map(item => `<div><dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd></div>`).join('')}</dl>
+          ${route.vehicle ? `<p class="decision-note"><i class="fas fa-charging-station"></i><strong>补能：</strong>${escapeHtml(route.vehicle.note)}</p>` : ''}
           <p class="decision-note"><i class="fas fa-gauge-high"></i><strong>${escapeHtml(activeIntensity.level)}：</strong>${escapeHtml(activeIntensity.description)}</p>
         </article>
         <article class="decision-panel">
@@ -634,6 +639,19 @@ async function initMap(containerId, locations, routesData = []) {
         title: '雨天版 · 城市人文与湖畔慢游', summary: '暂停裸露丹霞、草原和高山栈道，把市区文化、东江镇休整与美食作为替代。',
         stops: ['上午：郴州市博物馆或711时光小镇', '下午：裕后街、室内非遗体验或东江镇休整', '晚上：鱼粉、烧鸡公等本地餐饮'],
         tips: '暴雨、雷电、大风或低能见度时取消高椅岭、仰天湖和莽山户外段；山区道路不要夜驾。'
+      }
+    },
+    meizhou: {
+      name: '梅州', weatherCity: '441400', weatherLabel: '梅州',
+      sunny: {
+        title: '晴天版 · 茶田古镇慢游线', summary: '把雁南飞茶田、叶剑英纪念园园区与松口古镇滨水步行放到光线和路况更稳定的时段。',
+        stops: ['上午：中国客家博物馆预约参观或叶剑英纪念园', '下午：雁南飞茶田步道与客家建筑片区', '三天版：松口古街、移民广场和火船码头'],
+        tips: '茶田和古镇遮阴有限，准备防晒、饮水与防蚊用品；长途返程前至少休息30分钟。'
+      },
+      rainy: {
+        title: '雨天版 · 客家馆舍与美食线', summary: '缩短茶田、江边和古镇露天步行，用中国客家博物馆及其分馆、客家餐饮和酒店休整替代。',
+        stops: ['上午：中国客家博物馆主馆或华侨博物馆', '下午：按雨势短游叶剑英纪念园室内展陈', '晚上：市区客家菜与老街骑楼避雨慢行'],
+        tips: '暴雨、雷电、台风或地质灾害预警时取消茶田和山区段，不在临河低洼处停车，也不为固定行程夜驾。'
       }
     },
     'inner-mongolia': {
