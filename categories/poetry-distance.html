@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="广东省外旅行攻略栏目，收录适合长假、跨省与深度旅行的路线。">
+  <title>诗和远方 · 广东省外旅行攻略</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><img src="../assets/img/title.svg" alt="Logo"
+          style="width: 28px; height: 28px;"> 鸡哥的旅游攻略大全</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="shenzhen-nearby.html" class="nav-link" data-category="shenzhen-nearby">深圳周边</a>
+        <a href="poetry-distance.html" class="nav-link" data-category="poetry-distance">诗和远方</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero category-hero category-hero--distance"
+    style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=84');">
+    <div class="container">
+      <span class="category-hero__label"><i class="fas fa-paper-plane" aria-hidden="true"></i> 广东省外</span>
+      <h1>诗和远方</h1>
+      <p class="subtitle">把长假交给旷野、雪山和陌生城市，让一路所见慢慢成为自己的故事。</p>
+      <div class="meta-info">
+        <span><i class="fas fa-train"></i> 跨省长线</span>
+        <span><i class="fas fa-calendar-week"></i> 适合年假与长假</span>
+        <span><i class="fas fa-book-open"></i> 攻略持续更新</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container category-page">
+    <section class="category-intro category-intro--distance" aria-labelledby="distance-intro-title">
+      <div class="category-intro__copy">
+        <span class="section-eyebrow">越过熟悉的边界</span>
+        <h2 id="distance-intro-title">有些风景，值得为它专门留一段时间</h2>
+        <p>这里将收录广东省外的旅行攻略。比起匆匆打卡，我们更关心路线是否顺、预算是否清楚，以及晴雨变化时有没有真正可用的备选安排。</p>
+      </div>
+      <dl class="category-intro__facts">
+        <div><dt>适合</dt><dd>年假与长假出发</dd></div>
+        <div><dt>关注</dt><dd>跨省交通与季节窗口</dd></div>
+        <div><dt>标准</dt><dd>核验后再正式发布</dd></div>
+      </dl>
+    </section>
+
+    <section class="journey-notes" aria-labelledby="journey-notes-title">
+      <div class="category-section__heading">
+        <div>
+          <span class="section-eyebrow">远方选题册</span>
+          <h2 id="journey-notes-title"><i class="fas fa-map"></i> 想写进攻略的三种远行</h2>
+        </div>
+        <p>不是路线承诺，而是这个栏目将持续探索的旅行方式。</p>
+      </div>
+      <div class="journey-notes__grid">
+        <article>
+          <i class="fas fa-mountain-sun" aria-hidden="true"></i>
+          <span>01</span>
+          <h3>去高处看天光</h3>
+          <p>等一次合适的季节，沿着高原与山谷慢慢走，把日出、云海和星空留进长假。</p>
+        </article>
+        <article>
+          <i class="fas fa-road" aria-hidden="true"></i>
+          <span>02</span>
+          <h3>沿一条公路远行</h3>
+          <p>不把抵达当成唯一目的，在城镇、湖泊与旷野之间，留出随时停下来的自由。</p>
+        </article>
+        <article>
+          <i class="fas fa-city" aria-hidden="true"></i>
+          <span>03</span>
+          <h3>在陌生城市住几天</h3>
+          <p>走进菜市场、旧街和清晨的公园，短暂借用当地人的时间，认识另一种日常。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="route-discovery route-discovery--distance" aria-labelledby="distance-routes-title">
+      <div class="route-discovery__heading">
+        <div>
+          <span class="section-eyebrow">省外攻略库</span>
+          <h2 id="distance-routes-title"><i class="fas fa-book-open"></i> 下一段旅程，正在路上</h2>
+        </div>
+        <p>完整攻略会在路线、预算、预约与季节信息核验后发布。</p>
+      </div>
+
+      <form class="route-filters" id="route-filters" hidden>
+        <label class="route-filter">
+          <span><i class="fas fa-calendar-day" aria-hidden="true"></i> 可玩天数</span>
+          <select id="filter-days" name="days">
+            <option value="all">不限天数</option>
+            <option value="2">2天</option>
+            <option value="3">3天</option>
+            <option value="4">4天及以上</option>
+          </select>
+        </label>
+        <label class="route-filter">
+          <span><i class="fas fa-wallet" aria-hidden="true"></i> 人均预算</span>
+          <select id="filter-budget" name="budget">
+            <option value="all">不限预算</option>
+            <option value="1000">1000元以内</option>
+            <option value="1500">1500元以内</option>
+            <option value="2000">2000元以内</option>
+            <option value="3000">3000元以内</option>
+            <option value="15000">1.5万元以内</option>
+            <option value="25000">2.5万元以内</option>
+          </select>
+        </label>
+        <label class="route-filter">
+          <span><i class="fas fa-car-side" aria-hidden="true"></i> 单程车程</span>
+          <select id="filter-drive" name="drive">
+            <option value="all">不限车程</option>
+            <option value="2.5">2.5小时以内</option>
+            <option value="4">4小时以内</option>
+            <option value="5">5小时以内</option>
+            <option value="40">长线不限首尾车程</option>
+          </select>
+        </label>
+        <div class="route-filter-actions">
+          <button class="btn" id="recommend-routes" type="submit"><i class="fas fa-wand-magic-sparkles"></i> 条件推荐</button>
+          <button class="btn btn--secondary" id="reset-routes" type="button"><i class="fas fa-rotate-left"></i> 重置</button>
+        </div>
+      </form>
+
+      <div class="route-recommendation" id="route-recommendation" aria-live="polite" hidden></div>
+      <div class="route-catalog-bar">
+        <p id="catalog-summary" aria-live="polite">正在读取省外攻略…</p>
+        <span><i class="fas fa-feather-pointed" aria-hidden="true"></i> 慢慢走，认真写</span>
+      </div>
+      <div class="destinations-grid" id="route-catalog" data-category="poetry-distance"
+        data-empty-title="第一篇省外攻略正在准备"
+        data-empty-copy="这里暂时不放半成品。等路线、预算和季节建议核验完整，再把远方郑重交给你。">
+        <article class="route-card">
+          <div class="route-img" role="img" aria-label="清晨薄雾笼罩的郴州东江湖与湖岸山林"
+            style="background-image: url('https://www.xn--xhqs09c3ued3bie.net/images/dj-qingchen.jpg');"></div>
+          <div class="route-content">
+            <div class="route-card__topline"><span>深圳高铁 / 自驾</span><span>适中强度</span></div>
+            <h3 class="route-title">郴州山水 · 高铁与自驾双线游</h3>
+            <div class="route-facts" aria-label="路线关键信息">
+              <span><i class="fas fa-clock"></i><strong>5天4夜 / 7天6夜</strong></span>
+              <span><i class="fas fa-route"></i><strong>高铁接驳 / 全程自驾</strong></span>
+              <span><i class="fas fa-wallet"></i><strong>人均2600元起</strong></span>
+            </div>
+            <p class="route-desc">雾漫东江、高椅岭丹霞、仰天湖草原与莽山云海，按片区顺路串联。</p>
+            <a href="../routes/chenzhou.html" class="btn">查看行程 <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="route-card">
+          <div class="route-img" role="img" aria-label="秋季内蒙古阿尔山森林、湖泊与山地栈道"
+            style="background-image: url('../assets/img/inner-mongolia-grassland.jpg');"></div>
+          <div class="route-content">
+            <div class="route-card__topline"><span>深圳自驾 / 飞机 + 租车</span><span>长线适中</span></div>
+            <h3 class="route-title">内蒙古大环线 · 草原森林双线游</h3>
+            <div class="route-facts" aria-label="路线关键信息">
+              <span><i class="fas fa-clock"></i><strong>20天19夜 / 30天29夜</strong></span>
+              <span><i class="fas fa-route"></i><strong>全程自驾 / 分段租车</strong></span>
+              <span><i class="fas fa-wallet"></i><strong>人均1.3万元起</strong></span>
+            </div>
+            <p class="route-desc">从黄河几字弯走到火山草原，30天版继续延伸阿尔山与呼伦贝尔。</p>
+            <a href="../routes/inner-mongolia.html" class="btn">查看行程 <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="travel-quote travel-quote--distance" aria-label="旅行寄语">
+      <i class="fas fa-quote-left" aria-hidden="true"></i>
+      <p>远方不是逃离日常，而是带着好奇心，去认识更辽阔的日常。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 鸡哥的旅游攻略大全 | 山海有期，远方可待</p>
+  </footer>
+  <script src="../assets/js/common.js"></script>
+</body>
+
+</html>

@@ -19,12 +19,8 @@
                     style="width: 28px; height: 28px;"> 鸡哥的旅游攻略大全</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link" style="color: var(--accent-color);">首页</a>
-                <a href="routes/dapeng.html" class="nav-link">大鹏</a>
-                <a href="routes/nanao.html" class="nav-link">南澳</a>
-                <a href="routes/guangzhou.html" class="nav-link">广州</a>
-                <a href="routes/zhuhai.html" class="nav-link">珠海</a>
-                <a href="routes/yangjiang.html" class="nav-link">阳江</a>
-                <a href="routes/wuyi.html" class="nav-link">五一特辑</a>
+                <a href="categories/shenzhen-nearby.html" class="nav-link" data-category="shenzhen-nearby">深圳周边</a>
+                <a href="categories/poetry-distance.html" class="nav-link" data-category="poetry-distance">诗和远方</a>
             </div>
         </div>
     </nav>
@@ -32,23 +28,101 @@
     <header class="home-hero">
         <div class="container animate__animated animate__fadeInDown">
             <h1 class="home-title">鸡哥的旅游攻略大全</h1>
-            <p class="home-subtitle">不仅仅是高楼大厦，还有山海与星辰</p>
+            <p class="home-subtitle">周末奔赴山海，也把长假留给更远的风景</p>
         </div>
     </header>
 
     <main class="container">
-        <section>
-            <h2><i class="fas fa-route"></i> 热门路线</h2>
-            <div class="destinations-grid">
+        <section class="travel-categories" aria-labelledby="travel-categories-title">
+            <div class="category-section__heading">
+                <div>
+                    <span class="section-eyebrow">先选旅行半径</span>
+                    <h2 id="travel-categories-title"><i class="fas fa-compass"></i> 今天，想走多远？</h2>
+                </div>
+                <p>一边收好说走就走的周末，一边认真计划值得等待的远方。</p>
+            </div>
+            <div class="category-gateway-grid">
+                <a class="category-gateway category-gateway--nearby" href="categories/shenzhen-nearby.html"
+                    style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=82');">
+                    <span class="category-gateway__index">01 · 广东省内</span>
+                    <div>
+                        <h3>深圳周边</h3>
+                        <p>不请长假，也能从城市日常里短暂出走。山海、古城、温泉和早茶，都在一箱油的半径里。</p>
+                    </div>
+                    <span class="category-gateway__action">浏览 6 条攻略 <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                <a class="category-gateway category-gateway--distance" href="categories/poetry-distance.html"
+                    style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=82');">
+                    <span class="category-gateway__index">02 · 广东省外</span>
+                    <div>
+                        <h3>诗和远方</h3>
+                        <p>当假期足够长，就去看新的地貌与生活。把车票、远山和陌生城市，慢慢写成下一本攻略。</p>
+                    </div>
+                    <span class="category-gateway__action">看看远方计划 <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <section class="route-discovery" aria-labelledby="route-discovery-title">
+            <div class="route-discovery__heading">
+                <div>
+                    <span class="section-eyebrow">深圳周边精选</span>
+                    <h2 id="route-discovery-title"><i class="fas fa-route"></i> 这个周末去哪儿</h2>
+                </div>
+                <p>按假期、预算和可接受车程缩小范围，或进入<a href="categories/shenzhen-nearby.html">完整分类页</a>慢慢挑选。</p>
+            </div>
+
+            <form class="route-filters" id="route-filters">
+                <label class="route-filter">
+                    <span><i class="fas fa-calendar-day" aria-hidden="true"></i> 可玩天数</span>
+                    <select id="filter-days" name="days">
+                        <option value="all">不限天数</option>
+                        <option value="2">2天</option>
+                        <option value="3">3天</option>
+                        <option value="4">4天及以上</option>
+                    </select>
+                </label>
+                <label class="route-filter">
+                    <span><i class="fas fa-wallet" aria-hidden="true"></i> 人均预算</span>
+                    <select id="filter-budget" name="budget">
+                        <option value="all">不限预算</option>
+                        <option value="1000">1000元以内</option>
+                        <option value="1500">1500元以内</option>
+                        <option value="2000">2000元以内</option>
+                        <option value="3000">3000元以内</option>
+                    </select>
+                </label>
+                <label class="route-filter">
+                    <span><i class="fas fa-car-side" aria-hidden="true"></i> 单程车程</span>
+                    <select id="filter-drive" name="drive">
+                        <option value="all">不限车程</option>
+                        <option value="2.5">2.5小时以内</option>
+                        <option value="4">4小时以内</option>
+                        <option value="5">5小时以内</option>
+                    </select>
+                </label>
+                <div class="route-filter-actions">
+                    <button class="btn" id="recommend-routes" type="submit"><i class="fas fa-wand-magic-sparkles"></i> 条件推荐</button>
+                    <button class="btn btn--secondary" id="reset-routes" type="button"><i class="fas fa-rotate-left"></i> 重置</button>
+                </div>
+            </form>
+
+            <div class="route-recommendation" id="route-recommendation" aria-live="polite" hidden></div>
+            <div class="route-catalog-bar">
+                <p id="catalog-summary" aria-live="polite">正在读取路线数据…</p>
+                <span><i class="fas fa-code-compare" aria-hidden="true"></i> 最多选择3条对比</span>
+            </div>
+            <div class="destinations-grid" id="route-catalog" data-category="shenzhen-nearby">
+                <!-- JavaScript 会使用 routes.json 渲染；以下卡片是无脚本环境的内容后备。 -->
                 <!-- 大鹏卡片 -->
                 <div class="route-card animate__animated animate__fadeInUp">
                     <div class="route-img"
                         style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                     </div>
                     <div class="route-content">
-                        <h3 class="route-title">大鹏古城 & 杨梅坑自驾三日游</h3>
+                        <h3 class="route-title">大鹏古城 & 杨梅坑自驾游</h3>
                         <div class="route-meta">
-                            <span><i class="fas fa-clock"></i> 3天2夜</span>
+                            <span><i class="fas fa-clock"></i> 2天1夜 / 3天2夜</span>
                             <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
                         </div>
                         <p class="route-desc">探访600年历史古城，漫步《美人鱼》拍摄地杨梅坑，在天文台栈道看最美日落。</p>
@@ -62,9 +136,9 @@
                         style="background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                     </div>
                     <div class="route-content">
-                        <h3 class="route-title">南澳岛自驾度假二日游</h3>
+                        <h3 class="route-title">南澳岛自驾度假</h3>
                         <div class="route-meta">
-                            <span><i class="fas fa-clock"></i> 2天1夜</span>
+                            <span><i class="fas fa-clock"></i> 2天1夜 / 3天2夜</span>
                             <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
                         </div>
                         <p class="route-desc">享受蓝宝石海滩的宁静，品尝地道海鲜大餐，体验出海捕鱼的乐趣。</p>
@@ -80,7 +154,7 @@
                     <div class="route-content">
                         <h3 class="route-title">广州周末 · 自驾轻旅行</h3>
                         <div class="route-meta">
-                            <span><i class="fas fa-clock"></i> 2天1夜</span>
+                            <span><i class="fas fa-clock"></i> 2天1夜 / 3天2夜</span>
                             <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
                         </div>
                         <p class="route-desc">花城广场与广州塔夜景，老西关文化慢游，早茶打卡。</p>
@@ -94,9 +168,9 @@
                         style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                     </div>
                     <div class="route-content">
-                        <h3 class="route-title">珠海两天两夜 · 自驾海岸</h3>
+                        <h3 class="route-title">珠海滨海自驾游</h3>
                         <div class="route-meta">
-                            <span><i class="fas fa-clock"></i> 2天2夜</span>
+                            <span><i class="fas fa-clock"></i> 2天1夜 / 3天2夜</span>
                             <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
                         </div>
                         <p class="route-desc">情侣路海风、日月贝夜景、横琴与桥口岸打卡、海鲜餐吧。</p>
@@ -110,9 +184,9 @@
                         style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
                     </div>
                     <div class="route-content">
-                        <h3 class="route-title">阳江两天两夜 · 海岛+温泉</h3>
+                        <h3 class="route-title">阳江海岛 + 温泉自驾游</h3>
                         <div class="route-meta">
-                            <span><i class="fas fa-clock"></i> 2天2夜</span>
+                            <span><i class="fas fa-clock"></i> 2天1夜 / 3天2夜</span>
                             <span style="margin-left: 15px;"><i class="fas fa-car"></i> 深圳自驾</span>
                         </div>
                         <p class="route-desc">海陵岛人气沙滩与闸坡海鲜，高性价比阳春温泉。</p>

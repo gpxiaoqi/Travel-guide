@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="从深圳出发的广东省内周末自驾攻略，按天数、预算和车程筛选目的地。">
+  <title>深圳周边 · 广东省内旅行攻略</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/img/title.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand"><img src="../assets/img/title.svg" alt="Logo"
+          style="width: 28px; height: 28px;"> 鸡哥的旅游攻略大全</a>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">首页</a>
+        <a href="shenzhen-nearby.html" class="nav-link" data-category="shenzhen-nearby">深圳周边</a>
+        <a href="poetry-distance.html" class="nav-link" data-category="poetry-distance">诗和远方</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero category-hero category-hero--nearby"
+    style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=84');">
+    <div class="container">
+      <span class="category-hero__label"><i class="fas fa-location-dot" aria-hidden="true"></i> 广东省内</span>
+      <h1>深圳周边</h1>
+      <p class="subtitle">不必走得很远，也能遇见山海、古城与一顿值得早起的早茶。</p>
+      <div class="meta-info">
+        <span><i class="fas fa-route"></i> 6 条完整攻略</span>
+        <span><i class="fas fa-calendar-day"></i> 周末与小长假</span>
+        <span><i class="fas fa-car-side"></i> 以深圳自驾为主</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container category-page">
+    <section class="category-intro" aria-labelledby="nearby-intro-title">
+      <div class="category-intro__copy">
+        <span class="section-eyebrow">把周末过成短假</span>
+        <h2 id="nearby-intro-title">从熟悉的城市，拐进另一种生活</h2>
+        <p>这里归拢广东省内、从深圳出发的旅行攻略。两天去海边吹风，三天逛一座城，或者用一个长假慢慢串起岭南风物。</p>
+      </div>
+      <dl class="category-intro__facts">
+        <div><dt>适合</dt><dd>周末临时出发</dd></div>
+        <div><dt>覆盖</dt><dd>山海 · 城市 · 温泉</dd></div>
+        <div><dt>攻略</dt><dd>预算、天气、导航齐全</dd></div>
+      </dl>
+    </section>
+
+    <section class="route-discovery" aria-labelledby="nearby-routes-title">
+      <div class="route-discovery__heading">
+        <div>
+          <span class="section-eyebrow">全部深圳周边攻略</span>
+          <h2 id="nearby-routes-title"><i class="fas fa-route"></i> 按你的时间挑一条</h2>
+        </div>
+        <p>先确定能玩几天、准备多少预算，再看愿意接受多长的单程车程。</p>
+      </div>
+
+      <form class="route-filters" id="route-filters">
+        <label class="route-filter">
+          <span><i class="fas fa-calendar-day" aria-hidden="true"></i> 可玩天数</span>
+          <select id="filter-days" name="days">
+            <option value="all">不限天数</option>
+            <option value="2">2天</option>
+            <option value="3">3天</option>
+            <option value="4">4天及以上</option>
+          </select>
+        </label>
+        <label class="route-filter">
+          <span><i class="fas fa-wallet" aria-hidden="true"></i> 人均预算</span>
+          <select id="filter-budget" name="budget">
+            <option value="all">不限预算</option>
+            <option value="1000">1000元以内</option>
+            <option value="1500">1500元以内</option>
+            <option value="2000">2000元以内</option>
+            <option value="3000">3000元以内</option>
+          </select>
+        </label>
+        <label class="route-filter">
+          <span><i class="fas fa-car-side" aria-hidden="true"></i> 单程车程</span>
+          <select id="filter-drive" name="drive">
+            <option value="all">不限车程</option>
+            <option value="2.5">2.5小时以内</option>
+            <option value="4">4小时以内</option>
+            <option value="5">5小时以内</option>
+          </select>
+        </label>
+        <div class="route-filter-actions">
+          <button class="btn" id="recommend-routes" type="submit"><i class="fas fa-wand-magic-sparkles"></i> 条件推荐</button>
+          <button class="btn btn--secondary" id="reset-routes" type="button"><i class="fas fa-rotate-left"></i> 重置</button>
+        </div>
+      </form>
+
+      <div class="route-recommendation" id="route-recommendation" aria-live="polite" hidden></div>
+      <div class="route-catalog-bar">
+        <p id="catalog-summary" aria-live="polite">正在读取深圳周边路线…</p>
+        <span><i class="fas fa-code-compare" aria-hidden="true"></i> 最多选择3条对比</span>
+      </div>
+      <div class="destinations-grid" id="route-catalog" data-category="shenzhen-nearby">
+        <div class="category-route-fallback">
+          <a href="../routes/dapeng.html"><strong>大鹏山海</strong><span>古城、海岸与天文台</span></a>
+          <a href="../routes/nanao.html"><strong>南澳环岛</strong><span>灯塔、海湾与风车山</span></a>
+          <a href="../routes/guangzhou.html"><strong>广州周末</strong><span>老西关与珠江夜色</span></a>
+          <a href="../routes/zhuhai.html"><strong>珠海海岸</strong><span>情侣路与横琴慢游</span></a>
+          <a href="../routes/yangjiang.html"><strong>阳江海岛温泉</strong><span>沙滩、海鲜与温泉</span></a>
+          <a href="../routes/wuyi.html"><strong>清佛江环线</strong><span>岭南文化六日深游</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="travel-quote travel-quote--nearby" aria-label="旅行寄语">
+      <i class="fas fa-quote-left" aria-hidden="true"></i>
+      <p>远方不只用公里计算。一个认真过完的周末，也足以让生活重新有风。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 深圳周边游指南 | 发现生活的美</p>
+  </footer>
+  <script src="../assets/js/common.js"></script>
+</body>
+
+</html>

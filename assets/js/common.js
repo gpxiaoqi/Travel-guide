@@ -133,6 +133,414 @@ async function initMap(containerId, locations, routesData = []) {
   }
 }
 
+// Shared static route catalog used by the home decision tools and every detail page.
+(function () {
+  const isRoutePage = /\/routes\/[^/]+\.html$/i.test(window.location.pathname);
+  const isNestedPage = /\/(?:routes|categories)\/[^/]+\.html$/i.test(window.location.pathname);
+  const pagePrefix = isNestedPage ? '../' : '';
+  const catalogUrl = `${pagePrefix}assets/data/routes.json`;
+  let catalogPromise;
+
+  function loadCatalog() {
+    if (!catalogPromise) {
+      catalogPromise = fetch(catalogUrl, { cache: 'no-cache' }).then(response => {
+        if (!response.ok) throw new Error(`路线数据加载失败 (${response.status})`);
+        return response.json();
+      }).then(data => {
+        if (!Array.isArray(data.routes) || data.routes.length === 0) {
+          throw new Error('路线数据格式不完整');
+        }
+        return data;
+      });
+    }
+    return catalogPromise;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"]/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+    })[character]);
+  }
+
+  function formatVerifiedDate(value) {
+    const [year, month, day] = String(value).split('-');
+    return `${year}年${Number(month)}月${Number(day)}日`;
+  }
+
+  function navigationUrl(stop) {
+    const params = new URLSearchParams({
+      to: `${stop.lng},${stop.lat},${stop.name}`,
+      mode: 'car',
+      policy: '1',
+      src: 'dapeng-guide',
+      callnative: '0'
+    });
+    return `https://uri.amap.com/navigation?${params}`;
+  }
+
+  function routeTemplates(route) {
+    return Array.isArray(route.itineraryTemplates) ? route.itineraryTemplates : [];
+  }
+
+  function routeDurationLabel(route) {
+    const templates = routeTemplates(route);
+    return templates.length ? templates.map(template => template.label).join(' / ') : route.durationLabel;
+  }
+
+  function routeHref(route) {
+    return `${pagePrefix}${route.href}`;
+  }
+
+  function routeImageUrl(image) {
+    return /^(?:https?:)?\/\//i.test(image) ? image : `${pagePrefix}${image}`;
+  }
+
+  function routeCardMarkup(route, recommended = false) {
+    const tags = [...route.bestFor.slice(0, 2), ...route.themes.slice(0, 1)];
+    return `<article class="route-card${recommended ? ' is-recommended' : ''}" data-route-id="${escapeHtml(route.id)}">
+      <div class="route-img" role="img" aria-label="${escapeHtml(route.imageAlt)}" style="background-image: url('${escapeHtml(routeImageUrl(route.image))}');">
+        ${recommended ? '<span class="route-card__recommend-badge"><i class="fas fa-star"></i> 当前推荐</span>' : ''}
+      </div>
+      <div class="route-content">
+        <div class="route-card__topline"><span>${escapeHtml(route.departure)}</span><span>${escapeHtml(route.intensity.level)}强度</span></div>
+        <h3 class="route-title">${escapeHtml(route.title)}</h3>
+        <div class="route-facts" aria-label="路线关键信息">
+          <span><i class="fas fa-clock"></i><strong>${escapeHtml(routeDurationLabel(route))}</strong></span>
+          <span><i class="fas fa-car"></i><strong>${escapeHtml(route.drive.label)}</strong></span>
+          <span><i class="fas fa-wallet"></i><strong>${escapeHtml(route.budget.label)}</strong></span>
+        </div>
+        <p class="route-desc">${escapeHtml(route.summary)}</p>
+        <div class="route-tags">${tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
+        <div class="route-card__actions">
+          <a href="${escapeHtml(routeHref(route))}" class="btn">查看行程 <i class="fas fa-arrow-right"></i></a>
+          <button class="route-compare-toggle" type="button" data-compare-route="${escapeHtml(route.id)}" aria-pressed="false">
+            <i class="fas fa-code-compare"></i><span>加入对比</span>
+          </button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function initHomeCatalog(data) {
+    const grid = document.getElementById('route-catalog');
+    const form = document.getElementById('route-filters');
+    if (!grid || !form) return;
+
+    const requestedCategory = grid.dataset.category;
+    const routes = data.routes.filter(route => !requestedCategory || route.category === requestedCategory).map(route => ({
+      ...route,
+      itineraryTemplates: data.itineraryTemplates?.[route.id] || []
+    }));
+    form.hidden = routes.length === 0;
+    const fields = {
+      days: document.getElementById('filter-days'),
+      budget: document.getElementById('filter-budget'),
+      drive: document.getElementById('filter-drive')
+    };
+    const summary = document.getElementById('catalog-summary');
+    const recommendation = document.getElementById('route-recommendation');
+    const compareIds = new Set();
+    let recommendedId = null;
+
+    const matchesFilters = route => {
+      const days = fields.days.value;
+      const budget = fields.budget.value;
+      const drive = fields.drive.value;
+      const availableDays = routeTemplates(route).map(template => template.days);
+      const daysMatch = days === 'all' || (days === '4'
+        ? (availableDays.length ? availableDays.some(value => value >= 4) : route.days >= 4)
+        : (availableDays.length ? availableDays.includes(Number(days)) : route.days === Number(days)));
+      const budgetMatch = budget === 'all' || route.budget.perPersonMin <= Number(budget);
+      const driveMatch = drive === 'all' || route.drive.oneWayHours <= Number(drive);
+      return daysMatch && budgetMatch && driveMatch;
+    };
+
+    const recommendationScore = route => {
+      let score = 0;
+      const days = fields.days.value;
+      const budget = fields.budget.value;
+      const drive = fields.drive.value;
+      if (days !== 'all') {
+        const desiredDays = Number(days);
+        const availableDays = routeTemplates(route).map(template => template.days);
+        const dayDifference = availableDays.length
+          ? Math.min(...availableDays.map(value => Math.abs(value - desiredDays)))
+          : Math.abs(route.days - desiredDays);
+        const hasLongTrip = availableDays.length ? availableDays.some(value => value >= 4) : route.days >= 4;
+        score += days === '4' ? (hasLongTrip ? 7 : -dayDifference * 3) : 7 - dayDifference * 4;
+      }
+      if (budget !== 'all') {
+        const cap = Number(budget);
+        const midpoint = (route.budget.perPersonMin + route.budget.perPersonMax) / 2;
+        score += midpoint <= cap ? 5 : route.budget.perPersonMin <= cap ? 2 : -6;
+      }
+      if (drive !== 'all') {
+        const cap = Number(drive);
+        score += route.drive.oneWayHours <= cap ? 4 : -Math.ceil(route.drive.oneWayHours - cap) * 3;
+      }
+      score += Math.max(0, 4 - route.intensity.score) * 0.25;
+      return score;
+    };
+
+    const compareTray = document.createElement('div');
+    compareTray.className = 'compare-tray';
+    compareTray.hidden = true;
+    document.body.append(compareTray);
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'compare-dialog';
+    dialog.setAttribute('aria-labelledby', 'compare-dialog-title');
+    document.body.append(dialog);
+
+    const syncCompareButtons = () => {
+      grid.querySelectorAll('[data-compare-route]').forEach(button => {
+        const selected = compareIds.has(button.dataset.compareRoute);
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+        button.querySelector('span').textContent = selected ? '已加入' : '加入对比';
+        button.disabled = !selected && compareIds.size >= 3;
+      });
+    };
+
+    const updateTray = () => {
+      const selected = routes.filter(route => compareIds.has(route.id));
+      compareTray.hidden = selected.length === 0;
+      compareTray.innerHTML = `<div class="compare-tray__content">
+        <div><strong>路线对比</strong><span>${selected.length}/3</span></div>
+        <div class="compare-tray__routes">${selected.map(route => `<span>${escapeHtml(route.shortTitle)}</span>`).join('')}</div>
+        <button type="button" class="btn" data-open-comparison ${selected.length < 2 ? 'disabled' : ''}><i class="fas fa-code-compare"></i> 开始对比</button>
+        <button type="button" class="compare-tray__clear" data-clear-comparison aria-label="清空对比"><i class="fas fa-trash-can"></i></button>
+      </div>`;
+      syncCompareButtons();
+    };
+
+    const comparisonMarkup = selected => `<div class="compare-dialog__header">
+        <div><span class="section-eyebrow">并排看差异</span><h2 id="compare-dialog-title">路线对比</h2></div>
+        <button type="button" class="compare-dialog__close" data-close-comparison aria-label="关闭路线对比"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead><tr><th scope="col">对比项</th>${selected.map(route => `<th scope="col">${escapeHtml(route.shortTitle)}</th>`).join('')}</tr></thead>
+          <tbody>
+            <tr><th scope="row">行程</th>${selected.map(route => `<td>${escapeHtml(routeDurationLabel(route))}</td>`).join('')}</tr>
+            <tr><th scope="row">预算</th>${selected.map(route => `<td>${escapeHtml(route.budget.label)}</td>`).join('')}</tr>
+            <tr><th scope="row">车程</th>${selected.map(route => `<td>${escapeHtml(route.drive.label)}<small>往返约${route.drive.totalKm}公里</small></td>`).join('')}</tr>
+            <tr><th scope="row">强度</th>${selected.map(route => `<td><strong>${escapeHtml(route.intensity.level)}</strong><small>${escapeHtml(route.intensity.description)}</small></td>`).join('')}</tr>
+            <tr><th scope="row">适合</th>${selected.map(route => `<td>${route.bestFor.map(item => escapeHtml(item)).join('、')}</td>`).join('')}</tr>
+            <tr><th scope="row">操作</th>${selected.map(route => `<td><a class="btn" href="${escapeHtml(routeHref(route))}">查看行程</a></td>`).join('')}</tr>
+          </tbody>
+        </table>
+      </div>`;
+
+    const render = () => {
+      const visible = routes.filter(matchesFilters);
+      grid.innerHTML = visible.length
+        ? visible.map(route => routeCardMarkup(route, route.id === recommendedId)).join('')
+        : `<div class="route-empty"><i class="fas fa-route"></i><h3>${escapeHtml(grid.dataset.emptyTitle || '暂时没有完全符合的路线')}</h3><p>${escapeHtml(grid.dataset.emptyCopy || '放宽一个条件，或者点击“条件推荐”查看最接近的选择。')}</p></div>`;
+      summary.innerHTML = `共找到 <strong>${visible.length}</strong> 条路线`;
+      syncCompareButtons();
+      document.dispatchEvent(new CustomEvent('route-catalog-rendered'));
+    };
+
+    Object.values(fields).forEach(field => field.addEventListener('change', () => {
+      recommendedId = null;
+      recommendation.hidden = true;
+      render();
+    }));
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const hasConditions = Object.values(fields).some(field => field.value !== 'all');
+      if (!hasConditions) {
+        recommendation.hidden = false;
+        recommendation.innerHTML = '<i class="fas fa-circle-info"></i><div><strong>先选一个条件</strong><p>设置可玩天数、预算或车程后，推荐结果会更有意义。</p></div>';
+        return;
+      }
+      const ranked = [...routes].sort((a, b) => recommendationScore(b) - recommendationScore(a));
+      const best = ranked[0];
+      recommendedId = best.id;
+      recommendation.hidden = false;
+      recommendation.innerHTML = `<i class="fas fa-wand-magic-sparkles"></i><div><span>条件匹配度最高</span><strong>${escapeHtml(best.title)}</strong><p>${escapeHtml(routeDurationLabel(best))} · ${escapeHtml(best.budget.label)} · ${escapeHtml(best.drive.label)}，${escapeHtml(best.intensity.level)}强度。</p></div><a class="btn" href="${escapeHtml(routeHref(best))}">查看推荐</a>`;
+      render();
+      recommendation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('reset-routes').addEventListener('click', () => {
+      form.reset();
+      recommendedId = null;
+      recommendation.hidden = true;
+      render();
+    });
+
+    grid.addEventListener('click', event => {
+      const button = event.target.closest('[data-compare-route]');
+      if (!button) return;
+      const id = button.dataset.compareRoute;
+      if (compareIds.has(id)) compareIds.delete(id);
+      else if (compareIds.size < 3) compareIds.add(id);
+      updateTray();
+    });
+
+    compareTray.addEventListener('click', event => {
+      if (event.target.closest('[data-clear-comparison]')) {
+        compareIds.clear();
+        updateTray();
+      }
+      if (event.target.closest('[data-open-comparison]')) {
+        const selected = routes.filter(route => compareIds.has(route.id));
+        dialog.innerHTML = comparisonMarkup(selected);
+        dialog.showModal();
+      }
+    });
+    dialog.addEventListener('click', event => {
+      if (event.target.closest('[data-close-comparison]')) dialog.close();
+      if (event.target === dialog) dialog.close();
+    });
+
+    render();
+    updateTray();
+  }
+
+  function resolveNavigation(route, plan) {
+    if (!plan?.navigation?.length) return route.navigation;
+    return plan.navigation.map(item => {
+      const stop = route.navigation.find(candidate => candidate.name === item.name);
+      return stop ? { ...stop, day: item.day || stop.day } : null;
+    }).filter(Boolean);
+  }
+
+  function detailDecisionMarkup(route, budgetBasis, plan, researchSources = []) {
+    const activeBudget = plan?.budget || route.budget;
+    const activeIntensity = plan?.intensity || route.intensity;
+    const activeDuration = plan?.label || route.durationLabel;
+    const activeNavigation = resolveNavigation(route, plan);
+    const bookingMarkup = route.bookings.length
+      ? route.bookings.map(item => `<a class="booking-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><span><strong>${escapeHtml(item.label)}</strong><small>${escapeHtml(item.channel)}</small></span><i class="fas fa-arrow-up-right-from-square"></i></a>`).join('')
+      : '<div class="booking-empty"><i class="fas fa-circle-check"></i><span><strong>本线路暂无统一预约项目</strong><small>收费体验请在出发前通过景区官方渠道确认。</small></span></div>';
+    const sourceMarkup = plan?.sourceRefs?.map(sourceId => researchSources.find(source => source.id === sourceId)).filter(Boolean)
+      .map(source => `<a class="research-link" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"><i class="fas fa-building-columns"></i><span><strong>${escapeHtml(source.title)}</strong><small>${escapeHtml(source.publisher)}</small></span><i class="fas fa-arrow-up-right-from-square"></i></a>`).join('') || '';
+    const transportFact = Array.isArray(route.transportModes) && route.transportModes.length
+      ? `<div><i class="fas fa-route"></i><span>交通方式<strong>${route.transportModes.map(mode => escapeHtml(mode.label)).join(' / ')}</strong></span></div>`
+      : `<div><i class="fas fa-road"></i><span>驾驶距离<strong>往返约${route.drive.totalKm}公里</strong></span></div>`;
+    return `<section class="trip-decision-section" id="trip-decision">
+      <div class="trip-decision__heading">
+        <div><span class="section-eyebrow">出发前先确认</span><h2><i class="fas fa-clipboard-check"></i> 行程决策信息</h2></div>
+        <div class="verification-chip"><i class="fas fa-shield-check"></i><span>最近核验<strong>${formatVerifiedDate(route.verifiedAt)}</strong></span></div>
+      </div>
+      <div class="decision-facts">
+        <div><i class="fas fa-calendar-day"></i><span>行程天数<strong>${escapeHtml(activeDuration)}</strong></span></div>
+        <div><i class="fas fa-wallet"></i><span>预算参考<strong>${escapeHtml(activeBudget.label)}</strong></span></div>
+        <div><i class="fas fa-person-hiking"></i><span>行程强度<strong>${escapeHtml(activeIntensity.level)}</strong></span></div>
+        ${transportFact}
+      </div>
+      <div class="decision-layout">
+        <article class="decision-panel">
+          <div class="decision-panel__title"><i class="fas fa-receipt"></i><div><h3>预算拆分</h3><p>${escapeHtml(budgetBasis)}</p></div></div>
+          <dl class="budget-list">${activeBudget.breakdown.map(item => `<div><dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd></div>`).join('')}</dl>
+          <p class="decision-note"><i class="fas fa-gauge-high"></i><strong>${escapeHtml(activeIntensity.level)}：</strong>${escapeHtml(activeIntensity.description)}</p>
+        </article>
+        <article class="decision-panel">
+          <div class="decision-panel__title"><i class="fas fa-ticket"></i><div><h3>预约入口</h3><p>仅保留官方或政府渠道</p></div></div>
+          <div class="booking-list">${bookingMarkup}</div>
+          ${sourceMarkup ? `<div class="research-list"><span>攻略调整依据</span>${sourceMarkup}</div>` : ''}
+          <p class="decision-note"><i class="fas fa-circle-info"></i>${escapeHtml(route.verificationNote)}</p>
+        </article>
+      </div>
+      <article class="stop-navigation">
+        <div class="decision-panel__title"><i class="fas fa-location-arrow"></i><div><h3>逐站导航</h3><p>按建议顺序打开高德地图，实时路线以导航结果为准</p></div></div>
+        <ol>${activeNavigation.map((stop, index) => `<li><span class="stop-number">${index + 1}</span><div><small>${escapeHtml(stop.day)}</small><strong>${escapeHtml(stop.name)}</strong><p>${escapeHtml(stop.note)}</p></div><a href="${navigationUrl(stop)}" target="_blank" rel="noopener noreferrer" aria-label="导航到${escapeHtml(stop.name)}"><i class="fas fa-location-arrow"></i><span>导航</span></a></li>`).join('')}</ol>
+      </article>
+    </section>`;
+  }
+
+  function durationSelectorMarkup(templates, selectedId) {
+    return `<section class="duration-planner" aria-labelledby="duration-planner-title">
+      <div class="duration-planner__copy"><span class="section-eyebrow">按时间生成攻略</span><h2 id="duration-planner-title"><i class="fas fa-calendar-days"></i> 选择旅行时间</h2><p>两套行程会同步调整每日安排、预算、强度和导航顺序。</p></div>
+      <div class="duration-segments" role="group" aria-label="旅行时间">${templates.map(template => `<button type="button" data-duration-template="${escapeHtml(template.id)}" class="duration-segment${template.id === selectedId ? ' is-active' : ''}" aria-pressed="${template.id === selectedId}"><strong>${escapeHtml(template.label)}</strong><span>${escapeHtml(template.summary)}</span></button>`).join('')}</div>
+    </section>`;
+  }
+
+  function planOverviewMarkup(plan) {
+    return `<h2><i class="fas fa-list-ul"></i> 行程概览</h2><div class="grid-overview">${plan.dayPlans.map(day => `<article class="day-card"><div class="day-header">Day ${day.day}</div><div class="day-title">${escapeHtml(day.title)}</div><div class="day-icons"><i class="fas fa-route" aria-hidden="true"></i><i class="fas fa-camera" aria-hidden="true"></i><i class="fas fa-utensils" aria-hidden="true"></i></div><p>${escapeHtml(day.summary)}</p></article>`).join('')}</div>`;
+  }
+
+  function planItineraryMarkup(plan) {
+    return `<h2><i class="fas fa-clock"></i> 详细时间表</h2>${plan.dayPlans.map(day => `<div class="day-detail"><h3 class="day-heading">Day ${day.day}: ${escapeHtml(day.title)}</h3><div class="timeline">${day.items.map(item => `<div class="timeline-item"><div class="time">${escapeHtml(item.time)}</div><div class="content"><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.description)}</p>${item.tag ? `<span class="tag${/预约|必/.test(item.tag) ? ' highlight' : ''}">${escapeHtml(item.tag)}</span>` : ''}</div></div>`).join('')}</div></div>`).join('')}`;
+  }
+
+  function renderSelectedPlan(main, route, plan, data) {
+    const selector = main.querySelector('.duration-planner');
+    if (selector) selector.outerHTML = durationSelectorMarkup(route.itineraryTemplates, plan.id);
+
+    const overview = main.querySelector('.overview-section');
+    const itinerary = main.querySelector('.itinerary-section');
+    if (overview) overview.innerHTML = planOverviewMarkup(plan);
+    if (itinerary) itinerary.innerHTML = planItineraryMarkup(plan);
+
+    main.querySelector('.trip-decision-section')?.remove();
+    const currentSelector = main.querySelector('.duration-planner');
+    currentSelector.insertAdjacentHTML('afterend', detailDecisionMarkup(route, data.budgetBasis, plan, data.researchSources));
+
+    const heroTitle = document.querySelector('.hero h1');
+    const heroDuration = document.querySelector('.hero .meta-info span:first-child');
+    if (heroTitle) heroTitle.textContent = plan.title;
+    if (heroDuration) heroDuration.innerHTML = `<i class="fas fa-calendar-alt"></i> ${escapeHtml(plan.label)} · 可随时切换`;
+    document.title = `${plan.title}攻略`;
+    document.dispatchEvent(new CustomEvent('route-detail-rendered', { detail: { routeId: route.id, templateId: plan.id } }));
+  }
+
+  function initDetailDecision(data) {
+    if (!isRoutePage) return;
+    const match = window.location.pathname.match(/\/routes\/([^/.]+)\.html$/i);
+    const route = data.routes.find(item => item.id === match?.[1].toLowerCase());
+    const main = document.querySelector('main.container');
+    if (!route || !main || main.querySelector('.trip-decision-section')) return;
+    route.itineraryTemplates = data.itineraryTemplates?.[route.id] || [];
+    if (!route.itineraryTemplates.length) {
+      const weather = main.querySelector('.weekend-weather');
+      if (weather) weather.insertAdjacentHTML('afterend', detailDecisionMarkup(route, data.budgetBasis, null, data.researchSources));
+      else main.insertAdjacentHTML('afterbegin', detailDecisionMarkup(route, data.budgetBasis, null, data.researchSources));
+      document.dispatchEvent(new CustomEvent('route-detail-rendered'));
+      return;
+    }
+
+    const queryTemplate = new URLSearchParams(window.location.search).get('duration');
+    const initialPlan = route.itineraryTemplates.find(template => template.id === queryTemplate) || route.itineraryTemplates[0];
+    const overview = main.querySelector('.overview-section');
+    overview.insertAdjacentHTML('beforebegin', durationSelectorMarkup(route.itineraryTemplates, initialPlan.id));
+    renderSelectedPlan(main, route, initialPlan, data);
+
+    main.addEventListener('click', event => {
+      const button = event.target.closest('[data-duration-template]');
+      if (!button) return;
+      const plan = route.itineraryTemplates.find(template => template.id === button.dataset.durationTemplate);
+      if (!plan) return;
+      const url = new URL(window.location.href);
+      url.searchParams.set('duration', plan.id);
+      window.history.replaceState({}, '', url);
+      renderSelectedPlan(main, route, plan, data);
+      main.querySelector('.duration-planner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  function initRouteDataFeatures() {
+    loadCatalog().then(data => {
+      initHomeCatalog(data);
+      initDetailDecision(data);
+    }).catch(error => {
+      console.error(error);
+      const summary = document.getElementById('catalog-summary');
+      if (summary) summary.textContent = '路线数据暂时无法读取，请刷新页面重试。';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRouteDataFeatures);
+  } else {
+    initRouteDataFeatures();
+  }
+})();
+
 // Weekend weather and weather-aware itinerary rendering.
 (function () {
   let requestedPlanMode = null;
@@ -213,6 +621,32 @@ async function initMap(containerId, locations, routesData = []) {
         title: '雨天版 · 三城文化美食线', summary: '暂停漂流和乡野长距离步行，改为展馆、古建室内空间与地方美食。',
         stops: ['清远：城市展馆与温泉', '佛山：祖庙、陶瓷博物馆与顺德美食', '江门：华侨华人博物馆与骑楼街'],
         tips: '三城天气可能不同，出发前分别确认；暴雨时不要进入山区和河谷。'
+      }
+    },
+    chenzhou: {
+      name: '郴州', weatherCity: '431000', weatherLabel: '郴州',
+      sunny: {
+        title: '晴天版 · 丹霞草原追光线', summary: '把高椅岭、仰天湖和小东江清晨时段放在能见度更好的日期，户外主景优先。',
+        stops: ['清晨：按预约进入小东江观雾栈道', '上午：高椅岭早入园，避开正午暴晒', '全天：仰天湖或莽山按山区预报择日'],
+        tips: '高椅岭遮阴少，仰天湖和莽山昼夜温差大；防晒、补水和薄外套都要准备。'
+      },
+      rainy: {
+        title: '雨天版 · 城市人文与湖畔慢游', summary: '暂停裸露丹霞、草原和高山栈道，把市区文化、东江镇休整与美食作为替代。',
+        stops: ['上午：郴州市博物馆或711时光小镇', '下午：裕后街、室内非遗体验或东江镇休整', '晚上：鱼粉、烧鸡公等本地餐饮'],
+        tips: '暴雨、雷电、大风或低能见度时取消高椅岭、仰天湖和莽山户外段；山区道路不要夜驾。'
+      }
+    },
+    'inner-mongolia': {
+      name: '内蒙古', weatherCity: '150100', weatherLabel: '呼和浩特',
+      sunny: {
+        title: '晴稳版 · 草原火山与森林公路线', summary: '把乌兰哈达、辉腾锡勒、响沙湾、阿尔山和呼伦贝尔户外主景放在风力较小、能见度较好的日期。',
+        stops: ['中西部：乌兰哈达火山、辉腾锡勒与响沙湾按风力择日', '东部：阿尔山森林公园和莫尔格勒河安排完整白天', '转场：每天出发前分别查询起点、终点和中途旗县预警'],
+        tips: '页面天气卡显示呼和浩特近两日预报，只作为中部参考；内蒙古东西跨度大，必须逐站查看天气和道路信息。'
+      },
+      rainy: {
+        title: '风雨版 · 城市馆舍与弹性转场线', summary: '暂停火山高处、沙漠腹地、草原无路区和森林长步道，用城市场馆、休整日和短途转场吸收天气变化。',
+        stops: ['呼和浩特、鄂尔多斯、包头：优先文化场馆与城市公共空间', '阿尔山、额尔古纳、根河：大风雨雪时留在城镇，不夜驾追景', '呼伦贝尔：G331、G332遇积雪结冰或管制时立即调整住宿'],
+        tips: '雷暴时远离空旷草原和高处，沙尘时减速或就近安全停车；任何天气都不进入未开放草原、沙漠、林区核心区和边境禁区。'
       }
     }
   };
@@ -300,7 +734,7 @@ async function initMap(containerId, locations, routesData = []) {
     if (!host) {
       host = document.createElement('div');
       host.className = 'route-weather';
-      const meta = card.querySelector('.route-meta');
+      const meta = card.querySelector('.route-meta, .route-facts');
       (meta || card.querySelector('.route-content')).insertAdjacentElement(meta ? 'afterend' : 'afterbegin', host);
     }
     host.innerHTML = '<span class="weather-loading"><i class="fas fa-spinner fa-spin"></i> 正在获取近期天气</span>';
@@ -389,12 +823,10 @@ async function initMap(containerId, locations, routesData = []) {
     return match ? match[1].toLowerCase() : null;
   }
 
-  function initWeekendWeather() {
-    const key = currentDestinationKey();
-    if (key && DESTINATIONS[key]) renderDetailWeather(key, DESTINATIONS[key]);
-
+  function initHomeWeatherCards() {
     if (document.querySelector('.destinations-grid')) {
-      document.querySelectorAll('.route-card').forEach(card => {
+      document.querySelectorAll('.destinations-grid .route-card').forEach(card => {
+        if (card.querySelector('.route-weather')) return;
         const link = card.querySelector('a[href*="routes/"]');
         const match = link && link.getAttribute('href').match(/routes\/([^/.]+)\.html/i);
         const cardKey = match && match[1].toLowerCase();
@@ -402,6 +834,14 @@ async function initMap(containerId, locations, routesData = []) {
       });
     }
   }
+
+  function initWeekendWeather() {
+    const key = currentDestinationKey();
+    if (key && DESTINATIONS[key]) renderDetailWeather(key, DESTINATIONS[key]);
+    if (!document.getElementById('route-catalog')) initHomeWeatherCards();
+  }
+
+  document.addEventListener('route-catalog-rendered', initHomeWeatherCards);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initWeekendWeather);
@@ -413,7 +853,8 @@ async function initMap(containerId, locations, routesData = []) {
 // Shared navigation and interaction enhancements for every page.
 (function () {
   const isRoutePage = /\/routes\/[^/]+\.html$/i.test(window.location.pathname);
-  const assetPrefix = isRoutePage ? '../' : '';
+  const isNestedPage = /\/(?:routes|categories)\/[^/]+\.html$/i.test(window.location.pathname);
+  const assetPrefix = isNestedPage ? '../' : '';
   const chickAsset = `${assetPrefix}assets/img/title.svg`;
 
   function normalizePath(pathname) {
@@ -470,9 +911,12 @@ async function initMap(containerId, locations, routesData = []) {
     if (brandImage) brandImage.alt = 'Q版小鸡标志';
 
     const current = normalizePath(window.location.pathname);
+    const routeCategory = isRoutePage
+      ? document.body.dataset.routeCategory || 'shenzhen-nearby'
+      : null;
     links.querySelectorAll('.nav-link').forEach(link => {
       const target = normalizePath(new URL(link.href, window.location.href).pathname);
-      const active = target === current;
+      const active = target === current || link.dataset.category === routeCategory;
       link.classList.toggle('is-active', active);
       if (active) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
@@ -532,9 +976,12 @@ async function initMap(containerId, locations, routesData = []) {
       container.prepend(kicker);
     }
 
+    const heroMessage = hero.classList.contains('home-hero')
+      ? '跟着鸡哥去旅行'
+      : hero.classList.contains('category-hero') ? '下一程，慢慢挑' : '行程已经整理好啦';
     const chick = document.createElement('div');
     chick.className = 'hero-chick';
-    chick.innerHTML = `<img src="${chickAsset}" alt="Q版小鸡向导"><span>${hero.classList.contains('home-hero') ? '跟着鸡哥去旅行' : '行程已经整理好啦'}</span>`;
+    chick.innerHTML = `<img src="${chickAsset}" alt="Q版小鸡向导"><span>${heroMessage}</span>`;
     container.append(chick);
   }
 
@@ -557,9 +1004,12 @@ async function initMap(containerId, locations, routesData = []) {
     const hero = document.querySelector('.hero');
     const main = document.querySelector('main');
     if (!hero || !main) return;
+    if (isRoutePage && !main.querySelector('.trip-decision-section')) return;
+
+    document.querySelector('.section-nav')?.remove();
 
     const items = [...main.querySelectorAll(':scope > section')].map((section, index) => {
-      const heading = section.querySelector(':scope > h2, .weather-section__top h2');
+      const heading = section.querySelector(':scope > h2, .weather-section__top h2, .trip-decision__heading h2');
       if (!heading) return null;
       section.id = section.id || `guide-section-${index + 1}`;
       return { section, label: heading.textContent.replace(/\s+/g, ' ').trim() };
@@ -744,6 +1194,8 @@ async function initMap(containerId, locations, routesData = []) {
     initChickGuide();
     enhanceFooter();
   }
+
+  document.addEventListener('route-detail-rendered', initSectionNavigation);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTravelGuideUI);

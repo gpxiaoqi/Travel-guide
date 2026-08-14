@@ -1,0 +1,4 @@
+interface:
+  display_name: "新增旅游目的地"
+  short_description: "Add researched destinations with complete route templates"
+  default_prompt: "Use $add-travel-destination to add a researched destination with complete itinerary data and page integration."

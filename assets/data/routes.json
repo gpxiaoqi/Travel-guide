@@ -1,0 +1,967 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-08-14",
+  "budgetBasis": "按2人同行、普通周末、经济舒适型住宿估算，不含个人购物",
+  "categories": [
+    {
+      "id": "shenzhen-nearby",
+      "title": "深圳周边",
+      "description": "从深圳出发，收录广东省内适合周末与小长假的自驾路线。"
+    },
+    {
+      "id": "poetry-distance",
+      "title": "诗和远方",
+      "description": "把目光越过广东，收录需要更长假期的省外旅行攻略。"
+    }
+  ],
+  "routes": [
+    {
+      "id": "dapeng",
+      "category": "shenzhen-nearby",
+      "href": "routes/dapeng.html",
+      "shortTitle": "大鹏山海",
+      "title": "大鹏古城 & 杨梅坑自驾游",
+      "summary": "探访600年历史古城，漫步杨梅坑海岸，在天文台栈道等待日落。",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "大鹏山海度假风景",
+      "days": 3,
+      "nights": 2,
+      "durationLabel": "3天2夜",
+      "departure": "深圳自驾",
+      "drive": {
+        "oneWayHours": 2,
+        "totalKm": 260,
+        "label": "单程约2小时"
+      },
+      "budget": {
+        "perPersonMin": 900,
+        "perPersonMax": 1500,
+        "label": "人均900-1500元",
+        "breakdown": [
+          { "label": "住宿", "value": "600-1100元 / 2晚" },
+          { "label": "餐饮", "value": "500-800元 / 2人" },
+          { "label": "交通", "value": "250-400元 / 车" },
+          { "label": "门票与体验", "value": "200-500元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "适中",
+        "score": 3,
+        "description": "连续三天活动，包含海岸步行和约1.1公里天文台爬坡路线。"
+      },
+      "bestFor": ["情侣", "朋友", "摄影"],
+      "themes": ["山海", "古城", "徒步"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "预约规则和开放状态可能受节假日、天气影响，出发前需再次确认。",
+      "bookings": [
+        {
+          "label": "大鹏半岛预约通行说明",
+          "channel": "深圳政府在线 / 深圳交警",
+          "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12759061.html"
+        },
+        {
+          "label": "深圳天文台参观预约",
+          "channel": "深圳市气象局官方入口",
+          "url": "https://weather.sz.gov.cn/mobile/qixiangfuwu/tianwenfuwu/canguanyuyue/index.html"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1", "name": "大鹏所城", "lng": 114.512449, "lat": 22.595213, "note": "建议先停官方停车场" },
+        { "day": "Day 1", "name": "较场尾", "lng": 114.509678, "lat": 22.588178, "note": "核心区步行游览" },
+        { "day": "Day 2", "name": "杨梅坑", "lng": 114.571145, "lat": 22.54497, "note": "节假日尽量早到" },
+        { "day": "Day 2", "name": "鹿嘴山庄", "lng": 114.607627, "lat": 22.539842, "note": "按现场交通方式换乘" },
+        { "day": "Day 2", "name": "深圳天文台", "lng": 114.55935, "lat": 22.479717, "note": "预约成功后再前往" },
+        { "day": "Day 3", "name": "大鹏半岛国家地质公园", "lng": 114.598294, "lat": 22.548957, "note": "留意场馆开放日" }
+      ]
+    },
+    {
+      "id": "nanao",
+      "category": "shenzhen-nearby",
+      "href": "routes/nanao.html",
+      "shortTitle": "南澳环岛",
+      "title": "南澳岛自驾度假",
+      "summary": "穿越南澳大桥，串联灯塔、青澳湾和风车山，体验轻松环岛。",
+      "image": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "南澳岛海岸与山景",
+      "days": 2,
+      "nights": 1,
+      "durationLabel": "2天1夜",
+      "departure": "深圳自驾",
+      "drive": {
+        "oneWayHours": 4.5,
+        "totalKm": 760,
+        "label": "单程约4.5小时"
+      },
+      "budget": {
+        "perPersonMin": 1100,
+        "perPersonMax": 1800,
+        "label": "人均1100-1800元",
+        "breakdown": [
+          { "label": "住宿", "value": "350-700元 / 1晚" },
+          { "label": "餐饮", "value": "500-900元 / 2人" },
+          { "label": "交通", "value": "700-950元 / 车" },
+          { "label": "体验", "value": "100-350元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "适中",
+        "score": 3,
+        "description": "两天车程较长，岛内景点分散，适合轮换驾驶。"
+      },
+      "bestFor": ["情侣", "朋友", "海景"],
+      "themes": ["海岛", "灯塔", "环岛"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "风车山和临海点位会因大风或管控调整，现场开放情况优先。",
+      "bookings": [],
+      "navigation": [
+        { "day": "Day 1", "name": "南澳大桥", "lng": 116.9456, "lat": 23.4245, "note": "上岛主通道，留意拥堵" },
+        { "day": "Day 1", "name": "长山尾灯塔", "lng": 116.9687, "lat": 23.4358, "note": "短暂停留拍照" },
+        { "day": "Day 1", "name": "青澳湾自然之门", "lng": 117.1352, "lat": 23.4396, "note": "停车后步行游览" },
+        { "day": "Day 2", "name": "蛴仔澎风车山", "lng": 117.089, "lat": 23.4567, "note": "坐标为片区参考，服从现场管控" },
+        { "day": "Day 2", "name": "钱澳湾灯塔", "lng": 117.0234, "lat": 23.4089, "note": "返程前停留" }
+      ]
+    },
+    {
+      "id": "guangzhou",
+      "category": "shenzhen-nearby",
+      "href": "routes/guangzhou.html",
+      "shortTitle": "广州周末二日",
+      "title": "广州周末 · 自驾轻旅行",
+      "summary": "深圳自驾往返，串联新城夜景与老西关文化，体验早茶、街区和珠江两岸。",
+      "image": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "广州城市天际线",
+      "days": 2,
+      "nights": 1,
+      "durationLabel": "2天1夜",
+      "departure": "深圳自驾往返",
+      "drive": {
+        "oneWayHours": 2.5,
+        "totalKm": 340,
+        "label": "单程约2.5小时"
+      },
+      "budget": {
+        "perPersonMin": 700,
+        "perPersonMax": 1200,
+        "label": "人均700-1200元",
+        "breakdown": [
+          { "label": "住宿", "value": "450-800元 / 1晚" },
+          { "label": "餐饮", "value": "400-700元 / 2人" },
+          { "label": "交通", "value": "350-550元 / 车" },
+          { "label": "门票与夜游", "value": "0-500元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "轻松",
+        "score": 2,
+        "description": "城区停车后以短途步行和公共交通为主，行程留有休息时间。"
+      },
+      "bestFor": ["情侣", "长辈", "美食"],
+      "themes": ["城市", "文化", "美食"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "广州塔、夜游班次和核心区停车政策需按出发日期确认。",
+      "bookings": [
+        {
+          "label": "广州塔官方购票",
+          "channel": "广州塔官方商城",
+          "url": "https://mallpc.cantontower.com/ticket"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1", "name": "花城广场停车场", "lng": 113.321, "lat": 23.119, "note": "先停车再步行游览" },
+        { "day": "Day 1", "name": "广州塔", "lng": 113.327, "lat": 23.111, "note": "预约时段前抵达" },
+        { "day": "Day 2", "name": "北京路步行街", "lng": 113.271, "lat": 23.125, "note": "建议停商场停车场" },
+        { "day": "Day 2", "name": "陈家祠", "lng": 113.246, "lat": 23.124, "note": "可改乘地铁减少停车" },
+        { "day": "Day 2", "name": "永庆坊", "lng": 113.243, "lat": 23.117, "note": "与沙面连续步行游览" },
+        { "day": "Day 2", "name": "沙面岛", "lng": 113.244, "lat": 23.113, "note": "返程前最后一站" }
+      ]
+    },
+    {
+      "id": "zhuhai",
+      "category": "shenzhen-nearby",
+      "href": "routes/zhuhai.html",
+      "shortTitle": "珠海海岸",
+      "title": "珠海滨海自驾游",
+      "summary": "沿情侣路看海风与日月贝夜景，可选横琴乐园或大桥口岸。",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "珠海海岸风景",
+      "days": 2,
+      "nights": 2,
+      "durationLabel": "2天2夜",
+      "departure": "深圳自驾",
+      "drive": {
+        "oneWayHours": 2.5,
+        "totalKm": 390,
+        "label": "单程约2.5小时"
+      },
+      "budget": {
+        "perPersonMin": 800,
+        "perPersonMax": 1500,
+        "label": "人均800-1500元",
+        "breakdown": [
+          { "label": "住宿", "value": "700-1300元 / 2晚" },
+          { "label": "餐饮", "value": "450-800元 / 2人" },
+          { "label": "交通", "value": "400-650元 / 车" },
+          { "label": "门票", "value": "不含长隆约0-200元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "轻松",
+        "score": 2,
+        "description": "海岸散步为主；如选择长隆海洋王国，强度将提升为紧凑。"
+      },
+      "bestFor": ["情侣", "亲子", "长辈"],
+      "themes": ["海岸", "城市", "亲子"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "预算默认不含长隆门票，选择主题乐园后请按官网票价追加。",
+      "bookings": [
+        {
+          "label": "珠海长隆官方购票",
+          "channel": "长隆度假区官方网站",
+          "url": "https://www.chimelong.com/zh/ticket/?from=zh"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1", "name": "情侣路香洲段", "lng": 113.58, "lat": 22.262, "note": "优先使用正规停车场" },
+        { "day": "Day 1", "name": "野狸岛", "lng": 113.577, "lat": 22.257, "note": "与日月贝连续步行" },
+        { "day": "Day 1", "name": "珠海大剧院日月贝", "lng": 113.5766, "lat": 22.2577, "note": "夜景时段客流较大" },
+        { "day": "Day 2", "name": "珠海长隆海洋王国", "lng": 113.551, "lat": 22.14, "note": "可选项目，需预留全天" },
+        { "day": "Day 2", "name": "港珠澳大桥珠海口岸", "lng": 113.593, "lat": 22.195, "note": "服从安保与停车指引" },
+        { "day": "Day 2", "name": "湾仔旅游码头", "lng": 113.559, "lat": 22.208, "note": "海鲜晚餐参考区域" }
+      ]
+    },
+    {
+      "id": "yangjiang",
+      "category": "shenzhen-nearby",
+      "href": "routes/yangjiang.html",
+      "shortTitle": "阳江海岛温泉",
+      "title": "阳江海岛 + 温泉自驾游",
+      "summary": "组合海陵岛沙滩、闸坡海鲜与阳春温泉，适合放松型周末。",
+      "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "阳江海岛与沙滩",
+      "days": 2,
+      "nights": 2,
+      "durationLabel": "2天2夜",
+      "departure": "深圳自驾",
+      "drive": {
+        "oneWayHours": 4,
+        "totalKm": 760,
+        "label": "单程约4小时"
+      },
+      "budget": {
+        "perPersonMin": 1000,
+        "perPersonMax": 1700,
+        "label": "人均1000-1700元",
+        "breakdown": [
+          { "label": "住宿", "value": "650-1200元 / 2晚" },
+          { "label": "餐饮", "value": "500-900元 / 2人" },
+          { "label": "交通", "value": "700-950元 / 车" },
+          { "label": "温泉与门票", "value": "300-700元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "适中",
+        "score": 3,
+        "description": "往返车程较长，海岛与温泉跨区域移动，建议至少两位司机。"
+      },
+      "bestFor": ["情侣", "家庭", "温泉"],
+      "themes": ["海岛", "温泉", "美食"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "下海、栈道和温泉项目受天气影响明显，出发前确认营业状态。",
+      "bookings": [
+        {
+          "label": "海陵岛景区官方资讯",
+          "channel": "海陵岛试验区管委会旅游网",
+          "url": "https://www.hl-tour.com/"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1", "name": "海陵岛十里银滩", "lng": 111.838, "lat": 21.593, "note": "先确认可开放海域" },
+        { "day": "Day 1", "name": "大角湾风景区", "lng": 111.847, "lat": 21.611, "note": "使用景区正规停车场" },
+        { "day": "Day 1", "name": "闸坡海鲜街", "lng": 111.829, "lat": 21.607, "note": "就餐前确认计价方式" },
+        { "day": "Day 2", "name": "阳春温泉区", "lng": 111.793, "lat": 22.176, "note": "提前确认温泉营业时间" },
+        { "day": "Day 2", "name": "马尾岛栈道", "lng": 111.906, "lat": 21.545, "note": "大风大浪时取消" }
+      ]
+    },
+    {
+      "id": "wuyi",
+      "category": "shenzhen-nearby",
+      "href": "routes/wuyi.html",
+      "shortTitle": "清佛江六日环线",
+      "title": "五一特辑 · 清远佛山江门三城游",
+      "summary": "串联漂流、温泉、岭南文化与开平碉楼，适合长假深度自驾。",
+      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=82",
+      "imageAlt": "岭南山林与长途自驾风景",
+      "days": 6,
+      "nights": 5,
+      "durationLabel": "6天5夜",
+      "departure": "深圳自驾环线",
+      "drive": {
+        "oneWayHours": 3,
+        "totalKm": 600,
+        "label": "最长单段约3小时"
+      },
+      "budget": {
+        "perPersonMin": 2000,
+        "perPersonMax": 3200,
+        "label": "人均2000-3200元",
+        "breakdown": [
+          { "label": "住宿", "value": "1500-2500元 / 5晚" },
+          { "label": "餐饮", "value": "1200-1800元 / 2人" },
+          { "label": "交通", "value": "800-1200元 / 车" },
+          { "label": "门票与体验", "value": "600-1000元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "紧凑",
+        "score": 4,
+        "description": "连续六天跨三城移动，包含漂流、古镇步行和多次换酒店。"
+      },
+      "bestFor": ["朋友", "家庭", "长假"],
+      "themes": ["长线", "文化", "漂流"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "节假日票价和开放时间波动较大，日期安排需按当年放假通知调整。",
+      "bookings": [
+        {
+          "label": "古龙峡景区官方信息",
+          "channel": "古龙峡景区官方网站",
+          "url": "https://www.gulongxia.com/html/cn/index.html"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1-2", "name": "清远古龙峡", "lng": 113.0459, "lat": 24.0154, "note": "漂流项目提前购票" },
+        { "day": "Day 2", "name": "清远市区", "lng": 113.056098, "lat": 23.682064, "note": "住宿与补给" },
+        { "day": "Day 3-4", "name": "佛山祖庙", "lng": 113.1128, "lat": 23.0308, "note": "停车后游览老城" },
+        { "day": "Day 4", "name": "顺德华盖路", "lng": 113.2931, "lat": 22.8079, "note": "美食街区步行" },
+        { "day": "Day 5", "name": "开平碉楼文化旅游区", "lng": 112.5674, "lat": 22.2874, "note": "确认景区联票范围" },
+        { "day": "Day 5-6", "name": "江门市区", "lng": 113.081548, "lat": 22.578948, "note": "返深前最后住宿点" }
+      ]
+    },
+    {
+      "id": "chenzhou",
+      "category": "poetry-distance",
+      "href": "routes/chenzhou.html",
+      "shortTitle": "郴州山水长线",
+      "title": "郴州山水 · 高铁与自驾双线游",
+      "summary": "把雾漫东江、丹霞高椅岭、仰天湖草原与莽山云海串成不折返的五日或七日长线。",
+      "image": "https://www.xn--xhqs09c3ued3bie.net/images/dj-qingchen.jpg",
+      "imageAlt": "清晨薄雾笼罩的郴州东江湖与湖岸山林",
+      "days": 5,
+      "nights": 4,
+      "durationLabel": "5天4夜",
+      "durationTemplateIds": ["5d4n", "7d6n"],
+      "departure": "深圳高铁 / 自驾",
+      "drive": {
+        "oneWayHours": 6,
+        "totalKm": 1500,
+        "label": "自驾单程约5.5-6.5小时"
+      },
+      "transportModes": [
+        { "label": "高铁 + 当地租车", "summary": "深圳北至郴州西往返，车次与票价以12306为准；到站提车后按片区游览。" },
+        { "label": "全程自驾", "summary": "深圳往返郴州并串联各景区，建议至少两位司机轮换，避开夜间山路。" }
+      ],
+      "budget": {
+        "perPersonMin": 2600,
+        "perPersonMax": 4400,
+        "label": "人均2600-4400元",
+        "breakdown": [
+          { "label": "住宿", "value": "1200-2400元 / 4晚 / 2人" },
+          { "label": "餐饮", "value": "1000-1600元 / 2人" },
+          { "label": "交通（两种方式择一）", "value": "约1800-3000元 / 2人" },
+          { "label": "门票与景交", "value": "约1000-1800元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "适中偏紧",
+        "score": 3,
+        "description": "五天覆盖四个片区，含清晨观雾、丹霞台阶与高海拔草原；每天只安排一个核心自然景区。"
+      },
+      "bestFor": ["朋友", "情侣", "摄影"],
+      "themes": ["山水", "丹霞", "长线"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "热门景区实行实名、分时预约；观雾、草原和莽山游览受降雨、浓雾、大风及临时交通管制影响，出发前1-3天再次确认。",
+      "bookings": [
+        {
+          "label": "铁路12306购票",
+          "channel": "中国铁路官方平台",
+          "url": "https://www.12306.cn/"
+        },
+        {
+          "label": "东江湖旅游官网",
+          "channel": "湖南东江湖旅游发展集团",
+          "url": "https://www.xn--xhqs09c3ued3bie.net/"
+        },
+        {
+          "label": "郴州热门景区预约说明",
+          "channel": "郴州市文化旅游广电体育局",
+          "url": "https://www.czxww.cn/content/2026-04/30/content_1403301.html"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1", "name": "郴州西站", "lng": 112.9644, "lat": 25.7393, "note": "高铁旅客在此取还车；自驾旅客可作为进城集合点" },
+        { "day": "Day 1", "name": "裕后街", "lng": 113.0345, "lat": 25.7922, "note": "夜游前先将车辆停入正规停车场" },
+        { "day": "Day 2", "name": "高椅岭旅游区", "lng": 113.1539, "lat": 25.9611, "note": "实名分时预约，晴热天尽量早入园" },
+        { "day": "Day 2-3", "name": "东江湖旅游区", "lng": 113.2586, "lat": 25.9371, "note": "按预约线路乘坐景区接驳，观雾日需早起" },
+        { "day": "Day 3", "name": "白廊环湖公路", "lng": 113.3903, "lat": 25.9102, "note": "沿开放路段行驶，临水停车须使用划定车位" },
+        { "day": "Day 4", "name": "仰天湖大草原", "lng": 112.8302, "lat": 25.5121, "note": "高海拔多风且山路弯多，避免夜间上下山" },
+        { "day": "Day 5", "name": "苏仙岭", "lng": 113.04, "lat": 25.808, "note": "返程日前安排轻量登高，雨天可改市内场馆" },
+        { "day": "Day 6", "name": "莽山五指峰景区", "lng": 112.9911, "lat": 24.9275, "note": "仅七日版前往，先确认索道、栈道和限流状态" }
+      ]
+    },
+    {
+      "id": "inner-mongolia",
+      "category": "poetry-distance",
+      "href": "routes/inner-mongolia.html",
+      "shortTitle": "内蒙古草原森林长线",
+      "title": "内蒙古大环线 · 自驾与飞机租车双线游",
+      "summary": "从黄河几字弯到火山草原，20天走中西部精华，30天再延伸阿尔山与呼伦贝尔草原森林环线。",
+      "image": "assets/img/inner-mongolia-grassland.jpg",
+      "imageAlt": "秋季内蒙古阿尔山森林、湖泊与山地栈道",
+      "days": 20,
+      "nights": 19,
+      "durationLabel": "20天19夜",
+      "durationTemplateIds": ["20d19n", "30d29n"],
+      "departure": "深圳自驾 / 飞机 + 租车",
+      "drive": {
+        "oneWayHours": 36,
+        "totalKm": 8000,
+        "label": "深圳往返约7500-8500公里"
+      },
+      "transportModes": [
+        { "label": "全程自驾", "summary": "深圳往返按长沙、郑州、太原分段，20天版不进入东北草原；30天版东线结束后用7天逐段南返，建议至少两位司机轮换。" },
+        { "label": "飞机 + 分段租车", "summary": "20天版呼和浩特取还车；30天版建议呼和浩特中西部环线与海拉尔东部环线分两段租车，中间乘机衔接，异地还车仅在租车公司书面确认后采用。" }
+      ],
+      "budget": {
+        "perPersonMin": 13000,
+        "perPersonMax": 22000,
+        "label": "20天人均1.3万-2.2万元",
+        "breakdown": [
+          { "label": "住宿", "value": "8500-14500元 / 19晚 / 2人" },
+          { "label": "餐饮", "value": "7000-11000元 / 2人" },
+          { "label": "交通（两种方式择一）", "value": "约8000-15000元 / 2人" },
+          { "label": "门票与体验", "value": "约3000-5500元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "长线适中",
+        "score": 4,
+        "description": "20天版把深圳往返拆为4天一程，中西部每天只放一个核心片区；飞机租车方案减少首尾长途驾驶，但仍需适应草原大风、温差与连续换宿。"
+      },
+      "bestFor": ["长假", "朋友", "摄影"],
+      "themes": ["草原", "森林", "公路"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "跨区域天气、景区开放、道路管制与航班会变化；出发前逐日核对目的地预警，不进入未开放草原、沙漠腹地、原始林区核心区和边境禁区。",
+      "bookings": [
+        {
+          "label": "内蒙古大众旅游服务",
+          "channel": "内蒙古自治区文化和旅游厅",
+          "url": "https://wlt.nmg.gov.cn/dzlvfw/"
+        },
+        {
+          "label": "铁路12306购票",
+          "channel": "中国铁路官方平台",
+          "url": "https://www.12306.cn/"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1-5", "name": "呼和浩特市", "lng": 111.75199, "lat": 40.84149, "note": "飞机方案首段取还车城市；全程自驾的中部休整基地" },
+        { "day": "Day 5-7", "name": "乌兰察布市", "lng": 113.11452, "lat": 41.03413, "note": "火山与草原片区住宿补给点" },
+        { "day": "Day 6", "name": "乌兰哈达火山地质公园", "lng": 113.1226, "lat": 41.5084, "note": "仅走开放步道和停车区，不碾压草场" },
+        { "day": "Day 7", "name": "辉腾锡勒草原", "lng": 112.516, "lat": 41.162, "note": "大风雷雨时取消高处户外活动" },
+        { "day": "Day 8-11", "name": "鄂尔多斯市康巴什区", "lng": 109.7813, "lat": 39.6083, "note": "响沙湾与沿黄线路的住宿基地" },
+        { "day": "Day 9", "name": "响沙湾旅游区", "lng": 109.965, "lat": 40.244, "note": "按官方开放区域体验沙漠项目，不自行驶入沙漠" },
+        { "day": "Day 12", "name": "乌海市", "lng": 106.7942, "lat": 39.655, "note": "湖区只在开放岸线和正规营地活动" },
+        { "day": "Day 13-14", "name": "巴彦淖尔市", "lng": 107.3877, "lat": 40.7432, "note": "河套片区补给与住宿" },
+        { "day": "Day 14", "name": "乌梁素海", "lng": 108.823, "lat": 40.948, "note": "保护区游览以现场开放范围为准" },
+        { "day": "Day 15", "name": "包头市", "lng": 109.8403, "lat": 40.6574, "note": "中西部环线收束点" },
+        { "day": "Day 15", "name": "五当召", "lng": 110.443, "lat": 41.193, "note": "先确认开放日和道路状况" },
+        { "day": "Day 12-14", "name": "锡林浩特市", "lng": 116.067, "lat": 43.944, "note": "30天全程自驾东进补给点" },
+        { "day": "Day 14-16", "name": "乌兰浩特市", "lng": 122.068, "lat": 46.078, "note": "30天全程自驾前往阿尔山的中转点" },
+        { "day": "Day 16-18", "name": "阿尔山市", "lng": 119.943, "lat": 47.177, "note": "昼夜温差大，林区严禁用火" },
+        { "day": "Day 17", "name": "阿尔山国家森林公园", "lng": 120.463, "lat": 47.286, "note": "按景区接驳和步道开放状态安排全天游览" },
+        { "day": "Day 19-20", "name": "满洲里市", "lng": 117.3785, "lat": 49.5978, "note": "边境地区遵守拍摄、通行与禁入提示" },
+        { "day": "Day 21-22", "name": "额尔古纳市", "lng": 120.18, "lat": 50.24, "note": "湿地与黑山头方向以实时道路状态为准" },
+        { "day": "Day 22-23", "name": "根河市", "lng": 121.52, "lat": 50.78, "note": "林区温度更低，雨雪季提前备防滑装备" },
+        { "day": "Day 23-29", "name": "海拉尔区", "lng": 119.7363, "lat": 49.2122, "note": "飞机方案第二段取还车点；自驾方案南返前补给点" },
+        { "day": "Day 23", "name": "莫尔格勒河景区", "lng": 119.973, "lat": 49.265, "note": "只进入正规开放景区，不驶入无路草场" }
+      ]
+    }
+  ],
+  "researchSources": [
+    {
+      "id": "dapeng-traffic-2026",
+      "title": "2026年大鹏半岛预约通行说明",
+      "publisher": "深圳市公安局交通管理局",
+      "url": "https://www.sz.gov.cn/cn/xxgk/zfxxgj/bmdt/content/post_12759061.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "dapeng-observatory",
+      "title": "深圳市天文台公众开放参观须知",
+      "publisher": "深圳市气象局",
+      "url": "https://weather.sz.gov.cn/qixiangfuwu/tianwenfuwu/yuyuexuzhi/index.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "nanao-island-route",
+      "title": "广东·南澳环岛公路海岛风情之旅",
+      "publisher": "中华人民共和国文化和旅游部",
+      "url": "https://zhuanti.mct.gov.cn/rxhmxjgn2022/beijing/detail_g7yU_504/3432.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "guangzhou-xiguan-2026",
+      "title": "西关Citywalk推荐路线",
+      "publisher": "广州市人民政府门户网站",
+      "url": "https://www.gz.gov.cn/zt/jrshts/2026n/nwzgz/nwgz/content/post_10686807.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "zhuhai-romance-route",
+      "title": "珠海滨海与长隆主题路线",
+      "publisher": "珠海传媒集团 / 珠海文旅",
+      "url": "https://pub-zhtb.hizh.cn/s/202308/01/AP64c856e6e4b0b2b83ea5291a.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "yangjiang-hailing-route",
+      "title": "海陵岛海丝文化休闲游",
+      "publisher": "中华人民共和国文化和旅游部",
+      "url": "https://zhuanti.mct.gov.cn/xcszbwg2022/guangdong/detail/1938.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "chenzhou-reservation-2026",
+      "title": "先预约、后出游——郴州热门景区全力提升游客体验",
+      "publisher": "郴州市文化旅游广电体育局",
+      "url": "https://www.czxww.cn/content/2026-04/30/content_1403301.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "chenzhou-yangtianhu-booking-2025",
+      "title": "仰天湖大草原景区全面实行线上门票预订",
+      "publisher": "郴州市北湖区人民政府 / 仰天湖大草原景区",
+      "url": "https://wap.beihu.gov.cn/content/646942/61/15231210.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "chenzhou-dongjianghu-official",
+      "title": "东江湖旅游官网",
+      "publisher": "湖南东江湖旅游发展集团有限公司",
+      "url": "https://www.xn--xhqs09c3ued3bie.net/",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "chenzhou-spring-travel-2026",
+      "title": "山水为媒春作伴 郴州清明文旅燃动春日经济",
+      "publisher": "湖南省人民政府门户网站",
+      "url": "https://hunan.gov.cn/topic/kjbh/knxhsc/gzjxs02/szdt02/202604/t20260414_33954181.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "nmg-summer-guide-2025",
+      "title": "内蒙古发布避暑观星旅游指南",
+      "publisher": "内蒙古自治区文化和旅游厅",
+      "url": "https://wlt.nmg.gov.cn/zwxx/gzdt/202507/t20250710_2756343.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "nmg-travel-safety",
+      "title": "大众旅游服务与汛期暑期出游提示",
+      "publisher": "内蒙古自治区文化和旅游厅",
+      "url": "https://wlt.nmg.gov.cn/dzlvfw/",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "hulunbuir-331-route",
+      "title": "最美331边境自驾之旅",
+      "publisher": "呼伦贝尔市人民政府",
+      "url": "https://www.hlbe.gov.cn/OpennessGazette/show/8450.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "hulunbuir-driving-safety",
+      "title": "旅游安全提示",
+      "publisher": "呼伦贝尔市文化旅游广电局",
+      "url": "https://wlgj.hlbe.gov.cn/News/show/1071081.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "nmg-car-rental-plan",
+      "title": "内蒙古自治区综合交通运输发展规划",
+      "publisher": "内蒙古自治区交通运输厅",
+      "url": "https://jtyst.nmg.gov.cn/zwgk/zfxxgk/fdzdgknr/ghjh/202310/P020241231417272813063.pdf",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "ulan-hada-official",
+      "title": "乌兰察布夏日旅游推荐",
+      "publisher": "内蒙古自治区人民政府",
+      "url": "https://www.nmg.gov.cn/asnmg/asnmg/asnmgxcp/202307/t20230719_2349130.html",
+      "checkedAt": "2026-08-14"
+    }
+  ],
+  "itineraryTemplates": {
+    "dapeng": [
+      {
+        "id": "2d1n",
+        "label": "2天1夜",
+        "days": 2,
+        "nights": 1,
+        "title": "大鹏古城 & 杨梅坑 · 2天1夜",
+        "summary": "两天聚焦古城、海岸与天文台，把地质公园留给三日版。",
+        "budget": { "label": "人均650-1050元", "breakdown": [{ "label": "住宿", "value": "350-650元 / 1晚" }, { "label": "餐饮", "value": "350-550元 / 2人" }, { "label": "交通", "value": "220-350元 / 车" }, { "label": "门票与接驳", "value": "120-350元 / 2人" }] },
+        "intensity": { "level": "适中偏紧", "score": 3, "description": "两天覆盖古城和两段海岸，第二天步行较多；天文台仅在预约成功且天气允许时前往。" },
+        "sourceRefs": ["dapeng-traffic-2026", "dapeng-observatory"],
+        "navigation": [{ "day": "Day 1", "name": "大鹏所城" }, { "day": "Day 1", "name": "较场尾" }, { "day": "Day 2", "name": "杨梅坑" }, { "day": "Day 2", "name": "鹿嘴山庄" }, { "day": "Day 2", "name": "深圳天文台" }],
+        "dayPlans": [
+          { "day": 1, "title": "古城与海边慢生活", "summary": "上午抵达大鹏所城，午后步行到较场尾，减少换车。", "items": [{ "time": "09:00", "title": "深圳出发", "description": "预约通行期先确认车辆预约，导航至大鹏所城官方停车场。", "tag": "自驾" }, { "time": "10:30", "title": "大鹏所城", "description": "参观古城与海防建筑，中午在鹏城村吃客家菜。", "tag": "人文" }, { "time": "15:00", "title": "较场尾", "description": "入住后沿海散步，晚餐就近安排，避免夜间反复挪车。", "tag": "住宿" }] },
+          { "day": 2, "title": "杨梅坑与天文台", "summary": "早到杨梅坑，下午按预约时段前往天文台。", "items": [{ "time": "08:00", "title": "杨梅坑海岸", "description": "错峰抵达，按现场规则换乘观光车或步行前往鹿嘴片区。", "tag": "海岸" }, { "time": "13:30", "title": "西涌与深圳天文台", "description": "仅预约成功后前往；上山道路不对社会车辆开放，预留步行时间。", "tag": "需预约" }, { "time": "17:30", "title": "返程", "description": "遇暴雨、雷电或大风闭园时，改为南澳海鲜午餐后提前返深。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "3d2n",
+        "label": "3天2夜",
+        "days": 3,
+        "nights": 2,
+        "title": "大鹏古城 & 杨梅坑 · 3天2夜",
+        "summary": "把古城、杨梅坑、天文台与地质公园拆成三天，节奏更稳。",
+        "budget": { "label": "人均900-1500元", "breakdown": [{ "label": "住宿", "value": "600-1100元 / 2晚" }, { "label": "餐饮", "value": "500-800元 / 2人" }, { "label": "交通", "value": "250-400元 / 车" }, { "label": "门票与接驳", "value": "200-500元 / 2人" }] },
+        "intensity": { "level": "适中", "score": 3, "description": "每天聚焦一个片区，仍包含海岸步行与天文台爬坡，适合希望兼顾拍照和休息的游客。" },
+        "sourceRefs": ["dapeng-traffic-2026", "dapeng-observatory"],
+        "navigation": [{ "day": "Day 1", "name": "大鹏所城" }, { "day": "Day 1", "name": "较场尾" }, { "day": "Day 2", "name": "杨梅坑" }, { "day": "Day 2", "name": "鹿嘴山庄" }, { "day": "Day 2", "name": "深圳天文台" }, { "day": "Day 3", "name": "大鹏半岛国家地质公园" }],
+        "dayPlans": [
+          { "day": 1, "title": "大鹏所城与较场尾", "summary": "古城人文加海边住宿，抵达日不赶路。", "items": [{ "time": "09:30", "title": "深圳出发", "description": "预约通行期完成车辆预约后出发。", "tag": "自驾" }, { "time": "11:00", "title": "大鹏所城", "description": "游览古城、博物展陈与周边古建。", "tag": "人文" }, { "time": "15:00", "title": "较场尾", "description": "入住民宿，海边散步并就近晚餐。", "tag": "住宿" }] },
+          { "day": 2, "title": "杨梅坑山海线", "summary": "整天留给海岸，降低跨片区赶路压力。", "items": [{ "time": "08:00", "title": "杨梅坑", "description": "早点抵达并按现场方式换乘。", "tag": "海岸" }, { "time": "10:00", "title": "鹿嘴山庄片区", "description": "走悬崖海景步道，量力安排往返。", "tag": "徒步" }, { "time": "15:30", "title": "深圳天文台", "description": "按预约时段签到；恶劣天气闭园时改去南澳或返回民宿。", "tag": "需预约" }] },
+          { "day": 3, "title": "地质公园与返程", "summary": "室内科普与轻量步行收尾。", "items": [{ "time": "09:30", "title": "大鹏半岛国家地质公园", "description": "先确认场馆当日开放状态，再参观地质博物馆。", "tag": "科普" }, { "time": "12:00", "title": "午餐与机动", "description": "可在南澳补充海鲜午餐，避开午后返程高峰。", "tag": "美食" }, { "time": "14:30", "title": "返回深圳", "description": "按实时路况返程，预约区域离开时间不受限制。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "nanao": [
+      {
+        "id": "2d1n", "label": "2天1夜", "days": 2, "nights": 1, "title": "南澳岛环岛 · 2天1夜", "summary": "紧凑环岛版，优先灯塔、青澳湾和海岛日落。",
+        "budget": { "label": "人均1100-1800元", "breakdown": [{ "label": "住宿", "value": "350-700元 / 1晚" }, { "label": "餐饮", "value": "500-900元 / 2人" }, { "label": "交通", "value": "700-950元 / 车" }, { "label": "体验", "value": "100-350元 / 2人" }] },
+        "intensity": { "level": "适中偏紧", "score": 3, "description": "深圳往返车程长，建议两位司机轮换；岛内只走一条环线，不来回折返。" }, "sourceRefs": ["nanao-island-route"],
+        "navigation": [{ "day": "Day 1", "name": "南澳大桥" }, { "day": "Day 1", "name": "长山尾灯塔" }, { "day": "Day 1", "name": "青澳湾自然之门" }, { "day": "Day 2", "name": "蛴仔澎风车山" }, { "day": "Day 2", "name": "钱澳湾灯塔" }],
+        "dayPlans": [
+          { "day": 1, "title": "上岛与东线海湾", "summary": "从启航广场一路向青澳湾，不走回头路。", "items": [{ "time": "07:30", "title": "深圳出发", "description": "长途驾驶预留服务区休息时间。", "tag": "自驾" }, { "time": "12:30", "title": "长山尾灯塔", "description": "过桥后短暂停留，再沿环岛公路向东。", "tag": "灯塔" }, { "time": "15:30", "title": "青澳湾与自然之门", "description": "沙滩散步、看日落，夜宿青澳湾或后宅镇。", "tag": "住宿" }] },
+          { "day": 2, "title": "北线风车与返程", "summary": "按开放情况看风车山，午后尽早返深。", "items": [{ "time": "08:30", "title": "风车山片区", "description": "山路和观景点可能临时管控，以现场开放为准。", "tag": "山海" }, { "time": "10:30", "title": "钱澳湾灯塔", "description": "沿西线回程，灯塔短停后到后宅镇午餐。", "tag": "灯塔" }, { "time": "13:30", "title": "返回深圳", "description": "避开傍晚集中出岛车流，途中至少休息一次。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "3d2n", "label": "3天2夜", "days": 3, "nights": 2, "title": "南澳岛深度环岛 · 3天2夜", "summary": "增加宋井、总兵府等人文景点，形成海湾、历史与森林三条主题线。",
+        "budget": { "label": "人均1450-2300元", "breakdown": [{ "label": "住宿", "value": "700-1300元 / 2晚" }, { "label": "餐饮", "value": "750-1200元 / 2人" }, { "label": "交通", "value": "750-1000元 / 车" }, { "label": "门票与体验", "value": "200-500元 / 2人" }] },
+        "intensity": { "level": "适中", "score": 3, "description": "把长途往返和环岛拆开，第三天仍需预留约4.5小时返深。" }, "sourceRefs": ["nanao-island-route"],
+        "navigation": [{ "day": "Day 1", "name": "南澳大桥" }, { "day": "Day 1", "name": "长山尾灯塔" }, { "day": "Day 2", "name": "青澳湾自然之门" }, { "day": "Day 2", "name": "蛴仔澎风车山" }, { "day": "Day 3", "name": "钱澳湾灯塔" }],
+        "dayPlans": [
+          { "day": 1, "title": "轻松上岛", "summary": "长途抵达后只游西南岸，夜宿后宅镇。", "items": [{ "time": "08:00", "title": "深圳出发", "description": "分段休息后经南澳大桥上岛。", "tag": "自驾" }, { "time": "13:00", "title": "启航广场与长山尾", "description": "看跨海大桥和灯塔，停留约1小时。", "tag": "灯塔" }, { "time": "16:00", "title": "后宅镇", "description": "入住、逛海滨路并吃海鲜。", "tag": "住宿" }] },
+          { "day": 2, "title": "东线自然与海防史", "summary": "青澳湾之外补充宋井、总兵府等官方景区。", "items": [{ "time": "08:30", "title": "宋井风景区", "description": "从云澳镇开始东线人文游。", "tag": "人文" }, { "time": "11:30", "title": "青澳湾与自然之门", "description": "午餐后留足沙滩时间。", "tag": "海湾" }, { "time": "15:30", "title": "总兵府或风车山片区", "description": "按天气二选一：大风时优先室内人文景点。", "tag": "机动" }] },
+          { "day": 3, "title": "森林公园与返程", "summary": "西线收尾，午后返深。", "items": [{ "time": "08:30", "title": "黄花山森林公园", "description": "轻量徒步看海岛植被，按开放道路游览。", "tag": "自然" }, { "time": "11:30", "title": "钱澳湾灯塔", "description": "返程方向顺路短停。", "tag": "灯塔" }, { "time": "13:00", "title": "离岛返深", "description": "错开晚高峰，长途驾驶途中按需休息。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "guangzhou": [
+      {
+        "id": "2d1n", "label": "2天1夜", "days": 2, "nights": 1, "title": "广州周末轻旅行 · 2天1夜", "summary": "首晚看新城夜景，次日集中走西关，减少核心区挪车。",
+        "budget": { "label": "人均700-1200元", "breakdown": [{ "label": "住宿", "value": "450-800元 / 1晚" }, { "label": "餐饮", "value": "400-700元 / 2人" }, { "label": "交通", "value": "350-550元 / 车" }, { "label": "门票与夜游", "value": "0-500元 / 2人" }] },
+        "intensity": { "level": "轻松", "score": 2, "description": "停车后以步行和地铁为主，新城与西关各占半天至一天。" }, "sourceRefs": ["guangzhou-xiguan-2026"],
+        "navigation": [{ "day": "Day 1", "name": "花城广场停车场" }, { "day": "Day 1", "name": "广州塔" }, { "day": "Day 2", "name": "陈家祠" }, { "day": "Day 2", "name": "永庆坊" }, { "day": "Day 2", "name": "沙面岛" }],
+        "dayPlans": [
+          { "day": 1, "title": "珠江新城夜色", "summary": "下午到达，入住后步行看城市天际线。", "items": [{ "time": "13:30", "title": "深圳出发", "description": "导航至带停车位的酒店，预留拥堵机动时间。", "tag": "自驾" }, { "time": "17:00", "title": "花城广场与海心沙", "description": "停车后连续步行游览，不在核心区频繁挪车。", "tag": "城市" }, { "time": "20:00", "title": "广州塔或珠江夜游", "description": "热门项目按预约时段二选一。", "tag": "需预约" }] },
+          { "day": 2, "title": "西关文化慢游", "summary": "按官方推荐顺序串联陈家祠、永庆坊与沙面。", "items": [{ "time": "08:30", "title": "广州早茶", "description": "错峰用餐后前往陈家祠。", "tag": "美食" }, { "time": "10:30", "title": "陈家祠与永庆坊", "description": "陈家祠保留预约要求，之后沿西关街区慢游。", "tag": "人文" }, { "time": "15:30", "title": "沙面与返程", "description": "珠江边散步后取车，避开晚高峰返深。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "3d2n", "label": "3天2夜", "days": 3, "nights": 2, "title": "广州城市深度游 · 3天2夜", "summary": "按珠江新城、越秀老城和荔湾西关分区游览，加入博物馆与北京路。",
+        "budget": { "label": "人均1000-1700元", "breakdown": [{ "label": "住宿", "value": "850-1450元 / 2晚" }, { "label": "餐饮", "value": "650-1000元 / 2人" }, { "label": "交通", "value": "380-600元 / 车" }, { "label": "门票与夜游", "value": "100-600元 / 2人" }] },
+        "intensity": { "level": "适中", "score": 3, "description": "三天分区但城市步行量较大，核心区建议地铁衔接。" }, "sourceRefs": ["guangzhou-xiguan-2026"],
+        "navigation": [{ "day": "Day 1", "name": "花城广场停车场" }, { "day": "Day 1", "name": "广州塔" }, { "day": "Day 2", "name": "北京路步行街" }, { "day": "Day 3", "name": "陈家祠" }, { "day": "Day 3", "name": "永庆坊" }, { "day": "Day 3", "name": "沙面岛" }],
+        "dayPlans": [
+          { "day": 1, "title": "新城与珠江夜景", "summary": "下午抵达，集中游珠江新城。", "items": [{ "time": "13:30", "title": "深圳出发", "description": "入住珠江新城或地铁沿线酒店。", "tag": "自驾" }, { "time": "17:00", "title": "花城广场", "description": "步行串联省博外观、海心沙与珠江岸。", "tag": "城市" }, { "time": "20:00", "title": "广州塔或夜游", "description": "提前选择预约项目。", "tag": "夜景" }] },
+          { "day": 2, "title": "越秀千年城脉", "summary": "北京路、南越王与越秀公园组合。", "items": [{ "time": "09:00", "title": "越秀公园", "description": "上午户外步行，避开午后炎热。", "tag": "公园" }, { "time": "12:00", "title": "北京路美食", "description": "午餐后看千年古道。", "tag": "美食" }, { "time": "14:30", "title": "南越王博物院", "description": "按开放日和预约规则安排室内参观。", "tag": "博物馆" }] },
+          { "day": 3, "title": "荔湾西关线", "summary": "完整走官方推荐的西关城市漫步核心段。", "items": [{ "time": "09:00", "title": "陈家祠", "description": "按预约时段参观岭南建筑与工艺。", "tag": "需预约" }, { "time": "11:30", "title": "永庆坊与荔枝湾", "description": "午餐后沿老街巷慢游。", "tag": "街区" }, { "time": "15:30", "title": "沙面返程", "description": "短暂停留后取车返深。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "zhuhai": [
+      {
+        "id": "2d1n", "label": "2天1夜", "days": 2, "nights": 1, "title": "珠海滨海自驾 · 2天1夜", "summary": "第一天情侣路，第二天在长隆与横琴慢游之间二选一。",
+        "budget": { "label": "人均800-1500元", "breakdown": [{ "label": "住宿", "value": "400-750元 / 1晚" }, { "label": "餐饮", "value": "450-800元 / 2人" }, { "label": "交通", "value": "400-650元 / 车" }, { "label": "门票", "value": "不含长隆约0-200元 / 2人" }] },
+        "intensity": { "level": "轻松", "score": 2, "description": "滨海散步为主；选择长隆后第二天将变为高强度整日游。" }, "sourceRefs": ["zhuhai-romance-route"],
+        "navigation": [{ "day": "Day 1", "name": "情侣路香洲段" }, { "day": "Day 1", "name": "野狸岛" }, { "day": "Day 1", "name": "珠海大剧院日月贝" }, { "day": "Day 2", "name": "珠海长隆海洋王国" }, { "day": "Day 2", "name": "港珠澳大桥珠海口岸" }],
+        "dayPlans": [
+          { "day": 1, "title": "情侣路滨海线", "summary": "停车后用观光巴士或步行串联核心地标。", "items": [{ "time": "09:00", "title": "深圳出发", "description": "抵达后优先停酒店或换乘停车场。", "tag": "自驾" }, { "time": "12:00", "title": "爱情邮局到珠海渔女", "description": "沿情侣路分段步行，避开正午长距离暴晒。", "tag": "滨海" }, { "time": "17:30", "title": "野狸岛与日月贝", "description": "看日落与夜景，晚餐后入住。", "tag": "夜景" }] },
+          { "day": 2, "title": "横琴二选一", "summary": "亲子选长隆，轻松游选口岸与湾仔。", "items": [{ "time": "09:00", "title": "长隆海洋王国", "description": "选择长隆需预留完整一天并提前购票。", "tag": "亲子" }, { "time": "09:30", "title": "轻松替代线", "description": "不去长隆可游港珠澳大桥口岸、湾仔和横琴商圈。", "tag": "可替换" }, { "time": "17:00", "title": "返回深圳", "description": "按所选路线决定返程时间。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "3d2n", "label": "3天2夜", "days": 3, "nights": 2, "title": "珠海山海与长隆 · 3天2夜", "summary": "把情侣路、长隆和横琴湾仔拆成三天，不再压缩主题乐园时间。",
+        "budget": { "label": "人均1450-2600元", "breakdown": [{ "label": "住宿", "value": "800-1500元 / 2晚" }, { "label": "餐饮", "value": "700-1200元 / 2人" }, { "label": "交通", "value": "450-700元 / 车" }, { "label": "门票", "value": "长隆票价按官方当日查询" }] },
+        "intensity": { "level": "适中", "score": 3, "description": "前后两天轻松，中间主题乐园日步行量较大。" }, "sourceRefs": ["zhuhai-romance-route"],
+        "navigation": [{ "day": "Day 1", "name": "情侣路香洲段" }, { "day": "Day 1", "name": "珠海大剧院日月贝" }, { "day": "Day 2", "name": "珠海长隆海洋王国" }, { "day": "Day 3", "name": "港珠澳大桥珠海口岸" }, { "day": "Day 3", "name": "湾仔旅游码头" }],
+        "dayPlans": [
+          { "day": 1, "title": "浪漫情侣路", "summary": "一整天慢游城市海岸。", "items": [{ "time": "09:00", "title": "深圳出发", "description": "抵达香洲后停车换乘。", "tag": "自驾" }, { "time": "12:00", "title": "情侣路地标", "description": "爱情邮局、珠海渔女与城市阳台分段游。", "tag": "滨海" }, { "time": "17:30", "title": "日月贝夜景", "description": "野狸岛散步后入住。", "tag": "夜景" }] },
+          { "day": 2, "title": "长隆完整一天", "summary": "从开园到夜间演出，不与其他片区拼接。", "items": [{ "time": "09:00", "title": "抵达横琴长隆", "description": "提前购票并确认当日开闭园和演出时间。", "tag": "需购票" }, { "time": "12:00", "title": "园内游览", "description": "按人流安排鲸鲨馆、剧场与机动项目。", "tag": "亲子" }, { "time": "19:00", "title": "夜间演出", "description": "结束后直接回横琴或市区酒店。", "tag": "夜游" }] },
+          { "day": 3, "title": "口岸与湾仔慢游", "summary": "轻量城市游后返程。", "items": [{ "time": "09:30", "title": "港珠澳大桥珠海口岸", "description": "在允许区域看大桥与口岸建筑。", "tag": "地标" }, { "time": "11:30", "title": "湾仔午餐", "description": "逛湾仔片区，按公开价格点餐。", "tag": "美食" }, { "time": "14:30", "title": "返回深圳", "description": "避开傍晚车流返程。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "yangjiang": [
+      {
+        "id": "2d1n", "label": "2天1夜", "days": 2, "nights": 1, "title": "阳江海陵岛 · 2天1夜", "summary": "两天版集中在海陵岛，不再跨区赶温泉，降低长途驾驶压力。",
+        "budget": { "label": "人均950-1550元", "breakdown": [{ "label": "住宿", "value": "350-700元 / 1晚" }, { "label": "餐饮", "value": "500-900元 / 2人" }, { "label": "交通", "value": "700-950元 / 车" }, { "label": "门票", "value": "200-500元 / 2人" }] },
+        "intensity": { "level": "适中偏紧", "score": 3, "description": "往返车程长，两天只安排海陵岛；温泉移至三日版。" }, "sourceRefs": ["yangjiang-hailing-route"],
+        "navigation": [{ "day": "Day 1", "name": "海陵岛十里银滩" }, { "day": "Day 1", "name": "闸坡海鲜街" }, { "day": "Day 2", "name": "大角湾风景区" }, { "day": "Day 2", "name": "马尾岛栈道" }],
+        "dayPlans": [
+          { "day": 1, "title": "十里银滩与海丝文化", "summary": "抵达后先看博物馆，再走沙滩。", "items": [{ "time": "07:30", "title": "深圳出发", "description": "长途驾驶建议两位司机轮换。", "tag": "自驾" }, { "time": "13:00", "title": "广东海上丝绸之路博物馆", "description": "到馆前确认开放日和售票时间。", "tag": "博物馆" }, { "time": "16:00", "title": "十里银滩", "description": "傍晚散步，夜宿闸坡并吃海鲜。", "tag": "住宿" }] },
+          { "day": 2, "title": "大角湾与返程", "summary": "上午海滨游，午后返深。", "items": [{ "time": "08:30", "title": "大角湾", "description": "下水前确认海况与浴场开放状态。", "tag": "海滨" }, { "time": "11:00", "title": "马尾岛片区", "description": "按栈道开放和潮汐情况短途散步。", "tag": "自然" }, { "time": "13:30", "title": "返回深圳", "description": "避开傍晚集中车流，中途服务区休息。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "3d2n", "label": "3天2夜", "days": 3, "nights": 2, "title": "阳江海岛 + 温泉 · 3天2夜", "summary": "海陵岛两天加阳春温泉一晚，跨区移动放到第三天前段。",
+        "budget": { "label": "人均1350-2200元", "breakdown": [{ "label": "住宿", "value": "700-1300元 / 2晚" }, { "label": "餐饮", "value": "750-1200元 / 2人" }, { "label": "交通", "value": "750-1000元 / 车" }, { "label": "门票与温泉", "value": "400-800元 / 2人" }] },
+        "intensity": { "level": "适中", "score": 3, "description": "前两天慢游海陵岛，第二晚或第三天上午转往阳春，减少连续赶点。" }, "sourceRefs": ["yangjiang-hailing-route"],
+        "navigation": [{ "day": "Day 1", "name": "海陵岛十里银滩" }, { "day": "Day 1", "name": "闸坡海鲜街" }, { "day": "Day 2", "name": "大角湾风景区" }, { "day": "Day 2", "name": "马尾岛栈道" }, { "day": "Day 3", "name": "阳春温泉区" }],
+        "dayPlans": [
+          { "day": 1, "title": "海丝博物馆与银滩", "summary": "抵达日用室内场馆加傍晚海滩。", "items": [{ "time": "07:30", "title": "深圳出发", "description": "预留服务区休息。", "tag": "自驾" }, { "time": "13:00", "title": "海丝博物馆", "description": "参观南海I号主题展陈。", "tag": "博物馆" }, { "time": "16:00", "title": "十里银滩", "description": "傍晚散步，夜宿海陵岛。", "tag": "住宿" }] },
+          { "day": 2, "title": "海陵岛慢游", "summary": "大角湾、马尾岛和闸坡美食，不跨区赶路。", "items": [{ "time": "08:30", "title": "大角湾", "description": "按海况决定下水或沿岸游览。", "tag": "海滨" }, { "time": "12:00", "title": "闸坡海鲜", "description": "先确认计价方式再点餐。", "tag": "美食" }, { "time": "16:30", "title": "马尾岛片区", "description": "栈道关闭或风浪大时改去牛塘山。", "tag": "机动" }] },
+          { "day": 3, "title": "阳春温泉与返程", "summary": "上午泡温泉，下午返深。", "items": [{ "time": "08:00", "title": "前往阳春温泉区", "description": "提前确认温泉营业和入住客权益。", "tag": "自驾" }, { "time": "10:00", "title": "温泉放松", "description": "控制浸泡时长，酒后不泡温泉。", "tag": "温泉" }, { "time": "14:00", "title": "返回深圳", "description": "长途返程至少安排一次服务区休息。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "chenzhou": [
+      {
+        "id": "5d4n",
+        "label": "5天4夜",
+        "days": 5,
+        "nights": 4,
+        "title": "郴州山水精华 · 5天4夜",
+        "summary": "聚焦市区、高椅岭、东江湖与仰天湖，少换酒店、不赶莽山。",
+        "budget": {
+          "label": "人均2600-4400元",
+          "breakdown": [
+            { "label": "住宿", "value": "1200-2400元 / 4晚 / 2人" },
+            { "label": "餐饮", "value": "1000-1600元 / 2人" },
+            { "label": "交通（两种方式择一）", "value": "约1800-3000元 / 2人" },
+            { "label": "门票与景交", "value": "约1000-1800元 / 2人" }
+          ]
+        },
+        "intensity": { "level": "适中偏紧", "score": 3, "description": "高椅岭台阶、东江湖早起与仰天湖山路集中在不同日期，高铁方案可明显减少首尾长途驾驶。" },
+        "sourceRefs": ["chenzhou-reservation-2026", "chenzhou-yangtianhu-booking-2025", "chenzhou-dongjianghu-official", "chenzhou-spring-travel-2026"],
+        "navigation": [
+          { "day": "Day 1", "name": "郴州西站" },
+          { "day": "Day 1", "name": "裕后街" },
+          { "day": "Day 2", "name": "高椅岭旅游区" },
+          { "day": "Day 2-3", "name": "东江湖旅游区" },
+          { "day": "Day 3", "name": "白廊环湖公路" },
+          { "day": "Day 4", "name": "仰天湖大草原" },
+          { "day": "Day 5", "name": "苏仙岭" }
+        ],
+        "dayPlans": [
+          {
+            "day": 1,
+            "title": "抵达郴州与裕后街夜游",
+            "summary": "高铁到站取车或深圳清晨自驾，抵达日只安排市区慢游。",
+            "items": [
+              { "time": "07:30", "title": "深圳出发", "description": "高铁方案按12306车次前往郴州西并在站点提车；全程自驾预留服务区休息，不疲劳驾驶。", "tag": "双交通" },
+              { "time": "14:00", "title": "入住郴州市区", "description": "建议住五岭广场或裕后街周边，连续住一晚并把大件行李留在酒店。", "tag": "住宿" },
+              { "time": "17:30", "title": "裕后街与郴州鱼粉", "description": "傍晚沿郴江散步，晚餐尝栖凤渡鱼粉、烧鸡公等本地风味。", "tag": "夜游" }
+            ]
+          },
+          {
+            "day": 2,
+            "title": "高椅岭丹霞与东江镇",
+            "summary": "上午走丹霞，下午向东顺路入住资兴，避免返回郴州市区。",
+            "items": [
+              { "time": "07:30", "title": "高椅岭旅游区", "description": "按实名预约时段入园，台阶裸露少遮阴，带足饮水并穿防滑鞋。", "tag": "需预约" },
+              { "time": "12:30", "title": "桥口或资兴午餐", "description": "下山后休息补给，再驱车前往东江湖片区。", "tag": "补给" },
+              { "time": "16:00", "title": "东江镇入住", "description": "住景区门楼附近，确认次日入园凭证与最早接驳时间，晚上尽早休息。", "tag": "住宿" }
+            ]
+          },
+          {
+            "day": 3,
+            "title": "雾漫小东江与白廊湖岸",
+            "summary": "清晨观雾、午后环湖，户外活动按能见度和降雨灵活调整。",
+            "items": [
+              { "time": "05:30", "title": "小东江观雾栈道", "description": "按景区当天开放与接驳安排出发；浓雾、暴雨时不靠近湿滑临水区域。", "tag": "需预约" },
+              { "time": "10:30", "title": "龙景峡谷或东江大坝", "description": "依据已购线路二选一或顺序游览，不临时追求超出票种范围的项目。", "tag": "景区" },
+              { "time": "15:30", "title": "白廊环湖公路", "description": "沿开放湖岸慢行，在划定车位停车；雨大时改为资兴市区休息。", "tag": "自驾" }
+            ]
+          },
+          {
+            "day": 4,
+            "title": "仰天湖高山草原",
+            "summary": "整天只走仰天湖一处，高海拔天气不稳时留足下山时间。",
+            "items": [
+              { "time": "08:00", "title": "前往仰天湖", "description": "从郴州市区方向上山，连续弯道路段控制车速，易晕车者提前准备。", "tag": "山路" },
+              { "time": "10:30", "title": "草原慢游", "description": "按实名分时预约入园，步行看草甸与风车；骑马等项目以现场明码标价为准。", "tag": "需预约" },
+              { "time": "15:30", "title": "下山返城", "description": "大风、雷雨或能见度低时提前离场，天黑前完成主要山路。", "tag": "安全" }
+            ]
+          },
+          {
+            "day": 5,
+            "title": "苏仙岭与返深",
+            "summary": "用轻量市区行程收尾，两种交通方式分别安排还车或长途返程。",
+            "items": [
+              { "time": "08:30", "title": "苏仙岭轻徒步", "description": "量力选择步行或景区交通；雨天改郴州市博物馆并先确认开放日。", "tag": "机动" },
+              { "time": "11:30", "title": "市区午餐与整理行李", "description": "补充伴手礼和路上饮水，不把返程压到傍晚。", "tag": "补给" },
+              { "time": "14:00", "title": "返回深圳", "description": "高铁方案在郴州西还车后乘车；全程自驾至少安排一次服务区休息。", "tag": "返程" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7d6n",
+        "label": "7天6夜",
+        "days": 7,
+        "nights": 6,
+        "title": "郴州山水全景 · 7天6夜",
+        "summary": "在五日精华线基础上加入莽山两日，并把城市与山路转换拆开。",
+        "budget": {
+          "label": "人均3700-6200元",
+          "breakdown": [
+            { "label": "住宿", "value": "1900-3800元 / 6晚 / 2人" },
+            { "label": "餐饮", "value": "1500-2400元 / 2人" },
+            { "label": "交通（两种方式择一）", "value": "约2300-3800元 / 2人" },
+            { "label": "门票与景交", "value": "约1500-2600元 / 2人" }
+          ]
+        },
+        "intensity": { "level": "适中", "score": 3, "description": "新增莽山但拆成转场日和完整游览日；全程自驾总里程更长，高铁加租车方案返程需先回郴州西还车。" },
+        "sourceRefs": ["chenzhou-reservation-2026", "chenzhou-yangtianhu-booking-2025", "chenzhou-dongjianghu-official", "chenzhou-spring-travel-2026"],
+        "navigation": [
+          { "day": "Day 1", "name": "郴州西站" },
+          { "day": "Day 1", "name": "裕后街" },
+          { "day": "Day 2", "name": "高椅岭旅游区" },
+          { "day": "Day 2-3", "name": "东江湖旅游区" },
+          { "day": "Day 3", "name": "白廊环湖公路" },
+          { "day": "Day 4", "name": "仰天湖大草原" },
+          { "day": "Day 5", "name": "苏仙岭" },
+          { "day": "Day 6", "name": "莽山五指峰景区" }
+        ],
+        "dayPlans": [
+          { "day": 1, "title": "抵达郴州与裕后街夜游", "summary": "高铁到站取车或深圳自驾，抵达日不安排远郊景区。", "items": [{ "time": "07:30", "title": "深圳出发", "description": "高铁方案前往郴州西取车；全程自驾分段休息抵达。", "tag": "双交通" }, { "time": "14:00", "title": "市区入住", "description": "住五岭广场或裕后街周边，先完成补给。", "tag": "住宿" }, { "time": "17:30", "title": "裕后街夜游", "description": "沿郴江散步并品尝鱼粉，早点休息。", "tag": "夜游" }] },
+          { "day": 2, "title": "高椅岭丹霞与东江镇", "summary": "沿郴州东线前进，当晚住东江湖门楼附近。", "items": [{ "time": "07:30", "title": "高椅岭入园", "description": "按预约时段完成丹霞步道，避开正午暴晒。", "tag": "需预约" }, { "time": "12:30", "title": "资兴午餐", "description": "下山休息后前往东江镇。", "tag": "补给" }, { "time": "16:00", "title": "东江镇入住", "description": "核对次日景区线路与接驳时间。", "tag": "住宿" }] },
+          { "day": 3, "title": "雾漫小东江与白廊", "summary": "清晨观雾、午后环湖，晚上回郴州市区。", "items": [{ "time": "05:30", "title": "小东江观雾", "description": "服从景区接驳和临水安全提示。", "tag": "需预约" }, { "time": "10:30", "title": "东江大坝片区", "description": "按票种选择峡谷、大坝或游船，不堆叠项目。", "tag": "景区" }, { "time": "15:30", "title": "白廊环湖", "description": "短段自驾后返回郴州市区住宿。", "tag": "自驾" }] },
+          { "day": 4, "title": "仰天湖高山草原", "summary": "单独留一天给草原，雨雾天不勉强上山。", "items": [{ "time": "08:00", "title": "山路出发", "description": "检查油量、轮胎和天气预警后上山。", "tag": "山路" }, { "time": "10:30", "title": "仰天湖慢游", "description": "实名预约入园，按体力选择草甸步行。", "tag": "需预约" }, { "time": "15:30", "title": "天黑前下山", "description": "遇大风、雷雨或低能见度提前返城。", "tag": "安全" }] },
+          { "day": 5, "title": "苏仙岭与莽山转场", "summary": "上午轻游市区，午后向南转场并入住莽山周边。", "items": [{ "time": "08:30", "title": "苏仙岭或市博物馆", "description": "晴天轻徒步，雨天改室内场馆。", "tag": "机动" }, { "time": "12:00", "title": "市区午餐", "description": "补齐山中所需饮水和常用药。", "tag": "补给" }, { "time": "14:00", "title": "前往莽山", "description": "预留约2.5-3小时山路与休息时间，天黑前入住。", "tag": "转场" }] },
+          { "day": 6, "title": "莽山五指峰完整游", "summary": "索道、栈道与云海集中一天，不与返程拼接。", "items": [{ "time": "08:00", "title": "五指峰景区入园", "description": "实名预约，先确认索道、无障碍设施和栈道开放状态。", "tag": "需预约" }, { "time": "11:30", "title": "云端栈道", "description": "山顶温差明显，按体力与能见度调整步行长度。", "tag": "山岳" }, { "time": "16:00", "title": "下山休息", "description": "不安排夜间长途，继续住莽山周边。", "tag": "住宿" }] },
+          { "day": 7, "title": "按交通方式返深", "summary": "自驾可直接南返，高铁方案先回郴州西还车再乘车。", "items": [{ "time": "08:00", "title": "办理退房", "description": "检查车辆、油量和行李，避开临时赶车。", "tag": "整理" }, { "time": "09:00", "title": "分线返程", "description": "全程自驾按实时导航直接回深圳；高铁方案预留充足时间返回郴州西还车。", "tag": "双交通" }, { "time": "15:00", "title": "途中休息或乘高铁", "description": "自驾至少每2小时休息一次；高铁车次以12306实际出票为准。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "inner-mongolia": [
+      {
+        "id": "20d19n",
+        "label": "20天19夜",
+        "days": 20,
+        "nights": 19,
+        "title": "内蒙古中西部慢环线 · 20天19夜",
+        "summary": "全程自驾用首尾8天安全往返，飞机租车把这些日期变为呼和浩特休整与弹性日；中段共同走火山、草原、鄂尔多斯和河套。",
+        "budget": {
+          "label": "人均1.3万-2.2万元",
+          "breakdown": [
+            { "label": "住宿", "value": "8500-14500元 / 19晚 / 2人" },
+            { "label": "餐饮", "value": "7000-11000元 / 2人" },
+            { "label": "交通（两种方式择一）", "value": "约8000-15000元 / 2人" },
+            { "label": "门票与体验", "value": "约3000-5500元 / 2人" }
+          ]
+        },
+        "intensity": { "level": "长线适中", "score": 4, "description": "全程自驾单程拆成4天，不安排连续夜驾；飞机租车只跑中西部闭环，体力压力更小。草原、沙漠与湖区均保留天气机动空间。" },
+        "sourceRefs": ["nmg-summer-guide-2025", "nmg-travel-safety", "nmg-car-rental-plan", "ulan-hada-official"],
+        "navigation": [
+          { "day": "Day 4-5 / 16-17", "name": "呼和浩特市" },
+          { "day": "Day 6-7", "name": "乌兰察布市" },
+          { "day": "Day 7", "name": "乌兰哈达火山地质公园" },
+          { "day": "Day 7", "name": "辉腾锡勒草原" },
+          { "day": "Day 8-10", "name": "鄂尔多斯市康巴什区" },
+          { "day": "Day 9", "name": "响沙湾旅游区" },
+          { "day": "Day 11-12", "name": "乌海市" },
+          { "day": "Day 13-14", "name": "巴彦淖尔市" },
+          { "day": "Day 14", "name": "乌梁素海" },
+          { "day": "Day 14-16", "name": "包头市" },
+          { "day": "Day 15", "name": "五当召" }
+        ],
+        "dayPlans": [
+          { "day": 1, "title": "深圳出发，按交通方式分线", "summary": "自驾到长沙过夜；飞机方案抵达呼和浩特后只做休整。", "items": [{ "time": "08:00", "title": "自驾线：深圳至长沙", "description": "约800公里，至少每2小时休息一次，两位司机轮换。", "tag": "全程自驾" }, { "time": "10:00", "title": "飞机线：深圳飞呼和浩特", "description": "航班时刻和行李额度以出票为准，落地后在机场或市区正规门店取车。", "tag": "飞机租车" }, { "time": "18:00", "title": "入住与车辆检查", "description": "自驾住长沙；飞机线住呼和浩特，核对轮胎、备胎、保险与救援电话。", "tag": "住宿" }] },
+          { "day": 2, "title": "北上转场与呼和浩特人文", "summary": "自驾从长沙到郑州；飞机线安排市区馆舍与老城。", "items": [{ "time": "08:00", "title": "自驾线：长沙至郑州", "description": "按实时导航分段北上，不追求深夜抵达。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：博物馆或城市展馆", "description": "先核对当日开放与预约，再安排室内参观。", "tag": "飞机租车" }, { "time": "17:00", "title": "补给与早休", "description": "自驾住郑州；飞机线在呼和浩特补齐防晒、保暖层和常用药。", "tag": "补给" }] },
+          { "day": 3, "title": "太原中转与呼和浩特老城", "summary": "自驾短段到太原；飞机线慢游大召片区。", "items": [{ "time": "08:30", "title": "自驾线：郑州至太原", "description": "缩短单日里程，为次日进入内蒙古留体力。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：大召与塞上老街", "description": "核心区停车后步行，不在拥堵街巷反复找车位。", "tag": "飞机租车" }, { "time": "17:30", "title": "当日收尾", "description": "自驾住太原；飞机线回呼和浩特同一酒店连住。", "tag": "住宿" }] },
+          { "day": 4, "title": "会合呼和浩特", "summary": "自驾抵达呼和浩特，飞机线去敕勒川片区，两线晚上进入同一节奏。", "items": [{ "time": "08:30", "title": "自驾线：太原至呼和浩特", "description": "遇大风、沙尘或高速管制时顺延，不走陌生夜路。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：敕勒川片区", "description": "只在开放道路和正规停车区停留，下午返城。", "tag": "飞机租车" }, { "time": "17:30", "title": "双线会合", "description": "住呼和浩特，检查次日场馆预约与乌兰察布天气。", "tag": "会合" }] },
+          { "day": 5, "title": "呼和浩特完整日", "summary": "用文化场馆、老城和本地餐饮理解草原旅程的起点。", "items": [{ "time": "09:00", "title": "文化场馆", "description": "按官方预约与开放日选择内蒙古博物院或市内展馆。", "tag": "人文" }, { "time": "13:30", "title": "大召历史文化片区", "description": "停车后连续步行，尊重宗教场所参观规范。", "tag": "老城" }, { "time": "18:00", "title": "烧麦与奶食", "description": "第一次尝试奶制品和羊肉时控制份量，早点休息。", "tag": "美食" }] },
+          { "day": 6, "title": "呼和浩特至乌兰察布", "summary": "短途转场，下午在集宁休整，为火山草原日留体力。", "items": [{ "time": "09:00", "title": "出发前检查天气", "description": "同时查看呼和浩特、集宁和察右后旗预警。", "tag": "天气" }, { "time": "10:00", "title": "前往乌兰察布", "description": "按导航行驶，不把城市间高速当作赶路任务。", "tag": "转场" }, { "time": "15:00", "title": "集宁入住与补给", "description": "加满油，准备防风层、饮水和简餐。", "tag": "住宿" }] },
+          { "day": 7, "title": "乌兰哈达火山与辉腾锡勒", "summary": "根据风力和雷雨二选一为主，天气稳定才串联两处。", "items": [{ "time": "08:00", "title": "乌兰哈达火山", "description": "走开放步道，不驶入草地、不攀爬封闭火山体。", "tag": "生态" }, { "time": "12:30", "title": "察右后旗午餐", "description": "休息并复查午后风力，恶劣天气直接返集宁。", "tag": "机动" }, { "time": "15:00", "title": "辉腾锡勒草原", "description": "仅在天气稳定时前往；雷雨、大风取消高处停留。", "tag": "草原" }] },
+          { "day": 8, "title": "乌兰察布至鄂尔多斯", "summary": "跨过呼和浩特向黄河几字弯转场，傍晚到康巴什。", "items": [{ "time": "08:30", "title": "离开集宁", "description": "长途段提前下载离线地图并在城市补油。", "tag": "转场" }, { "time": "12:30", "title": "服务区午休", "description": "至少休息40分钟，不连续驾驶赶晚餐。", "tag": "安全" }, { "time": "17:00", "title": "康巴什入住", "description": "傍晚只安排城市公园或河岸短步行。", "tag": "住宿" }] },
+          { "day": 9, "title": "响沙湾完整日", "summary": "沙漠体验只在正规景区开放区域进行，避开正午暴晒。", "items": [{ "time": "08:00", "title": "前往响沙湾", "description": "按官方渠道确认营业、套票和接驳，带防晒与防沙用品。", "tag": "需确认" }, { "time": "10:00", "title": "景区内活动", "description": "根据体力选择项目，不参加无资质越野、不自行进入沙漠腹地。", "tag": "安全" }, { "time": "16:00", "title": "返回康巴什", "description": "补水休息，晚餐后不再安排长途。", "tag": "住宿" }] },
+          { "day": 10, "title": "鄂尔多斯文化休整", "summary": "把沙漠后的恢复日留给博物馆与城市公共空间。", "items": [{ "time": "09:30", "title": "鄂尔多斯博物馆片区", "description": "先确认开放日，临时闭馆则改城市公园。", "tag": "人文" }, { "time": "14:00", "title": "康巴什慢游", "description": "减少驾车，用步行和咖啡休息恢复体力。", "tag": "休整" }, { "time": "18:00", "title": "整理西行装备", "description": "检查玻璃水、胎压和后备箱饮水。", "tag": "车辆" }] },
+          { "day": 11, "title": "鄂尔多斯至乌海", "summary": "沿黄河方向西行，日落前进入城市，不追无人区打卡。", "items": [{ "time": "08:30", "title": "康巴什出发", "description": "按实时导航选择高速与国道，避开施工和封闭路段。", "tag": "转场" }, { "time": "12:30", "title": "途中午休", "description": "仅在正规服务区或城镇补给。", "tag": "安全" }, { "time": "17:00", "title": "乌海入住", "description": "如有风沙或降雨，取消湖岸日落。", "tag": "住宿" }] },
+          { "day": 12, "title": "乌海湖与城市慢游", "summary": "只在开放岸线和正规运营区域活动，留半天恢复。", "items": [{ "time": "09:00", "title": "乌海湖开放片区", "description": "先看风力与运营通知，不进入未开发沙水交界地带。", "tag": "湖区" }, { "time": "13:30", "title": "市区午餐与休息", "description": "沙尘天气改为室内场馆，不勉强拍日落。", "tag": "机动" }, { "time": "17:30", "title": "补给下一段", "description": "加满油并确认巴彦淖尔住宿。", "tag": "补给" }] },
+          { "day": 13, "title": "乌海至巴彦淖尔", "summary": "短途进入河套平原，用半天感受城市与农耕景观。", "items": [{ "time": "09:00", "title": "离开乌海", "description": "短途也要检查侧风和能见度。", "tag": "转场" }, { "time": "12:00", "title": "临河午餐", "description": "品尝河套面食，下午降低活动强度。", "tag": "美食" }, { "time": "15:00", "title": "巴彦淖尔市区", "description": "按开放情况选择博物馆或城市公园。", "tag": "休整" }] },
+          { "day": 14, "title": "乌梁素海至包头", "summary": "上午湿地观鸟，下午顺路到包头，不进入保护区非开放区域。", "items": [{ "time": "08:00", "title": "前往乌梁素海", "description": "按现场开放范围游览，保持安静并带走垃圾。", "tag": "湿地" }, { "time": "12:00", "title": "乌拉特前旗午餐", "description": "休息后再向包头行驶。", "tag": "补给" }, { "time": "16:30", "title": "包头入住", "description": "连续住两晚，减少行李搬运。", "tag": "住宿" }] },
+          { "day": 15, "title": "五当召或包头城市日", "summary": "晴稳天气去五当召，雨雪或道路不佳则留在包头。", "items": [{ "time": "08:30", "title": "确认开放与道路", "description": "山区道路和宗教场所开放信息以当天官方通知为准。", "tag": "需确认" }, { "time": "10:00", "title": "五当召参观", "description": "尊重宗教礼仪，不拍摄禁止区域。", "tag": "人文" }, { "time": "16:00", "title": "返回包头", "description": "天气不适合时全日改为包头市区馆舍。", "tag": "机动" }] },
+          { "day": 16, "title": "包头返回呼和浩特", "summary": "中西部闭环收束，下午完成车辆保养与返程准备。", "items": [{ "time": "09:00", "title": "包头出发", "description": "短途返回呼和浩特，途中不再加景点。", "tag": "转场" }, { "time": "13:00", "title": "呼和浩特入住", "description": "全程自驾检查车辆；飞机线确认还车点和油量规则。", "tag": "车辆" }, { "time": "17:00", "title": "弹性休整", "description": "补洗衣物、整理照片并核对后四天预报。", "tag": "休整" }] },
+          { "day": 17, "title": "返程第一段或呼和浩特弹性日", "summary": "自驾到太原；飞机线留作天气补偿和车辆整理。", "items": [{ "time": "08:00", "title": "自驾线：呼和浩特至太原", "description": "用熟悉的来程路径南返，遇管制及时调整住宿。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：弹性补偿日", "description": "用于补回此前因天气取消的呼和浩特周边安排，不临时远跑。", "tag": "飞机租车" }, { "time": "17:30", "title": "住宿与复盘", "description": "自驾住太原；飞机线继续住呼和浩特。", "tag": "住宿" }] },
+          { "day": 18, "title": "返程第二段或城市休整", "summary": "自驾到郑州；飞机线安排轻量城市活动。", "items": [{ "time": "08:30", "title": "自驾线：太原至郑州", "description": "控制速度并按服务区节奏休息。", "tag": "全程自驾" }, { "time": "10:00", "title": "飞机线：城市慢游", "description": "选择步行可达的展馆或老街，不再安排远郊。", "tag": "飞机租车" }, { "time": "17:30", "title": "整理返程行李", "description": "自驾住郑州；飞机线清理租车内物品。", "tag": "整理" }] },
+          { "day": 19, "title": "返程第三段或还车日", "summary": "自驾到长沙；飞机线按合同还车并留足验车时间。", "items": [{ "time": "08:00", "title": "自驾线：郑州至长沙", "description": "长途分段行驶，下午疲劳时提前换司机。", "tag": "全程自驾" }, { "time": "10:00", "title": "飞机线：还车验车", "description": "保留油量、车况、费用与交接照片，机场店营业时间提前确认。", "tag": "飞机租车" }, { "time": "18:00", "title": "最后一晚", "description": "自驾住长沙；飞机线住机场或市区交通方便区域。", "tag": "住宿" }] },
+          { "day": 20, "title": "返回深圳", "summary": "两种方式都给返程留出完整一天，不叠加景点。", "items": [{ "time": "08:00", "title": "自驾线：长沙至深圳", "description": "返程末段仍按2小时休息原则，不因临近到家连续驾驶。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：呼和浩特飞深圳", "description": "航班变动时使用本日缓冲，不购买衔接过紧的交通票。", "tag": "飞机租车" }, { "time": "18:00", "title": "行程结束", "description": "核对租车与住宿账单，保存道路和景区临时变更记录。", "tag": "返程" }] }
+        ]
+      },
+      {
+        "id": "30d29n",
+        "label": "30天29夜",
+        "days": 30,
+        "nights": 29,
+        "title": "内蒙古草原森林全景 · 30天29夜",
+        "summary": "中西部之后加入锡林郭勒、阿尔山和呼伦贝尔；全程自驾用7天从海拉尔逐段南返，飞机租车采用呼和浩特与海拉尔两个闭环。",
+        "budget": {
+          "label": "人均2万-3.4万元",
+          "breakdown": [
+            { "label": "住宿", "value": "13500-23500元 / 29晚 / 2人" },
+            { "label": "餐饮", "value": "10500-16500元 / 2人" },
+            { "label": "交通（两种方式择一）", "value": "约13500-25000元 / 2人" },
+            { "label": "门票与体验", "value": "约5000-8500元 / 2人" }
+          ]
+        },
+        "intensity": { "level": "长线偏紧", "score": 4, "description": "全程自驾约1.1万-1.3万公里，首尾长转场已经拆分但仍需至少两位司机；飞机租车用双环线减少异地还车风险，东部林区保留天气缓冲。" },
+        "sourceRefs": ["nmg-summer-guide-2025", "nmg-travel-safety", "hulunbuir-331-route", "hulunbuir-driving-safety", "nmg-car-rental-plan", "ulan-hada-official"],
+        "navigation": [
+          { "day": "Day 4-5", "name": "呼和浩特市" }, { "day": "Day 6-7", "name": "乌兰察布市" }, { "day": "Day 7", "name": "乌兰哈达火山地质公园" },
+          { "day": "Day 8-9", "name": "鄂尔多斯市康巴什区" }, { "day": "Day 9", "name": "响沙湾旅游区" }, { "day": "Day 10", "name": "巴彦淖尔市" },
+          { "day": "Day 11", "name": "乌梁素海" }, { "day": "Day 11-12", "name": "包头市" }, { "day": "Day 12-14", "name": "锡林浩特市" },
+          { "day": "Day 14-16", "name": "乌兰浩特市" }, { "day": "Day 16-18", "name": "阿尔山市" }, { "day": "Day 17", "name": "阿尔山国家森林公园" },
+          { "day": "Day 19-20", "name": "满洲里市" }, { "day": "Day 21-22", "name": "额尔古纳市" }, { "day": "Day 22", "name": "根河市" },
+          { "day": "Day 23-29", "name": "海拉尔区" }, { "day": "Day 23", "name": "莫尔格勒河景区" }
+        ],
+        "dayPlans": [
+          { "day": 1, "title": "深圳出发，双交通分线", "summary": "自驾到长沙；飞机抵达呼和浩特取车。", "items": [{ "time": "08:00", "title": "自驾线：深圳至长沙", "description": "约800公里，两位司机轮换并固定服务区休息。", "tag": "全程自驾" }, { "time": "10:00", "title": "飞机线：飞呼和浩特", "description": "落地在正规门店取车，逐项核对保险和救援范围。", "tag": "飞机租车" }, { "time": "18:00", "title": "分别入住", "description": "自驾住长沙；飞机线住呼和浩特并完成补给。", "tag": "住宿" }] },
+          { "day": 2, "title": "长沙至郑州 / 呼和浩特人文", "summary": "自驾继续北上，飞机线用场馆适应气候。", "items": [{ "time": "08:00", "title": "自驾线：长沙至郑州", "description": "不把到达时间压到深夜。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：文化场馆", "description": "按官方预约与开放日选择馆舍。", "tag": "飞机租车" }, { "time": "17:00", "title": "早休与补给", "description": "分别在郑州和呼和浩特住宿。", "tag": "住宿" }] },
+          { "day": 3, "title": "郑州至太原 / 呼和浩特老城", "summary": "自驾缩短当日里程，飞机线停车后步行老城。", "items": [{ "time": "08:30", "title": "自驾线：郑州至太原", "description": "按服务区节奏休息，为次日进蒙留体力。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：大召片区", "description": "尊重宗教场所规定，禁止拍摄处不拍摄。", "tag": "飞机租车" }, { "time": "17:30", "title": "整理装备", "description": "检查防风、防晒和保暖层。", "tag": "补给" }] },
+          { "day": 4, "title": "两线会合呼和浩特", "summary": "自驾抵达，飞机线走敕勒川开放片区。", "items": [{ "time": "08:30", "title": "自驾线：太原至呼和浩特", "description": "遇大风沙尘或管制及时顺延。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：敕勒川片区", "description": "只走开放道路和正规停车区。", "tag": "飞机租车" }, { "time": "17:30", "title": "双线会合", "description": "住呼和浩特，核对后续天气与住宿。", "tag": "会合" }] },
+          { "day": 5, "title": "呼和浩特完整日", "summary": "文化场馆、老城与本地餐饮组成低强度一天。", "items": [{ "time": "09:00", "title": "内蒙古文化场馆", "description": "以预约结果和实际开放为准。", "tag": "人文" }, { "time": "14:00", "title": "塞上老街慢游", "description": "核心区停车后步行，减少拥堵。", "tag": "老城" }, { "time": "18:00", "title": "烧麦与奶食", "description": "控制奶制品与羊肉份量，早点休息。", "tag": "美食" }] },
+          { "day": 6, "title": "呼和浩特至乌兰察布", "summary": "短途转场，在集宁完成火山日补给。", "items": [{ "time": "09:00", "title": "三地天气复核", "description": "同时看呼和浩特、集宁与察右后旗预警。", "tag": "天气" }, { "time": "10:00", "title": "前往乌兰察布", "description": "按实时导航行驶。", "tag": "转场" }, { "time": "15:00", "title": "集宁入住", "description": "加满油并准备防风层和饮水。", "tag": "住宿" }] },
+          { "day": 7, "title": "乌兰哈达火山", "summary": "全天只围绕开放火山片区，辉腾锡勒作为天气稳定时的备选。", "items": [{ "time": "08:00", "title": "乌兰哈达火山", "description": "走开放步道，不碾压草场、不攀爬封闭火山体。", "tag": "生态" }, { "time": "12:30", "title": "午休与天气判断", "description": "风大、雷雨时直接回集宁。", "tag": "机动" }, { "time": "15:00", "title": "草原备选", "description": "天气稳定才去辉腾锡勒，不追日落夜驾。", "tag": "草原" }] },
+          { "day": 8, "title": "乌兰察布至鄂尔多斯", "summary": "长途转场到康巴什，傍晚轻量活动。", "items": [{ "time": "08:30", "title": "集宁出发", "description": "下载离线地图并在城市补油。", "tag": "转场" }, { "time": "12:30", "title": "服务区午休", "description": "至少休息40分钟。", "tag": "安全" }, { "time": "17:00", "title": "康巴什入住", "description": "只安排城市公园短步行。", "tag": "住宿" }] },
+          { "day": 9, "title": "响沙湾完整日", "summary": "只在正规景区体验沙漠，下午返回康巴什。", "items": [{ "time": "08:00", "title": "确认景区开放", "description": "核对营业、套票与接驳。", "tag": "需确认" }, { "time": "10:00", "title": "开放区域活动", "description": "不参加无资质越野，不自行进入沙漠腹地。", "tag": "安全" }, { "time": "16:00", "title": "返回康巴什", "description": "补水休息，不再长途。", "tag": "住宿" }] },
+          { "day": 10, "title": "鄂尔多斯至巴彦淖尔", "summary": "跨越沿黄片区，晚间在临河休整。", "items": [{ "time": "08:00", "title": "康巴什出发", "description": "查看侧风、沙尘和道路施工提示。", "tag": "转场" }, { "time": "12:30", "title": "沿途补给", "description": "只在服务区或城镇停车。", "tag": "安全" }, { "time": "17:00", "title": "临河入住", "description": "品尝河套面食并早点休息。", "tag": "住宿" }] },
+          { "day": 11, "title": "乌梁素海至包头", "summary": "上午湿地，下午到包头，保护区只走开放范围。", "items": [{ "time": "08:00", "title": "乌梁素海", "description": "按开放线路游览，观鸟时保持距离。", "tag": "湿地" }, { "time": "12:00", "title": "乌拉特前旗午餐", "description": "充分休息后再开车。", "tag": "补给" }, { "time": "16:30", "title": "包头入住", "description": "检查第二天两种交通分线安排。", "tag": "住宿" }] },
+          { "day": 12, "title": "东线第一次分流", "summary": "自驾前往锡林浩特；飞机线返回呼和浩特还首段车辆。", "items": [{ "time": "07:30", "title": "自驾线：包头至锡林浩特", "description": "约600公里级长途，至少两次完整休息。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：包头至呼和浩特", "description": "按原合同还车，保留车况与费用照片。", "tag": "飞机租车" }, { "time": "18:00", "title": "分别入住", "description": "自驾住锡林浩特；飞机线住呼和浩特机场交通方便区域。", "tag": "住宿" }] },
+          { "day": 13, "title": "锡林郭勒草原 / 飞抵海拉尔", "summary": "自驾线休整看草原，飞机线转场海拉尔取第二段车辆。", "items": [{ "time": "08:30", "title": "自驾线：锡林浩特周边", "description": "只去正规开放草原景区，不驶入无路草场。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：呼和浩特飞海拉尔", "description": "航班变动时用本日缓冲；落地在正规门店取车。", "tag": "飞机租车" }, { "time": "17:00", "title": "车辆与天气检查", "description": "分别确认东线次日风雨和住宿。", "tag": "车辆" }] },
+          { "day": 14, "title": "前往兴安盟", "summary": "自驾线锡林浩特到乌兰浩特；飞机线海拉尔到阿尔山。", "items": [{ "time": "08:00", "title": "自驾线：锡林浩特至乌兰浩特", "description": "长途日不加景点，途中城镇补油。", "tag": "全程自驾" }, { "time": "08:30", "title": "飞机线：海拉尔至阿尔山", "description": "按实时道路状况白天行驶，风雪或低能见度时顺延。", "tag": "飞机租车" }, { "time": "17:30", "title": "分别入住", "description": "自驾住乌兰浩特；飞机线住阿尔山市。", "tag": "住宿" }] },
+          { "day": 15, "title": "乌兰浩特休整 / 阿尔山慢游", "summary": "自驾线恢复体力，飞机线在阿尔山市区适应林区温差。", "items": [{ "time": "09:00", "title": "自驾线：乌兰浩特人文", "description": "选择开放场馆并完成车辆补给。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：阿尔山市区", "description": "轻量步行，不提前透支森林公园日体力。", "tag": "飞机租车" }, { "time": "17:00", "title": "防火与保暖检查", "description": "林区严禁明火，准备保暖层和雨具。", "tag": "安全" }] },
+          { "day": 16, "title": "两线会合阿尔山", "summary": "自驾线转场阿尔山，飞机线继续休整，两线晚上会合。", "items": [{ "time": "08:30", "title": "自驾线：乌兰浩特至阿尔山", "description": "山区道路白天行驶，遇雾雪控制速度。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：温泉博物馆片区", "description": "按开放状态选择轻量活动。", "tag": "飞机租车" }, { "time": "17:00", "title": "核对森林公园", "description": "确认接驳、步道、票务和天气。", "tag": "需确认" }] },
+          { "day": 17, "title": "阿尔山国家森林公园", "summary": "全天留给森林、湖泊与火山地貌，按景区接驳游览。", "items": [{ "time": "07:30", "title": "进入景区", "description": "提前确认门票与接驳，不自驾进入限制区域。", "tag": "需确认" }, { "time": "10:00", "title": "开放步道慢游", "description": "按体力选择核心点，不离开栈道进入林地。", "tag": "森林" }, { "time": "16:00", "title": "下山休息", "description": "遇雷雨、大风或低能见度提前结束。", "tag": "安全" }] },
+          { "day": 18, "title": "阿尔山至新巴尔虎左旗", "summary": "沿官方331主题路线方向北上，白天完成草原转场。", "items": [{ "time": "08:00", "title": "阿尔山出发", "description": "检查G331及连接道路实时状态。", "tag": "公路" }, { "time": "12:30", "title": "城镇午休补油", "description": "不去无信号、无道路的草原深处。", "tag": "安全" }, { "time": "17:00", "title": "旗县入住", "description": "确认次日前往满洲里的路况与风力。", "tag": "住宿" }] },
+          { "day": 19, "title": "草原公路至满洲里", "summary": "穿越新巴尔虎草原，所有停靠都在正规停车区域。", "items": [{ "time": "08:30", "title": "向满洲里行驶", "description": "路侧草场不随意停车碾压，不追逐牧群。", "tag": "生态" }, { "time": "12:30", "title": "右旗午餐", "description": "在城镇补油补水后继续。", "tag": "补给" }, { "time": "17:00", "title": "满洲里入住", "description": "边境区域遵守禁入和拍摄提示。", "tag": "住宿" }] },
+          { "day": 20, "title": "满洲里完整日", "summary": "口岸城市、正规景区与休整组合，不进入边境禁区。", "items": [{ "time": "09:00", "title": "边境旅游区", "description": "按景区开放、安检与拍摄规则游览。", "tag": "边境" }, { "time": "13:30", "title": "城市人文慢游", "description": "减少驾车，留时间休息。", "tag": "休整" }, { "time": "18:00", "title": "核对G331路况", "description": "确认黑山头、额尔古纳方向天气和道路提示。", "tag": "路况" }] },
+          { "day": 21, "title": "满洲里至额尔古纳", "summary": "沿开放道路前往湿地城市，避免追逐所谓野路机位。", "items": [{ "time": "08:00", "title": "满洲里出发", "description": "遇积雪、结冰或临时管制时改走官方建议线路。", "tag": "公路" }, { "time": "12:30", "title": "黑山头方向午休", "description": "仅在城镇或正规驿站补给。", "tag": "安全" }, { "time": "16:30", "title": "额尔古纳入住", "description": "傍晚按开放情况走湿地公园。", "tag": "住宿" }] },
+          { "day": 22, "title": "额尔古纳至根河", "summary": "从湿地进入大兴安岭林区，气温下降时及时加衣。", "items": [{ "time": "08:30", "title": "额尔古纳湿地", "description": "按景区步道开放与能见度安排早游。", "tag": "湿地" }, { "time": "12:00", "title": "前往根河", "description": "G332等道路状态以交通部门实时信息为准。", "tag": "公路" }, { "time": "16:30", "title": "根河入住", "description": "林区严禁用火，低温季准备防滑装备。", "tag": "住宿" }] },
+          { "day": 23, "title": "根河经莫尔格勒河至海拉尔", "summary": "森林草原转换日，在正规景区完成东线收束。", "items": [{ "time": "08:00", "title": "根河出发", "description": "先确认海拉尔与莫尔格勒河片区天气。", "tag": "转场" }, { "time": "13:00", "title": "莫尔格勒河景区", "description": "只走开放景区和道路，不开进无路草场。", "tag": "草原" }, { "time": "17:30", "title": "海拉尔入住", "description": "全程自驾准备南返；飞机线保留车辆继续小环线。", "tag": "分线" }] },
+          { "day": 24, "title": "南返第一段 / 海拉尔休整", "summary": "自驾到齐齐哈尔；飞机线用弹性日补回东线天气损失。", "items": [{ "time": "08:00", "title": "自驾线：海拉尔至齐齐哈尔", "description": "按路况逐段南返，不在疲劳状态下赶夜路。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：海拉尔休整", "description": "用于洗衣、车辆检查或补回取消的草原行程。", "tag": "飞机租车" }, { "time": "18:00", "title": "分别入住", "description": "自驾住齐齐哈尔；飞机线继续住海拉尔。", "tag": "住宿" }] },
+          { "day": 25, "title": "南返第二段 / 呼伦贝尔弹性日", "summary": "自驾到沈阳；飞机线只安排正规开放的近郊或城市活动。", "items": [{ "time": "08:00", "title": "自驾线：齐齐哈尔至沈阳", "description": "进入东北主干路网后仍保持固定休息。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：近郊弹性日", "description": "不因剩余时间进入边境禁区或无道路草场。", "tag": "飞机租车" }, { "time": "17:30", "title": "行李整理", "description": "两线分别为次日转场做准备。", "tag": "整理" }] },
+          { "day": 26, "title": "南返第三段 / 海拉尔还车飞呼和浩特", "summary": "自驾到天津；飞机线结束东部租车闭环。", "items": [{ "time": "08:00", "title": "自驾线：沈阳至天津", "description": "绕城与高速施工以导航实时提示为准。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：海拉尔还车", "description": "留足验车时间，再乘机前往呼和浩特。", "tag": "飞机租车" }, { "time": "18:00", "title": "分别入住", "description": "自驾住天津；飞机线住呼和浩特。", "tag": "住宿" }] },
+          { "day": 27, "title": "南返第四段 / 呼和浩特恢复", "summary": "自驾到郑州；飞机线休息并处理租车账单。", "items": [{ "time": "08:00", "title": "自驾线：天津至郑州", "description": "避开城市早高峰后上高速。", "tag": "全程自驾" }, { "time": "10:00", "title": "飞机线：恢复日", "description": "核对首尾两段租车费用和车况记录。", "tag": "飞机租车" }, { "time": "17:30", "title": "返程准备", "description": "自驾住郑州；飞机线确认返深航班。", "tag": "整理" }] },
+          { "day": 28, "title": "南返第五段 / 呼和浩特缓冲", "summary": "自驾到武汉；飞机线留给航班与天气变化。", "items": [{ "time": "08:00", "title": "自驾线：郑州至武汉", "description": "按服务区节奏分段，不连续驾驶。", "tag": "全程自驾" }, { "time": "09:30", "title": "飞机线：缓冲日", "description": "不新增远郊，只在市区轻量活动。", "tag": "飞机租车" }, { "time": "18:00", "title": "分别入住", "description": "自驾住武汉；飞机线住机场交通方便区域。", "tag": "住宿" }] },
+          { "day": 29, "title": "南返第六段 / 飞回深圳", "summary": "自驾到长沙；飞机线完成返程。", "items": [{ "time": "08:30", "title": "自驾线：武汉至长沙", "description": "缩短倒数第二天里程，避免末段疲劳。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：呼和浩特飞深圳", "description": "航班时刻以出票为准，保留行李和值机时间。", "tag": "飞机租车" }, { "time": "17:30", "title": "旅途收尾", "description": "自驾住长沙；飞机线回家休息。", "tag": "返程" }] },
+          { "day": 30, "title": "全程自驾返回深圳 / 飞机线预留日", "summary": "自驾完成最后一段，飞机线把本日作为航班或天气缓冲。", "items": [{ "time": "08:00", "title": "自驾线：长沙至深圳", "description": "临近到家仍按固定频率休息，避免最后一段疲劳驾驶。", "tag": "全程自驾" }, { "time": "09:00", "title": "飞机线：预留缓冲", "description": "若已顺利返深则用于休息；如前日航班变动，本日仍可从容处理。", "tag": "飞机租车" }, { "time": "18:00", "title": "行程结束", "description": "核对账单与车辆记录，为实际路况变化留档。", "tag": "结束" }] }
+        ]
+      }
+    ]
+  }
+}
