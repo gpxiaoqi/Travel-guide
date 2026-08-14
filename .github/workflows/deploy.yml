@@ -31,11 +31,22 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build static site
+        env:
+          AMAP_KEY: ${{ secrets.AMAP_KEY }}
+        run: |
+          test -n "$AMAP_KEY"
+          mkdir -p _site
+          cp -R assets routes index.html CNAME _site/
+          perl -0pi -e 's/__AMAP_KEY__/$ENV{AMAP_KEY}/g' _site/assets/js/common.js
+          if grep -R "__AMAP_KEY__" _site; then
+            echo "AMAP_KEY placeholder was not replaced"
+            exit 1
+          fi
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

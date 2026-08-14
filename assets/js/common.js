@@ -1,4 +1,4 @@
-const AMAP_KEY = 'cb06ef50e6a5d1787f67fdb7591a8303';
+const AMAP_KEY = '__AMAP_KEY__';
 let amapRequestQueue = Promise.resolve();
 
 function requestAmapService(path, params) {
