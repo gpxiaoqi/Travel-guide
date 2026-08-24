@@ -37,7 +37,9 @@ jobs:
         run: |
           test -n "$AMAP_KEY"
           mkdir -p _site
-          cp -R assets routes index.html CNAME _site/
+          cp -R assets categories routes index.html CNAME _site/
+          test -f _site/categories/shenzhen-nearby.html
+          test -f _site/categories/poetry-distance.html
           perl -0pi -e 's/__AMAP_KEY__/$ENV{AMAP_KEY}/g' _site/assets/js/common.js
           if grep -R "__AMAP_KEY__" _site; then
             echo "AMAP_KEY placeholder was not replaced"

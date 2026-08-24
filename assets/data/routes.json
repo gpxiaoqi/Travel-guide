@@ -436,6 +436,76 @@
       ]
     },
     {
+      "id": "jingdezhen",
+      "category": "poetry-distance",
+      "href": "routes/jingdezhen.html",
+      "shortTitle": "景德镇瓷都自驾",
+      "title": "景德镇瓷都 · 5/7天自驾深度游",
+      "summary": "从御窑遗址与古窑活态传承走到陶溪川、三宝和高岭瑶里，五天直达或七天分段慢游。",
+      "image": "assets/img/jingdezhen-imperial-kiln.webp",
+      "imageAlt": "蓝天下景德镇御窑博物馆红砖窑拱建筑与水面倒影",
+      "days": 5,
+      "nights": 4,
+      "durationLabel": "5天4夜",
+      "durationTemplateIds": ["5d4n", "7d6n"],
+      "departure": "深圳全程自驾",
+      "vehicle": {
+        "label": "燃油车或电车均可",
+        "note": "五天版单日长途驾驶时间很长，必须至少两位司机轮换；电车按实时续航和服务区状态准备前后两个补能选项，七天版优先在赣州完成分段休息。"
+      },
+      "drive": {
+        "oneWayHours": 11,
+        "totalKm": 2200,
+        "label": "单程约900-1000公里，纯驾驶约10.5-12小时"
+      },
+      "transportModes": [
+        { "label": "5天直达线", "summary": "深圳清晨出发直达景德镇，首尾各占一整天；仅适合两位及以上司机轮换，不安排夜间继续赶路。" },
+        { "label": "7天赣州分段线", "summary": "往返各在赣州住一晚，把超长驾驶拆成两段，并增加三宝陶艺与浮梁乡村的完整游览时间。" }
+      ],
+      "budget": {
+        "perPersonMin": 2300,
+        "perPersonMax": 3800,
+        "label": "5天人均2300-3800元",
+        "breakdown": [
+          { "label": "住宿", "value": "1200-2200元 / 4晚 / 2人" },
+          { "label": "餐饮", "value": "1200-1800元 / 2人" },
+          { "label": "交通（每车）", "value": "约1700-2600元 / 油电、高速与停车" },
+          { "label": "门票与体验", "value": "约500-1000元 / 2人" }
+        ]
+      },
+      "intensity": {
+        "level": "偏紧",
+        "score": 4,
+        "description": "五天版首尾各有约11小时纯驾驶，核心游览压缩在三天；仅建议两位及以上司机轮换，任何疲劳或拥堵都应就近增加一晚。"
+      },
+      "bestFor": ["情侣", "朋友", "陶瓷爱好者"],
+      "themes": ["陶瓷", "古镇", "自驾"],
+      "verifiedAt": "2026-08-14",
+      "verificationNote": "博物馆实名预约、景区开放、市集日期、节假日停车接驳及赣粤高速路况均会变化；出发前逐项复核，不以固定行程替代现场管制。",
+      "bookings": [
+        {
+          "label": "畅游景德镇预约与安全提示",
+          "channel": "景德镇市人民政府 / 景德镇文旅",
+          "url": "https://jdz.gov.cn/zwzx/ztbd/wmly/t1086800.shtml"
+        },
+        {
+          "label": "古窑民俗博览区官网",
+          "channel": "景德镇市古窑民俗旅游有限公司",
+          "url": "https://www.chinaguyao.com/index.html"
+        }
+      ],
+      "navigation": [
+        { "day": "Day 1 / 7", "name": "赣州章贡区", "lng": 114.9359, "lat": 25.8311, "note": "仅七天版往返分段住宿；选择高速出口附近且有正规停车场的酒店" },
+        { "day": "Day 2-3", "name": "景德镇中国陶瓷博物馆", "lng": 117.170109, "lat": 29.295779, "note": "通过畅游景德镇实名预约并携带本人实体身份证" },
+        { "day": "Day 2-3", "name": "古窑民俗博览区", "lng": 117.179098, "lat": 29.287247, "note": "核对当日开放、复烧或非遗展示安排" },
+        { "day": "Day 2-4", "name": "陶阳里历史文化旅游区", "lng": 117.201845, "lat": 29.299233, "note": "节假日优先使用官方外围停车场与接驳" },
+        { "day": "Day 2-4", "name": "陶溪川文创街区", "lng": 117.231, "lat": 29.299, "note": "市集日期以官方发布为准，夜游后不安排长途驾驶" },
+        { "day": "Day 4", "name": "三宝国际瓷谷", "lng": 117.25861, "lat": 29.26357, "note": "七天版安排完整一天，热门体验需提前向运营方确认" },
+        { "day": "Day 4-5", "name": "高岭·中国村", "lng": 117.449, "lat": 29.455, "note": "与瑶里顺路串联，山路雨雾天减速并服从临时管制" },
+        { "day": "Day 4-5", "name": "瑶里古镇", "lng": 117.568021, "lat": 29.532469, "note": "临水石板路湿滑，强降雨时取消山谷和溪边步行" }
+      ]
+    },
+    {
       "id": "inner-mongolia",
       "category": "poetry-distance",
       "href": "routes/inner-mongolia.html",
@@ -721,6 +791,41 @@
       "checkedAt": "2026-08-14"
     },
     {
+      "id": "jingdezhen-booking-safety-2026",
+      "title": "清明去景德镇，这件事比预约还重要！",
+      "publisher": "景德镇市人民政府 / 景德镇文旅",
+      "url": "https://jdz.gov.cn/zwzx/ztbd/wmly/t1086800.shtml",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "jingdezhen-scenic-list-2026",
+      "title": "景德镇市国家A级旅游景区",
+      "publisher": "景德镇市文化广电旅游局",
+      "url": "https://wgxl.jdz.gov.cn/zwgk/fdzdgknr/zdly/ly/t1098113.shtml",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "jingdezhen-official-routes-2026",
+      "title": "魅力景德镇 · 推荐旅游路线",
+      "publisher": "景德镇市人民政府",
+      "url": "https://jdz.gov.cn/zjcd/mljdz/",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "jingdezhen-parking-2026",
+      "title": "解锁畅通模式！景德镇超全五一出行指南公布",
+      "publisher": "景德镇市人民政府 / 景德镇发布",
+      "url": "https://jdz.gov.cn/zwzx/gggs/t1089171.shtml",
+      "checkedAt": "2026-08-14"
+    },
+    {
+      "id": "jingdezhen-ancient-kiln-official",
+      "title": "景德镇古窑民俗博览区官方网站",
+      "publisher": "景德镇市古窑民俗旅游有限公司",
+      "url": "https://www.chinaguyao.com/index.html",
+      "checkedAt": "2026-08-14"
+    },
+    {
       "id": "ev-highway-charging-guide-2025",
       "title": "新能源车主春运充电出行提示",
       "publisher": "中华人民共和国交通运输部",
@@ -973,6 +1078,202 @@
           { "day": 5, "title": "苏仙岭与莽山转场", "summary": "上午轻游市区，午后向南转场并入住莽山周边。", "items": [{ "time": "08:30", "title": "苏仙岭或市博物馆", "description": "晴天轻徒步，雨天改室内场馆。", "tag": "机动" }, { "time": "12:00", "title": "市区午餐", "description": "补齐山中所需饮水和常用药。", "tag": "补给" }, { "time": "14:00", "title": "前往莽山", "description": "预留约2.5-3小时山路与休息时间，天黑前入住。", "tag": "转场" }] },
           { "day": 6, "title": "莽山五指峰完整游", "summary": "索道、栈道与云海集中一天，不与返程拼接。", "items": [{ "time": "08:00", "title": "五指峰景区入园", "description": "实名预约，先确认索道、无障碍设施和栈道开放状态。", "tag": "需预约" }, { "time": "11:30", "title": "云端栈道", "description": "山顶温差明显，按体力与能见度调整步行长度。", "tag": "山岳" }, { "time": "16:00", "title": "下山休息", "description": "不安排夜间长途，继续住莽山周边。", "tag": "住宿" }] },
           { "day": 7, "title": "按交通方式返深", "summary": "电车自驾可直接南返，高铁方案先回郴州西还车再乘车。", "items": [{ "time": "08:00", "title": "办理退房", "description": "检查车辆、电量、备选充电站和行李，避开临时赶车。", "tag": "整理" }, { "time": "09:00", "title": "分线返程", "description": "全程电车自驾按实时导航和续航规划回深圳；高铁方案预留充足时间返回郴州西还车。", "tag": "双交通" }, { "time": "15:00", "title": "途中休息或乘高铁", "description": "电车自驾结合补能至少每2小时休息一次；高铁车次以12306实际出票为准。", "tag": "返程" }] }
+        ]
+      }
+    ],
+    "jingdezhen": [
+      {
+        "id": "5d4n",
+        "label": "5天4夜",
+        "days": 5,
+        "nights": 4,
+        "title": "景德镇瓷都精华自驾 · 5天4夜",
+        "summary": "首尾两天从深圳直达，三天集中走陶瓷博物馆、古窑、陶阳里、陶溪川和高岭瑶里；只适合多司机轮换。",
+        "budget": {
+          "label": "人均2300-3800元",
+          "breakdown": [
+            { "label": "住宿", "value": "1200-2200元 / 4晚 / 2人" },
+            { "label": "餐饮", "value": "1200-1800元 / 2人" },
+            { "label": "交通（每车）", "value": "约1700-2600元 / 油电、高速与停车" },
+            { "label": "门票与体验", "value": "约500-1000元 / 2人" }
+          ]
+        },
+        "intensity": {
+          "level": "偏紧",
+          "score": 4,
+          "description": "首尾各有约11小时纯驾驶，只适合至少两位司机轮换；连续拥堵、暴雨或明显疲劳时应就近加住一晚。"
+        },
+        "sourceRefs": ["jingdezhen-booking-safety-2026", "jingdezhen-scenic-list-2026", "jingdezhen-official-routes-2026", "jingdezhen-parking-2026", "jingdezhen-ancient-kiln-official", "ev-highway-charging-guide-2025"],
+        "navigation": [
+          { "day": "Day 2-3", "name": "景德镇中国陶瓷博物馆" },
+          { "day": "Day 2-3", "name": "古窑民俗博览区" },
+          { "day": "Day 2-4", "name": "陶阳里历史文化旅游区" },
+          { "day": "Day 2-4", "name": "陶溪川文创街区" },
+          { "day": "Day 4-5", "name": "高岭·中国村" },
+          { "day": "Day 4-5", "name": "瑶里古镇" }
+        ],
+        "dayPlans": [
+          {
+            "day": 1,
+            "title": "深圳直达景德镇",
+            "summary": "清晨出发、白天轮换驾驶，把第一天完整留给跨省抵达。",
+            "items": [
+              { "time": "05:30", "title": "深圳出发", "description": "两位司机提前确认轮换顺序；电车按实时续航选定主备服务区，不把充电计划压到低电量。", "tag": "长途" },
+              { "time": "11:30", "title": "服务区午餐与长休", "description": "至少休息30分钟并重新核对赣粤高速路况；任何困倦都应换人或延长休息。", "tag": "安全" },
+              { "time": "18:30", "title": "景德镇市区入住", "description": "实际抵达以实时导航为准；若预计入夜仍未进城，就近增加住宿，不继续疲劳驾驶。", "tag": "住宿" }
+            ]
+          },
+          {
+            "day": 2,
+            "title": "陶瓷博物馆与古窑活态传承",
+            "summary": "先看完整陶瓷史，再到古窑理解原料、成型与烧造。",
+            "items": [
+              { "time": "08:30", "title": "核验预约与停车", "description": "确认畅游景德镇预约、本人实体身份证和停车信息；未预约成功时不要盲目前往排队。", "tag": "需预约" },
+              { "time": "09:00", "title": "景德镇中国陶瓷博物馆", "description": "按馆方开放时段入馆，从历代展陈建立景德镇陶瓷脉络。", "tag": "博物馆" },
+              { "time": "13:30", "title": "古窑民俗博览区", "description": "按官网当日信息观看古窑、作坊与非遗展示，复烧或开窑活动不作固定承诺。", "tag": "活态非遗" },
+              { "time": "18:00", "title": "市区休整", "description": "晚餐可尝冷粉、饺子粑和家常赣菜，长途驾驶后不安排夜间远郊。", "tag": "休息" }
+            ]
+          },
+          {
+            "day": 3,
+            "title": "陶阳里遗址与陶溪川夜游",
+            "summary": "从御窑遗址走到工业遗产更新，串起传统与当代陶瓷设计。",
+            "items": [
+              { "time": "09:00", "title": "陶阳里历史文化旅游区", "description": "按当天开放区域游览御窑遗址和街巷，节假日优先停外围停车场后接驳。", "tag": "遗址" },
+              { "time": "13:30", "title": "老城午餐与休息", "description": "避开正午连续步行，购物先确认标价、材质与退换规则。", "tag": "慢游" },
+              { "time": "17:30", "title": "陶溪川文创街区", "description": "看工业遗产与当代陶瓷空间；市集是否举办以官方当周发布为准。", "tag": "夜游" }
+            ]
+          },
+          {
+            "day": 4,
+            "title": "高岭原料与瑶里古镇",
+            "summary": "沿浮梁东北线理解高岭土、古村与窑业山水，整天只走一个远郊片区。",
+            "items": [
+              { "time": "07:30", "title": "前往高岭·中国村", "description": "出发前核对浮梁和瑶里天气，雨雾天降低山路车速并缩短停留。", "tag": "山路" },
+              { "time": "09:30", "title": "高岭·中国村", "description": "围绕高岭土与陶瓷原料线索游览，不进入未开放矿坑或生产区域。", "tag": "原料" },
+              { "time": "13:30", "title": "瑶里古镇", "description": "在开放街巷和景区范围慢游，临水石板路湿滑时减少溪边步行。", "tag": "古镇" },
+              { "time": "17:00", "title": "天黑前返城", "description": "不在乡道夜驾；强降雨、地质灾害或道路管制时取消远郊段。", "tag": "安全" }
+            ]
+          },
+          {
+            "day": 5,
+            "title": "景德镇直返深圳",
+            "summary": "再次用完整白天完成长途返程，不叠加任何景点。",
+            "items": [
+              { "time": "05:30", "title": "退房返程", "description": "检查车辆、胎压、油量或电量以及主备补能点，司机状态不佳则直接改为分段住宿。", "tag": "返程" },
+              { "time": "11:30", "title": "服务区午餐与轮换", "description": "结合补能至少长休一次，之后仍保持约2小时一次短休。", "tag": "安全" },
+              { "time": "18:30", "title": "抵达深圳", "description": "时间仅为顺畅路况参考；拥堵时优先安全到达，不设必须完成的返深时刻。", "tag": "到达" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "7d6n",
+        "label": "7天6夜",
+        "days": 7,
+        "nights": 6,
+        "title": "景德镇陶瓷与浮梁慢游 · 7天6夜",
+        "summary": "往返各在赣州分段住宿，增加三宝完整一天，并在瑶里住一晚，把城市陶瓷与浮梁乡村分开体验。",
+        "budget": {
+          "label": "人均3100-5200元",
+          "breakdown": [
+            { "label": "住宿", "value": "1800-3300元 / 6晚 / 2人" },
+            { "label": "餐饮", "value": "1700-2600元 / 2人" },
+            { "label": "交通（每车）", "value": "约1900-3000元 / 油电、高速与停车" },
+            { "label": "门票与体验", "value": "约700-1400元 / 2人" }
+          ]
+        },
+        "intensity": {
+          "level": "适中",
+          "score": 3,
+          "description": "赣州分段把超长驾驶拆开，四个游览日按市区、三宝和浮梁分片；仍需注意瑶里至赣州的长转场。"
+        },
+        "sourceRefs": ["jingdezhen-booking-safety-2026", "jingdezhen-scenic-list-2026", "jingdezhen-official-routes-2026", "jingdezhen-parking-2026", "jingdezhen-ancient-kiln-official", "ev-highway-charging-guide-2025"],
+        "navigation": [
+          { "day": "Day 1 / 7", "name": "赣州章贡区" },
+          { "day": "Day 2-3", "name": "景德镇中国陶瓷博物馆" },
+          { "day": "Day 2-3", "name": "古窑民俗博览区" },
+          { "day": "Day 2-4", "name": "陶阳里历史文化旅游区" },
+          { "day": "Day 2-4", "name": "陶溪川文创街区" },
+          { "day": "Day 4", "name": "三宝国际瓷谷" },
+          { "day": "Day 4-5", "name": "高岭·中国村" },
+          { "day": "Day 4-5", "name": "瑶里古镇" }
+        ],
+        "dayPlans": [
+          {
+            "day": 1,
+            "title": "深圳至赣州分段",
+            "summary": "把第一段控制在白天完成，为后续游览保留体力。",
+            "items": [
+              { "time": "07:30", "title": "深圳出发", "description": "按实时导航走赣粤方向，电车提前确定午间补能服务区与备用站。", "tag": "自驾" },
+              { "time": "12:30", "title": "服务区午餐", "description": "完成驾驶轮换和30分钟以上休息，不在车内匆忙解决全部休息。", "tag": "安全" },
+              { "time": "16:00", "title": "赣州章贡区入住", "description": "选高速出入口较方便且有正规停车场的酒店，晚间只在住宿周边用餐。", "tag": "住宿" }
+            ]
+          },
+          {
+            "day": 2,
+            "title": "赣州至景德镇与陶阳里",
+            "summary": "完成第二段转场，傍晚用轻量遗址街区开启瓷都行程。",
+            "items": [
+              { "time": "08:00", "title": "赣州出发", "description": "预留中途补能和休息，不把抵达时间建立在全程无拥堵假设上。", "tag": "转场" },
+              { "time": "13:00", "title": "服务区午餐与长休", "description": "重新确认景德镇城区停车提示和酒店车位。", "tag": "休息" },
+              { "time": "16:30", "title": "景德镇入住", "description": "连续住三晚，减少每天搬运行李。", "tag": "住宿" },
+              { "time": "18:00", "title": "陶阳里轻量夜游", "description": "只走开放街巷和公共区域；如抵达延误，直接取消而不压缩休息。", "tag": "夜游" }
+            ]
+          },
+          {
+            "day": 3,
+            "title": "陶瓷博物馆与古窑",
+            "summary": "完整梳理陶瓷史与传统烧造，不与远郊行程拼接。",
+            "items": [
+              { "time": "08:30", "title": "核验预约与证件", "description": "通过畅游景德镇完成实名预约并携带本人实体身份证。", "tag": "需预约" },
+              { "time": "09:00", "title": "景德镇中国陶瓷博物馆", "description": "按馆方开放时段参观，周一或临时闭馆时与三宝日对调。", "tag": "博物馆" },
+              { "time": "13:30", "title": "古窑民俗博览区", "description": "关注官网当天活动，理解传统制瓷工序和窑炉演变。", "tag": "活态非遗" },
+              { "time": "18:00", "title": "市区晚餐", "description": "当天步行量较大，夜间留作休息。", "tag": "恢复" }
+            ]
+          },
+          {
+            "day": 4,
+            "title": "三宝陶艺慢游与陶溪川",
+            "summary": "把工作室、陶艺空间和当代设计留出完整一天。",
+            "items": [
+              { "time": "09:00", "title": "三宝国际瓷谷", "description": "节假日按官方交通管制使用换乘点；不把车辆驶入受限道路。", "tag": "瓷谷" },
+              { "time": "11:00", "title": "陶艺空间或预约体验", "description": "只选择已确认营业和价格透明的工作室，制作体验需提前单独预约。", "tag": "体验" },
+              { "time": "14:30", "title": "山谷慢行", "description": "按开放道路和步道游览，暴雨时提前返城。", "tag": "慢游" },
+              { "time": "18:00", "title": "陶溪川文创街区", "description": "市集、展览和演出以官方当周发布为准。", "tag": "夜游" }
+            ]
+          },
+          {
+            "day": 5,
+            "title": "高岭·中国村与瑶里",
+            "summary": "沿浮梁东北线走原料、古村和山水，当晚住瑶里减少往返。",
+            "items": [
+              { "time": "08:00", "title": "前往高岭·中国村", "description": "检查浮梁、瑶里及沿线天气与道路预警，雨雾天降低车速。", "tag": "山路" },
+              { "time": "10:00", "title": "高岭原料线索", "description": "在开放范围理解高岭土与瓷业关系，不进入未开放矿区。", "tag": "原料" },
+              { "time": "14:00", "title": "瑶里古镇", "description": "沿开放街巷慢游，强降雨时远离溪边和湿滑石板路。", "tag": "古镇" },
+              { "time": "17:30", "title": "瑶里入住", "description": "确认停车与次日退房时间，夜间不再走山路。", "tag": "住宿" }
+            ]
+          },
+          {
+            "day": 6,
+            "title": "瑶里至赣州",
+            "summary": "从浮梁开始长距离南返，全天只完成转场。",
+            "items": [
+              { "time": "08:00", "title": "瑶里退房出发", "description": "若山区有暴雨、雾或道路管制，延后出发并同步调整赣州住宿。", "tag": "转场" },
+              { "time": "12:30", "title": "服务区午餐与轮换", "description": "完成补能和长休，下午继续按约2小时一次短休。", "tag": "安全" },
+              { "time": "17:30", "title": "赣州章贡区入住", "description": "不继续夜间赶回深圳，为最后一段保存体力。", "tag": "住宿" }
+            ]
+          },
+          {
+            "day": 7,
+            "title": "赣州返回深圳",
+            "summary": "用较轻松的末段驾驶完成行程。",
+            "items": [
+              { "time": "08:00", "title": "赣州出发", "description": "检查车辆与主备补能点，按实时导航避开拥堵。", "tag": "返程" },
+              { "time": "12:00", "title": "途中午餐", "description": "司机轮换并完成最后一次长休。", "tag": "休息" },
+              { "time": "15:30", "title": "抵达深圳", "description": "实际时间以路况为准，到家后不再安排需要集中注意力的活动。", "tag": "到达" }
+            ]
+          }
         ]
       }
     ],

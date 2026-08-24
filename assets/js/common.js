@@ -233,26 +233,30 @@ async function initMap(containerId, locations, routesData = []) {
     }));
     form.hidden = routes.length === 0;
     const fields = {
+      category: document.getElementById('filter-category'),
       days: document.getElementById('filter-days'),
       budget: document.getElementById('filter-budget'),
       drive: document.getElementById('filter-drive')
     };
+    const activeFields = Object.values(fields).filter(Boolean);
     const summary = document.getElementById('catalog-summary');
     const recommendation = document.getElementById('route-recommendation');
     const compareIds = new Set();
     let recommendedId = null;
 
     const matchesFilters = route => {
+      const category = fields.category?.value || 'all';
       const days = fields.days.value;
       const budget = fields.budget.value;
       const drive = fields.drive.value;
+      const categoryMatch = category === 'all' || route.category === category;
       const availableDays = routeTemplates(route).map(template => template.days);
       const daysMatch = days === 'all' || (days === '4'
         ? (availableDays.length ? availableDays.some(value => value >= 4) : route.days >= 4)
         : (availableDays.length ? availableDays.includes(Number(days)) : route.days === Number(days)));
       const budgetMatch = budget === 'all' || route.budget.perPersonMin <= Number(budget);
       const driveMatch = drive === 'all' || route.drive.oneWayHours <= Number(drive);
-      return daysMatch && budgetMatch && driveMatch;
+      return categoryMatch && daysMatch && budgetMatch && driveMatch;
     };
 
     const recommendationScore = route => {
@@ -342,7 +346,7 @@ async function initMap(containerId, locations, routesData = []) {
       document.dispatchEvent(new CustomEvent('route-catalog-rendered'));
     };
 
-    Object.values(fields).forEach(field => field.addEventListener('change', () => {
+    activeFields.forEach(field => field.addEventListener('change', () => {
       recommendedId = null;
       recommendation.hidden = true;
       render();
@@ -350,13 +354,15 @@ async function initMap(containerId, locations, routesData = []) {
 
     form.addEventListener('submit', event => {
       event.preventDefault();
-      const hasConditions = Object.values(fields).some(field => field.value !== 'all');
+      const hasConditions = activeFields.some(field => field.value !== 'all');
       if (!hasConditions) {
         recommendation.hidden = false;
-        recommendation.innerHTML = '<i class="fas fa-circle-info"></i><div><strong>先选一个条件</strong><p>设置可玩天数、预算或车程后，推荐结果会更有意义。</p></div>';
+        recommendation.innerHTML = '<i class="fas fa-circle-info"></i><div><strong>先选一个条件</strong><p>设置目的地范围、可玩天数、预算或车程后，推荐结果会更有意义。</p></div>';
         return;
       }
-      const ranked = [...routes].sort((a, b) => recommendationScore(b) - recommendationScore(a));
+      const category = fields.category?.value || 'all';
+      const recommendationPool = routes.filter(route => category === 'all' || route.category === category);
+      const ranked = [...recommendationPool].sort((a, b) => recommendationScore(b) - recommendationScore(a));
       const best = ranked[0];
       recommendedId = best.id;
       recommendation.hidden = false;
@@ -639,6 +645,19 @@ async function initMap(containerId, locations, routesData = []) {
         title: '雨天版 · 城市人文与湖畔慢游', summary: '暂停裸露丹霞、草原和高山栈道，把市区文化、东江镇休整与美食作为替代。',
         stops: ['上午：郴州市博物馆或711时光小镇', '下午：裕后街、室内非遗体验或东江镇休整', '晚上：鱼粉、烧鸡公等本地餐饮'],
         tips: '暴雨、雷电、大风或低能见度时取消高椅岭、仰天湖和莽山户外段；山区道路不要夜驾。'
+      }
+    },
+    jingdezhen: {
+      name: '景德镇', weatherCity: '360200', weatherLabel: '景德镇城区',
+      sunny: {
+        title: '晴稳版 · 窑火古镇与浮梁山水线', summary: '把高岭·中国村、瑶里古镇和三宝山谷安排在能见度较好、道路干燥的日期，城区场馆保留弹性。',
+        stops: ['上午：陶瓷博物馆或古窑按预约与开放时段参观', '下午：高岭·中国村与瑶里古镇按浮梁天气择日', '傍晚：陶阳里或陶溪川夜游，不再安排长途驾驶'],
+        tips: '页面展示景德镇城区预报，只作市区参考；前往浮梁、高岭和瑶里前必须另查山区降雨、能见度与道路预警。'
+      },
+      rainy: {
+        title: '雨天版 · 博物馆与工业遗产线', summary: '暂停高岭、瑶里和三宝山谷的长距离户外段，用陶瓷博物馆、古窑开放室内区及陶溪川展览吸收天气变化。',
+        stops: ['上午：按预约参观景德镇中国陶瓷博物馆', '下午：古窑开放室内区或陶阳里室内展陈', '傍晚：视雨势短游陶溪川，暴雨时直接回酒店'],
+        tips: '暴雨、雷电、低能见度或地质灾害预警时取消浮梁山区与溪边行程；不为固定打卡进入积水、封闭或管制道路。'
       }
     },
     meizhou: {

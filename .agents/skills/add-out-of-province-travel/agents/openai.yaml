@@ -1,0 +1,4 @@
+interface:
+  display_name: "新增广东省外旅游"
+  short_description: "Add verified out-of-province routes and itineraries"
+  default_prompt: "Use $add-out-of-province-travel to add a researched out-of-province itinerary to the dapeng-guide site."
